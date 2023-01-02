@@ -1,0 +1,27 @@
+@SCENARIO
+@width=750
+@title=OVER THE REICH
+
+^^"Destroy the Enemy Air Force wherever you find them, in the air, on the ground, and in the factories."
+^^-Hap Arnold, December 27, 1943.
+^
+Two years ago, the Royal Air Force emerged victorious from their finest hour in the 
+Battle of Britain.  They now carry the fight to the Reich, attacking its 
+cities with massive, 1000 bomber raids by night, and sweeping the coastlines
+with fighters by day, daring the Luftwaffe to challenge their "Rodeos."
+^
+Recently, the United States Army Air Force entered the fray.  Despite warnings 
+from their experienced British Allies, faith is placed in heavily-armed 
+"Flying Fortresses," and their ability to take the fight deep into Germany.  
+This will prove costly until adequate long-ranged fighter escorts can be produced.
+^
+The Luftwaffe remains a dangerous and well-trained foe.  The "Experten" of the
+Jagdflieger can mount a ferocious defense, but a war of attrition will hamper them 
+far more than the United States and British Empire.
+^
+Victory for either side is far from certain as the battle rages overhead...
+
+@end -- this line must be here!
+
+
+

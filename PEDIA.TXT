@@ -1,0 +1,516 @@
+;
+;   CIVILIZATION CIVILOPEDIA TEXT
+;   Copyright (c) 1999 by MicroProse Software
+;
+;   Altering the contents of this file may cause the
+;   game to malfunction.
+;
+
+@PEDIAPICKCIV
+@width=540
+@columns=3
+@listbox
+@title=Civilopedia: Civilization Advances
+
+@PEDIACIV
+@width=480
+@title=Civilization Advance
+^^%STRING0
+^
+
+
+@PEDIACIVFACTS
+^Allows government form of same name.
+^Allows settlers to build fortresses.
+^Allows settlers to build airbases.
+^Allows settlers to build railroads.
+^Allows settlers to improve farmland.
+^Increases the effect of Civilan Population I
+^Increases the effect of Civilian Population II
+^Worth bonus points in Civilization score.
+^Increases ship movement rates by one.
+^Improves Spaceship thrust by 25%.
+^Free civ. advance for first civ. to discover.
+^Decreases the effect of Civilian Population III
+^Cancels the effect of
+
+
+@PEDIAPICKUNIT
+@width=540
+@columns=3
+@listbox
+@title=Civilopedia: Unit Types
+
+@PEDIAUNIT
+@width=480
+@title=Unit Type
+^^%STRING0
+^
+
+@PEDIAUNITFACTS
+^Can see units two spaces away.
+^Ignores enemy Zones of Control.
+^Can make amphibious landings.
+^Invisible to most enemy aircraft.
+^Can attack aircraft in flight.
+^May be lost out of sight of land.
+^Ignores City Walls.
+^Can carry friendly air units.
+^Can make paradrops.
+^Treats all squares as road squares.
+^Defense +50% versus units with a movement factor of 2.
+^Only Fundamentalist governments can build.
+^Munitions
+^Defense +100% versus munitions.
+^Can spot enemy aircraft in adjacent squares.
+
+
+@PEDIAPICKGOVT
+@width=480
+@listbox
+@title=Civilopedia: Governments
+
+
+@PEDIAPICKIMPROVE
+@width=540
+@columns=3
+@listbox
+@title=Civilopedia: City Improvements
+
+@PEDIAIMPROVE
+@width=480
+@title=City Improvement
+^^%STRING0
+^
+
+@;Palace
+@PEDIAIMPROVE1
+Fuel is not diverted from this city to other theatres.
+Cities near the headquarters have less fuel diverted
+than cities further away.
+
+@;Barracks
+@PEDIAIMPROVE2
+This is not used in this scenario.
+
+@;Granary
+@PEDIAIMPROVE3
+Acts as base of operations for the Red Army.
+
+@;Temple
+@PEDIAIMPROVE4
+Up to two discontented citizens are made content.
+Destroyed by attacking urban area targets on
+the night map.  Creates high-yield urban terrain
+when built.
+
+@;Marketplace
+@PEDIAIMPROVE5
+Increases fuel production output by 50%.
+Destroyed by attacking fuel refineries on 
+high-altitude daylight map. Creates 
+high-yield fuel refinery terrain when built.
+
+@;Library
+@PEDIAIMPROVE6
+Increases research output by 50%.
+Destroyed by attacking aircraft factory targets
+on high-altitude daylight map.
+
+@;Courthouse
+@PEDIAIMPROVE7
+Reduces the amount of fuel diverted 
+to other theaters by 50%. 
+
+@;City Walls
+@PEDIAIMPROVE8
+Units in city are tripled on defense versus ground attacks.
+Allows population centers to look different than airfields.
+
+@;Aqueduct
+@PEDIAIMPROVE9
+Allows city to grow.
+
+@;Bank
+@PEDIAIMPROVE10
+Increases fuel production output by an
+additional 50% (cumulative w/ fuel refinery I).
+Destroyed by attacking fuel refineries on 
+high-altitude daylight map. Creates 
+high-yield fuel refinery terrain when built.
+
+@;Cathedral
+@PEDIAIMPROVE11
+Makes three unhappy citizens content.
+Destroyed by attacking urban area targets on
+the night map. Creates high-yield urban terrain
+when built.
+
+@;University
+@PEDIAIMPROVE12
+Increases research output by an additional
+50% (cumulative w/ Aircraft Factory I).  
+Destroyed by attacking aircraft factory targets
+on high-altitude daylight map.
+
+@;Mass Transit
+@PEDIAIMPROVE13
+This improvement is not used in this scenario.
+
+@;Colosseum
+@PEDIAIMPROVE14
+Three unhappy citizens are made content.  
+Destroyed by attacking urban area targets on
+the night map.  Creates high-yield urban terrain
+when built.
+
+@;Factory
+@PEDIAIMPROVE15
+Increases industrial production in city by 50%.
+Destroyed by attacking industrial targets on 
+high-altitude daylight map. Creates high-yield 
+industrial terrain when built.
+
+@;Mfg. Plant
+@PEDIAIMPROVE16
+Increases industrial production by an additional 50%
+(cumulative w/ Industry I). Destroyed by attacking
+industrial targets on high-altitude daylight map.
+Creates high-yield industrial terrain when built.
+
+@;SDI Defense
+@PEDIAIMPROVE17
+Required to deploy and safely land aircraft.
+Built automatically when each new airfield is 
+established.
+
+@;Recycling Center
+@PEDIAIMPROVE18
+Base of operations for 15th Air Force bombers
+and the Tuskeegee Airmen.
+
+@;Power Plant
+@PEDIAIMPROVE19
+Increases industrial output by 50%.
+Destroyed by attacking industrial targets
+on high-altitude daylight map. Creates 
+high-yield industrial terrain when built.
+
+@;Hydro Plant
+@PEDIAIMPROVE20
+This is not used in this scenario.
+
+@;Nuclear Plant
+@PEDIAIMPROVE21
+This is not used in this scenario.
+
+@;Stock Exchange
+@PEDIAIMPROVE22
+Increases fuel production by an additional
+50% (cumulative Refineries I and II for a grand
+total of 150%).  Destroyed by attacking fuel 
+refineries on high-altitude daylight map. Creates 
+high-yield fuel refinery terrain when built.
+
+@;Sewer System
+@PEDIAIMPROVE23
+Allows city to grow.
+
+@;Supermarket
+@PEDIAIMPROVE24
+This is not used in this scenario.
+
+@;Superhighways
+@PEDIAIMPROVE25
+All squares in the city's radius with fuel dumps
+produce 50% more fuel.  Destroyed by attacking 
+railyards on high-altitude daylight map..
+
+@;Research Lab
+@PEDIAIMPROVE26
+Increases research output by an additional 50%
+(cumulative with Aircraft Factories I and II for
+a grand total of 150%).  Destroyed by attacking
+aircraft factories on high-altitude daylight map.
+
+@;SAM Missile Battery
+@PEDIAIMPROVE27
+Units in city are doubled on defense against
+air attack.  Prohibitively expensive and should
+be used sparingly.
+
+@;Coastal Fortress
+@PEDIAIMPROVE28
+The Germans have the option of destroying their 
+own ports to prevent them from falling into Allied
+hands.  If the Allies capture a port intact, they
+receive a 1x bonus of 3x Battle Groups.  As D-Day
+approaches the Germany player would be wise to
+consider destroying their own ports.  This has a 
+large malus to fuel (100 fuel points per turn)
+to discourage wide-spread abuse.
+
+@;Solar Plant
+@PEDIAIMPROVE29
+Increases industrial output by 50%.
+Destroyed by attacking industrial targets
+on high-altitude daylight map. Creates 
+high-yield industrial terrain when built.
+
+@;Harbor
+@PEDIAIMPROVE30
+All water squares in the city's radius
+produce one extra unit of food.
+
+@;Offshore Platform
+@PEDIAIMPROVE31
+This is not used in this scenario.
+
+@;Airport
+@PEDIAIMPROVE32
+Germans only. City produces veteran air units.
+Any air unit spending its entire turn in the city
+is completely repaired.
+
+@;Police Station
+@PEDIAIMPROVE33
+This is not used in this scenario.
+
+@;Port Facility
+@PEDIAIMPROVE34
+City can produce veteran naval units and repair ships.
+Grants Allies 100 fuel for each in their possession. Also 
+grants Allies 100 fuel for each not in Germany's possession.
+Destroyed by attacking ports on high-altitude daylight map.
+
+@;Transporter
+@PEDIAIMPROVE35
+This is not used in this scenario. 
+
+@;SS Structural
+@PEDIAIMPROVE36
+This is not used in this scenario.
+
+@;SS Component
+@PEDIAIMPROVE37
+This is not used in this scenario.
+
+@;SS Module
+@PEDIAIMPROVE38
+This is not used in this scenario.
+
+@;Capitalization
+@PEDIAIMPROVE39
+This is not used in this scenario.
+
+@;Pyramids
+@PEDIAIMPROVE40
+This is not used in this scenario.
+
+@;Hanging Gardens
+@PEDIAIMPROVE41
+This is not used in this scenario.
+
+@;Colossus
+@PEDIAIMPROVE42
+City produces one extra fuel in each square that
+already produces one.
+
+@;Lighthouse
+@PEDIAIMPROVE43
+This is not used in this scenario.
+
+@;Great Library
+@PEDIAIMPROVE44
+This is not used in this scenario.
+
+@;Oracle
+@PEDIAIMPROVE45
+This is not used in this scenario.
+
+@;Great Wall
+@PEDIAIMPROVE46
+This is not used in this scenario.
+
+@;Sun Tzu's War Academy
+@PEDIAIMPROVE47
+This is not used in this scenario.
+
+@;King Richard's Crusade
+@PEDIAIMPROVE48
+Every square in the city's radius produces an extra
+industrial "shield".
+
+@;Marco Polo's Embassy
+@PEDIAIMPROVE49
+This is not used in this scenario.
+
+@;Michelangelo's Chapel
+@PEDIAIMPROVE50
+This is not used in this scenario.
+
+@;Copernicus' Observatory
+@PEDIAIMPROVE51
+Doubles the total research output of city.
+
+@;Magellan's Expedition
+@PEDIAIMPROVE52
+This is not used in this scenario.
+
+@:Shakespeare's Theatre
+@PEDIAIMPROVE53
+This is not used in this scenario.
+
+@;Da Vinci's Workshop
+@PEDIAIMPROVE54
+This is not used in this scenario.
+
+@;J.S. Bach's Cathedral
+@PEDIAIMPROVE55
+Decreases unhappy citizens on same continent by 2 per city.
+Is no longer valid once the Allies successfully invade northwest
+Europe.
+
+@;Isaac Newton's College
+@PEDIAIMPROVE56
+Doubles the research output of each of the three research
+improvements - Aircraft Factories I, II, and III -
+in city. 
+
+@;Adam Smith's Trading Co.
+@PEDIAIMPROVE57
+Pays the maintenance for all city improvements which
+ordinarily cost 1 fuel per turn.  City improvements
+requiring more than 1 fuel per turn maintenance are not
+affected.
+
+@;Darwin's Voyage
+@PEDIAIMPROVE58
+This is not used in this scenario.
+
+@;The Statue of Liberty
+@PEDIAIMPROVE59
+This is not used in this scenario.
+
+@;The Eiffel Tower
+@PEDIAIMPROVE60
+Has no practical effect in this scenario.
+It is here for "flavor."
+
+@;Women's Suffrage
+@PEDIAIMPROVE61
+This is not used in this scenario.
+
+@;Hoover Dam
+@PEDIAIMPROVE62
+Provides the Allies with increased industrial boost.
+
+@;Manhattan Project
+@PEDIAIMPROVE63
+This is not used in this scenario.
+
+@;United Nations
+@PEDIAIMPROVE64
+No practical effect in this scenario.
+It is here for "flavor."
+
+@;Apollo Program
+@PEDIAIMPROVE65
+This is not used in this scenario.
+
+@;SETI Program
+@PEDIAIMPROVE66
+This is not used in this scenario.
+
+@;Cure for Cancer
+@PEDIAIMPROVE67
+This is not used in this scenario.
+
+@PEDIAGOVT
+@width=600
+@title=Civilization: Governments
+Government Switching is not allowed in this scenario.
+
+@PEDIAGOVT0
+@width=600
+@title=Civilization Government: Anarchy
+This government is not used in this scenario.
+
+@PEDIAGOVT1
+@width=600
+@title=Civilization Government: Despotism
+This government is not used in this scenario.
+
+
+@PEDIAGOVT2
+@width=600
+@title=Civilization Government: Monarchy
+This government is not used in this scenario.
+
+
+@PEDIAGOVT3
+@width=600
+@title=Civilization Government: Grand Alliance
+^UNIT SUPPORT
+Each unit beyond the eigth costs one shield per turn.
+Construction Teams eat one food per turn.
+^
+^HAPPINESS
+Up to three military units in each city will calm the
+populace, converting *TWO* unhappy citizens into
+content citizens (so a total of SIX unhappy citizens can
+be calmed).
+^
+^DIVERSION OF RESOURCES
+The Allies have adopted a "Germany First" strategy.
+Fuel is not diverted elsewhere.
+
+@PEDIAGOVT4
+@width=600
+@title=Civilization Government: Fundamentalism
+This government is not used in this scenario.
+
+@PEDIAGOVT5
+@width=600
+@title=Civilization Government: The Third Reich
+^UNIT SUPPORT
+Each unit costs one shield per turn.  Construction workers 
+eat TWO food per turn.
+^
+^SUPPRESSION
+Each military unit AFTER THE FIRST which is not in a friendly
+city causes one citizen in its home city to become unhappy.  
+Martial law is important for those who mean to rule their neighbors!
+^
+^DIVERSION OF RESOURCES
+The Third Reich is embroiled in a multi-front war.  Each 
+theatre is desperate for resources and fuel is constantly diverted.
+More fuel is diverted in cities further from your headquarters.
+^
+
+@PEDIAGOVT6
+@width=600
+@title=Civilization Government: Democracy
+This government is not used in this scenario.
+
+@;This line must remain at the end of this file!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

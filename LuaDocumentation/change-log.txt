@@ -1,0 +1,44 @@
+Changes since 9 September 2022
+
+delayedActions now throws an error if the action is "delayed" to a turn/tribe in the past.
+
+eventTools.lua rendered superfluous as the unit upgrade check can work even if there is no next unit activated.  File is still available and references (in promotion.lua, parameters.lua, events.lua) are commented out, just in case a problem arises and they must be restored.
+
+munitions.lua no longer requires air units to be left with 1 movement point after generating the munition.  munitionsSettings.lua runs the function to disable this as part of standard code. (For backwards compatibility of functionality, the function must be run to allow air units to have zero MP)
+
+
+Added Pablostuka's text.initCap function which capitalizes the first letter of each word in the string.
+
+Modified code provided by Pablostuka for gen.getBearing function.
+
+
+fixed bug in traits.lua
+
+
+range for land and sea disabled by default
+
+make ships defend first, don't re-define the defender value modifier function
+
+unitData, cityData, tileData created
+
+last update
+
+tables with metatables are not "state savable" according to gen.isStateSavable
+
+traits.assign and traits.unassign generate errors if traits.allowedTraits has not been executed yet
+
+non-english characters are anglicised by makeObject.lua instead of deleted.  This function is also in text.lua
+
+fixed bug in radar.lua
+
+integrated seasonSettings.lua into the template.
+
+Traits can now be assigned to all the items in a table.
+
+fixed bugs in combatSettings.lua
+
+todo
+
+kill land units when last transport is killed
+
+
