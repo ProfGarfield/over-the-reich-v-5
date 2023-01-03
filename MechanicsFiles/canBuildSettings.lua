@@ -1,6 +1,6 @@
 
 local versionNumber = 1
-local fileModified = false -- set this to true if you change this file for your scenario
+local fileModified = true -- set this to true if you change this file for your scenario
 -- if another file requires this file, it checks the version number to ensure that the
 -- version is recent enough to have all the expected functionality
 -- if you set fileModified to true, the error generated if this file is out of date will
@@ -330,32 +330,101 @@ local addBuildConditions = canBuildFunctions.makeAddBuildConditions(unitTypeBuil
 --      for each item in the table, register the buildability parameters as above
 
 
+--  ================================
+--  ================================
+
+--      Unit Conditions
+--
+--  ================================
+--  ================================
+local eventOnlyUnits = {object.uRedArmyGroup, object.uRailyard, object.uAerialPhotos, object.uMilitaryPort, object.uIndustry, object.uExperten, object.uBattleGroupGerman, object.uDepletedBattleGroupGerman, object.uEgonMayer, object.uBattleGroupAllied, object.uDepletedBattleGroupAllied, object.uHermannGraf, object.uJosefPriller, object.uAdolfGalland, object.uTaskForceG, object.uTaskForceA, object.uAircraftFactory, object.uRefinery, object.uGuntherRall, object.uWalterNowotny, object.uUrbanCenter, object.uFrancisGabreski, object.uGeorgePreddy, object.uJohnBraham, object.uJohnnieJohnson, object.uWindow, object.uHWSchnaufer, object.uEirchHartmann, object.uPanzerDivision, object.uDamagedB17F, object.uNeutralTerritory, object.uDamagedB17G, object.uCriticalIndustry, object.uGerhardBarkhorn, object.uUSAAFAce, object.uRAFAce, object.uBarrage, object.uConvoy, object.uV1Buzzbomb, object.uV2Rocket, }
+
+addBuildConditions(eventOnlyUnits,{returnFalse=true})
+addBuildConditions(object.uFreightTrain, {someImprovements = {object.iIndustryI, object.iIndustryII, object.iIndustryIII, }, numberOfImprovements = 1, })
+
+
+--  ================================
+--  ================================
+
+--      Improvement Conditions
+--
+--  ================================
+--  ================================
 
 
 
+local airfieldImprovements = {object.iAirbase, }
+local cityImprovements = {object.iCityI, object.iCityII, object.iCityIII, }
+local housingImprovements = {object.iCivilianPopulationI, object.iCivilianPopulationII, object.iCivilianPopulationIII, }
+
+
+addBuildConditions(object.iCivilianPopulationI, {allImprovements = cityImprovements, forbiddenImprovements = airfieldImprovements, })
+addBuildConditions(object.iCivilianPopulationII, {allImprovements = cityImprovements, forbiddenImprovements = airfieldImprovements, })
+addBuildConditions(object.iCivilianPopulationIII, {allImprovements = cityImprovements, forbiddenImprovements = airfieldImprovements, })
+
+addBuildConditions(object.iFuelRefineryI, {allImprovements = cityImprovements, someImprovements = housingImprovements, numberOfImprovements = 1, forbiddenImprovements = airfieldImprovements, })
+addBuildConditions(object.iFuelRefineryII, {allImprovements = cityImprovements, someImprovements = housingImprovements, numberOfImprovements = 2, forbiddenImprovements = airfieldImprovements, })
+addBuildConditions(object.iFuelRefineryIII, {allImprovements = cityImprovements, someImprovements = housingImprovements, numberOfImprovements = 3, forbiddenImprovements = airfieldImprovements, })
+
+
+addBuildConditions(object.iIndustryI, {allImprovements = cityImprovements, someImprovements = housingImprovements, numberOfImprovements = 1, forbiddenImprovements = airfieldImprovements, })
+addBuildConditions(object.iIndustryII, {allImprovements = cityImprovements, someImprovements = housingImprovements, numberOfImprovements = 2, forbiddenImprovements = airfieldImprovements, })
+addBuildConditions(object.iIndustryIII, {allImprovements = cityImprovements, someImprovements = housingImprovements, numberOfImprovements = 3, forbiddenImprovements = airfieldImprovements, })
+
+
+addBuildConditions(object.iAircraftFactoryI, {allImprovements = cityImprovements, someImprovements = housingImprovements, numberOfImprovements = 1, forbiddenImprovements = airfieldImprovements, })
+addBuildConditions(object.iAircraftFactoryII, {allImprovements = cityImprovements, someImprovements = housingImprovements, numberOfImprovements = 2, forbiddenImprovements = airfieldImprovements, })
+addBuildConditions(object.iAircraftFactoryIII, {allImprovements = cityImprovements, someImprovements = housingImprovements, numberOfImprovements = 3, forbiddenImprovements = airfieldImprovements, })
+
+addBuildConditions(object.iHeadquarters, {allImprovements = cityImprovements, forbiddenImprovements = airfieldImprovements, })
+
+addBuildConditions(object.iQuartermaster, {allImprovements = cityImprovements, forbiddenImprovements = airfieldImprovements, })
+
+addBuildConditions(object.iRationing, {allImprovements = cityImprovements, forbiddenImprovements = airfieldImprovements, })
+
+addBuildConditions(object.iRailyards, {allImprovements = cityImprovements, forbiddenImprovements = airfieldImprovements, })
+
+addBuildConditions(object.iFirefighters, {allImprovements = cityImprovements, forbiddenImprovements = airfieldImprovements, })
+
+addBuildConditions(object.iDocks, {allImprovements = cityImprovements, forbiddenImprovements = airfieldImprovements, })
+
+addBuildConditions(object.iMilitaryPort, {allImprovements = cityImprovements, forbiddenImprovements = airfieldImprovements, })
+
+
+addBuildConditions(object.iRedArmy, {returnFalse = true})
+addBuildConditions(object.iCityI, {returnFalse = true})
+addBuildConditions(object.iCityII, {returnFalse = true})
+addBuildConditions(object.iCityIII, {returnFalse = true})
+addBuildConditions(object.iAirbase, {returnFalse = true})
+
+addBuildConditions(object.i15thAirForce, {returnFalse=true})
+
+addBuildConditions(object.iWehrmacht, {returnFalse=true})
+addBuildConditions(object.iCriticalIndustry, {returnFalse=true})
+
+addBuildConditions(object.iJagdfliegerschule, {forbiddenTribes = {[object.pNeutrals.id]=true, [object.pAllies.id]=true, [object.pEvents.id]=true, }, allImprovements = airfieldImprovements, forbiddenImprovements = cityImprovements, })
 
 
 
+-- returning false for now, until effect determined
+addBuildConditions(object.iExperimentalAircraft, {returnFalse=true, allImprovements = airfieldImprovements, forbiddenImprovements = cityImprovements, })
 
 
+--  ================================
+--  ================================
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+--      Wonder Conditions
+--
+--  ================================
+--  ================================
+--
+--
+--
+--
+--
+--
+--
+--
 
 
 -- canBuildFunctions.hideProcessingList() -- uncomment if you don't want the list of stuff being processed printed in the console

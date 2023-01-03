@@ -1,0 +1,7 @@
+No transporter near Dover.
+Verdun does not have City III improvement.
+Edinburgh Railyard improvement not destroyed.
+Liverpool Aircraft Factory I not destroyed.
+Russian Front and Italian Theatre have "Residential" terrain.
+Berlin Aircraft Factory I not destroyed.
+Prague Industry I not destroyed.
