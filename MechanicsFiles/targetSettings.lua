@@ -365,6 +365,12 @@ local function aircraftFactorySpecialWeight(tile,constructingCity)
 
     local airfieldWeight = 0 -- value of nearby airfield/potential airfield (max)
     local otherWeight = 0 -- value of other features of the tile (additive)
+    if gen.hasMine(tile) or gen.hasAgriculture(tile) then
+        otherWeight = otherWeight - 5000 -- discourage placing aircraft factories on decorated tiles
+    end
+    if tile.baseTerrain == object.bBombedIndustryLowBase then
+        otherWeight = otherWeight + 100000
+    end
     for _,nearbyTile in pairs(gen.cityRadiusTiles(tile)) do
         if factoryAirfield.needsAircraftFactory(nearbyTile.city) then
             if helper.adjacentBaseTerrain(nearbyTile,object.bRailtrackLowBase) then
@@ -375,6 +381,7 @@ local function aircraftFactorySpecialWeight(tile,constructingCity)
         elseif not nearbyTile.city and not helper.isAirfieldForbidden(nearbyTile) then
             if helper.adjacentBaseTerrain(nearbyTile,object.bRailtrackLowBase) then
                 airfieldWeight = math.max(airfieldWeight,90000) -- possible airfield with railroad access
+                otherWeight = otherWeight+500
             else
                 airfieldWeight = math.max(airfieldWeight,10000) -- possible airfield without railroad access
             end
@@ -382,8 +389,12 @@ local function aircraftFactorySpecialWeight(tile,constructingCity)
             -- not an OTRCity, since that is excluded elsewhere
             -- try to place AC factories away from airfields that don't need them
             otherWeight = otherWeight - 1000
-        elseif helper.isAirfieldForbidden(nearbyTile) then
-            otherWeight = otherWeight - 500
+        elseif nearbyTile.baseTerrain == object.bIndustryLowBase 
+        or nearbyTile.baseTerrain == object.bBombedIndustryLowBase then
+            -- try to place AC factories away from other factories
+            otherWeight = otherWeight - 1000
+        --elseif helper.isAirfieldForbidden(nearbyTile) then
+        --    otherWeight = otherWeight - 500
         end
     end
     return airfieldWeight+otherWeight+tieBreaker(tile,constructingCity)
@@ -746,7 +757,23 @@ local constructedTargetLostFunction,
 -- We need to create the target when an item is
 -- produced (perhaps at other times as well)
 function discreteEvents.onCityProduction(city,item)
-  constructedCityProductionEventFunction(city,item)
+    constructedCityProductionEventFunction(city,item)
+    if aircraftFactories[item.id] then
+        local target = nil
+        for possibleTarget in strat.iterateTargets(city) do
+            if possibleTarget.improvement == item and possibleTarget.targetLocation then
+                target = possibleTarget
+                break
+            end
+        end
+        local industryTile = civ.getTile(target.targetLocation.x,target.targetLocation.y,0)
+        for _,tile in pairs(gen.cityRadiusTiles(industryTile)) do
+            if factoryAirfield.needsAircraftFactory(tile.city) then
+                factoryAirfield.linkFactoryToAirfield(industryTile,tile.city)
+                break
+            end
+        end
+    end
 end
 
 
