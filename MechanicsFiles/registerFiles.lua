@@ -1,6 +1,6 @@
 
 local versionNumber = 1
-local fileModified = false -- set this to true if you change this file for your scenario
+local fileModified = true -- set this to true if you change this file for your scenario
 -- if another file requires this file, it checks the version number to ensure that the
 -- version is recent enough to have all the expected functionality
 -- if you set fileModified to true, the error generated if this file is out of date will
@@ -20,7 +20,7 @@ require("registerCombatModifiers")
 
 
 --          Files For This Scenario
-
+require("airfieldMechanics")
 
 
 

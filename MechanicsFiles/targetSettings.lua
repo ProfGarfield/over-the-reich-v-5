@@ -16,7 +16,6 @@ local object = require("object")
 local traits = require("traits")
 local factoryAirfield = require("factoryAirfield")
 local helper = require("helper")
-require("makeSwitchyardList")
 
 
 
@@ -381,7 +380,7 @@ local function aircraftFactorySpecialWeight(tile,constructingCity)
         elseif not nearbyTile.city and not helper.isAirfieldForbidden(nearbyTile) then
             if helper.adjacentBaseTerrain(nearbyTile,object.bRailtrackLowBase) then
                 airfieldWeight = math.max(airfieldWeight,90000) -- possible airfield with railroad access
-                otherWeight = otherWeight+500
+                --otherWeight = otherWeight+500
             else
                 airfieldWeight = math.max(airfieldWeight,10000) -- possible airfield without railroad access
             end
@@ -669,7 +668,6 @@ local function tileEffectsFunction(city,item)
     if civ.isWonder(item) then
         itemID = itemID+40
     end
-    print(item.name)
     local affectedBaseTiles = getMapZeroTargetTiles(city,item)
     local totalBaseTiles = (extraTileTargets[itemID] or 0)+1
     if #affectedBaseTiles < totalBaseTiles then

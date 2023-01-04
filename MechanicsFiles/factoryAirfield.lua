@@ -153,6 +153,19 @@ function discreteEvents.onCityDestroyed(city)
     factoryAirfield.unlinkFactoryFromAirfield(city)
 end
 
+--[[
+local keyboard = require("keyboard")
+function discreteEvents.onKeyPress(keyID)
+    if keyID == keyboard.backspace and civ.getOpenCity() then
+        local city = civ.getOpenCity()
+        if factoryAirfield.getLinkedFactory(city) then
+            civ.ui.text("Airfield is linked to factory")
+        else
+            civ.ui.text("Airfield is not linked to factory")
+        end
+    end
+end
+--]]
 
 
 
