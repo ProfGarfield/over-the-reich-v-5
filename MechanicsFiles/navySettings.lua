@@ -1,6 +1,6 @@
 --
 local versionNumber = 1
-local fileModified = false -- set this to true if you change this file for your scenario
+local fileModified = true -- set this to true if you change this file for your scenario
 -- if another file requires this file, it checks the version number to ensure that the
 -- version is recent enough to have all the expected functionality
 -- if you set fileModified to true, the error generated if this file is out of date will
@@ -12,6 +12,7 @@ local object = require("object")
 local gen = require("generalLibrary"):minVersion(1)
 local navy = require("navy"):minVersion(1)
 local readRules = require("readRules"):minVersion(1)
+local civilopedia = require("civilopedia")
 
 
 -- This module implements features related to ships:
@@ -145,8 +146,51 @@ Make Landfall
 --      when a ship is activated within a city (as well as forbidding the
 --      other types of boarding)
 --
+local transportList = {object.uTaskForceA,object.uTaskForceG}
+local cityLoadUnload = {forbidBeachBoarding=true, forbidPeacePortBoarding = true, forbidAlliedPortBoarding=true, restrictBeachUnload = true, restrictPeacePortUnload=true, restrictAlliedPortUnload=true}
 
 local beachShipSettings = {}
+beachShipSettings[object.uTaskForceA.id] = {}
+beachShipSettings[object.uTaskForceG.id] = {}
+beachShipSettings[object.uAircraftCarrier.id] = {}
+beachShipSettings[object.uWolfPack.id] = {}
+beachShipSettings[object.uConvoy.id] = {}
+beachShipSettings[object.uRedArmyGroup.id] = {forbidBoarding=transportList,}
+civilopedia.description(object.uRedArmyGroup,"Can't board transports.")
+beachShipSettings[object.uFreightTrain.id] = {forbidBoarding=transportList,}
+civilopedia.description(object.uFreightTrain,"Can't board transports.")
+beachShipSettings[object.uConstructionTeam.id] = {forbidBeachBoarding=true, forbidPeacePortBoarding = true, forbidAlliedPortBoarding=true, restrictBeachUnload = true, restrictPeacePortUnload=true, restrictAlliedPortUnload=true}
+civilopedia.description(object.uConstructionTeam,"Must board and unload from transports in cities.")
+beachShipSettings[object.uEarlyRadar.id] = {forbidBoarding=transportList,}
+civilopedia.description(object.uEarlyRadar,"Can't board transports.")
+beachShipSettings[object.uAdvancedRadar.id] = {forbidBoarding=transportList,}
+civilopedia.description(object.uAdvancedRadar,"Can't board transports.")
+beachShipSettings[object.uSdkfz72.id] = {}
+beachShipSettings[object.u88mmFlakBattery.id] = {}
+beachShipSettings[object.uFlakTrain.id] = {forbidBoarding=transportList,}
+civilopedia.description(object.uFlakTrain,"Can't board transports.")
+beachShipSettings[object.uBarrageBalloons.id] = {restrictBeachUnload = true}
+civilopedia.description(object.uBarrageBalloons,"Can't unload onto a beach.")
+beachShipSettings[object.uBattleGroupGerman.id] = {beachUnloadPenalty = 6}
+beachShipSettings[object.uDepletedBattleGroupGerman.id] = {restrictBeachUnload = true}
+civilopedia.description(object.uDepletedBattleGroupGerman,"Can't unload onto a beach.")
+beachShipSettings[object.uBattleGroupAllied.id] = {beachUnloadPenalty = 8}
+beachShipSettings[object.uDepletedBattleGroupAllied.id] = {restrictBeachUnload = true}
+civilopedia.description(object.uDepletedBattleGroupAllied,"Can't unload onto a beach.")
+beachShipSettings[object.u37inchFlak.id] = {}
+beachShipSettings[object.u37cmFlak.id] = {}
+beachShipSettings[object.uGunBattery.id] = {forbidBoarding=transportList,}
+civilopedia.description(object.uGunBattery,"Can't board transports.")
+beachShipSettings[object.uV1LaunchSite.id] = {forbidBoarding=transportList,}
+civilopedia.description(object.uV1LaunchSite,"Can't board transports.")
+beachShipSettings[object.uV2LaunchSite.id] = {forbidBoarding=transportList,}
+civilopedia.description(object.uV2LaunchSite,"Can't board transports.")
+--beachShipSettings[object.u.id] = {}
+--beachShipSettings[object.u.id] = {}
+
+
+
+
 --[[
 -- Here are some testing examples
 beachShipSettings[gen.original.uTrireme.id] = {
