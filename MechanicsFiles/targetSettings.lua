@@ -24,7 +24,7 @@ local helper = require("helper")
 -- it), and false otherwise
 
 local function isStrategicItem(item)
-    if item == object.iCriticalIndustry then
+    if item == object.iCriticalIndustry or civ.isUnit(item) then
         return false
     end
     return traits.hasTrait(item,"strategicImprovement")
@@ -756,7 +756,7 @@ local constructedTargetLostFunction,
 -- produced (perhaps at other times as well)
 function discreteEvents.onCityProduction(city,item)
     constructedCityProductionEventFunction(city,item)
-    if aircraftFactories[item.id] then
+    if civ.isImprovement(item) and aircraftFactories[item.id] then
         local target = nil
         for possibleTarget in strat.iterateTargets(city) do
             if possibleTarget.improvement == item and possibleTarget.targetLocation then
@@ -764,6 +764,8 @@ function discreteEvents.onCityProduction(city,item)
                 break
             end
         end
+        -- a target will always be found, since it was created in
+        -- constructedCityProductionEventFunction
         local industryTile = civ.getTile(target.targetLocation.x,target.targetLocation.y,0)
         for _,tile in pairs(gen.cityRadiusTiles(industryTile)) do
             if factoryAirfield.needsAircraftFactory(tile.city) then

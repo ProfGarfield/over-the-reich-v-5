@@ -10,7 +10,7 @@ local fileModified = false -- set this to true if you change this file for your 
 
 
 
-
+---@module "generalLibrary"
 local gen = require("generalLibrary"):minVersion(1)
 local function optionalRequire(fileName)
     local fileFound,prefix = gen.requireIfAvailable(fileName)
@@ -38,6 +38,7 @@ local diplomacySettingsFound, diplomacySettings = gen.requireIfAvailable("diplom
 local textFound, text = gen.requireIfAvailable("text")
 --local text = optionalRequire("text")
 local discreteEvents = require("discreteEventsRegistrar"):minVersion(1)
+local traits = require("traits")
 
 
 -- key press events can be registered here using the discreteEvents
@@ -85,6 +86,21 @@ if munitionsSettingsFound then
 else
     print("WARNING: munitionsSettings.lua not found.  Keys k and u will not generate munitions")
 end
+discreteEvents.onKeyPress(function(keyCode)
+    local activeUnit = civ.getActiveUnit() 
+    if keyCode == keyboard.k and activeUnit 
+    and traits.hasTrait(activeUnit.type,"photoRecon") then
+        for _,tile in pairs(gen.getAdjacentTiles(activeUnit.location)) do
+            if tile.city and tile.city.owner ~= activeUnit.owner then
+                gen.setCityInvestigated(tile.city)
+                text.simple(text.substitute(
+                    "Our %NAME1 has returned with photographs of %NAME2."
+            ,{activeUnit,tile.city}),"Photographic Reconnaisance")
+            end
+        end
+        gen.spendMovementPoints(activeUnit, 40)
+    end
+end)
 
 if helpKeySettingsFound then
     function discreteEvents.onKeyPress(keyCode)

@@ -139,7 +139,7 @@ Jabo II,                  0, 0,  Eng, Eco, 1, 0    ; Env 26
 Jabo III,                 0, 0,  Env,  E1, 1, 0    ; Esp 27
 Engines IV,               0, 0,   E1, Ban, 2, 1    ; Exp 28
 Experimental Design,      0, 0,   Stl, Ato, 1, 4   ; Feu 29
-Volksjäger,               0, 0,  Hor,  NF, 1, 3    ; Fli 30
+Volksjï¿½ger,               0, 0,  Hor,  NF, 1, 3    ; Fli 30
 NOT USED,                 0, 0,   no,  no, 0, 4    ; Fun 31
 Centrifugal-Flow Engine,  0, 0,  Inv, nil, 1, 3    ; FP  32
 Axial-Flow Compressor,    0, 0,   Nav, nil, 1, 3    ; Gen 33
@@ -167,7 +167,7 @@ NOT USED,                 0, 0,   no,  no, 0, 4    ; Mon 54
 1940s Tech II,            0, 0,  nil, nil, 0, 4    ; MT  55
 1940s Tech III,           0, 0,  nil, nil, 0, 4    ; Mys 56
 Jet Fighter Focus,        0, 0,  FP,  nil, 1, 3    ; Nav 57
-Jägernotprogramm,         0, 0,  Las, nil, 2, 1    ; NF  58
+Jï¿½gernotprogramm,         0, 0,  Las, nil, 2, 1    ; NF  58
 Wilde Sau,                0, 0,  Cmb, nil, 1, 0    ; NP  59
 Night Bombing III,        0, 0,   E2,  E1, 1, 1    ; Phi 60
 Industry I,               0, 0,  Ref, nil, 2, 0    ; Phy 61
@@ -181,7 +181,7 @@ Fuel Production III,      0, 0,  Pot, nil, 2, 2    ; Rec 68
 War Economy,              0, 0,  nil, nil, 2, 3    ; Ref 69
 Rationing,                0, 0,  no,   no, 2, 3    ; Rfg 70
 The Axis Powers,          0, 0,  nil, nil, 0, 0    ; Rep 71
-Jägerstab,                0, 0,  Plu, Rec, 2, 1    ; Rob 72
+Jï¿½gerstab,                0, 0,  Plu, Rec, 2, 1    ; Rob 72
 Foggia Airfields,         0, 0,  nil, nil, 0, 1    ; Roc 73
 Operation Overlord Prep., 0, 0,  nil, nil, 3, 1    ; San 74
 Operation Neptune,        0, 0,  nil, nil, 3, 1    ; Sea 75
@@ -277,12 +277,12 @@ NOT USED,                  1, 1,     no, ; 7 WOW - Sun Tzu's War Academy
 Krupp Works,              15, 0,    nil, ; 8 WOW - King Richard's Crusade
 NOT USED,                  1, 1,     no, ; 9 WOW - Marco Polo's Embassy
 NOT USED,                  1, 1,     no, ; 10 WOW - Michelangelo's Chapel
-Peenemünde,               15, 0,    nil, ; 11 WOW - Copernicus' Observatory
+Peenemï¿½nde,               15, 0,    nil, ; 11 WOW - Copernicus' Observatory
 NOT USED,                  1, 1,     no, ; 12 WOW - Magellan's Expedition
 NOT USED,                  1, 1,     no, ; 13 WOW - Shakespeare's Theatre
 NOT USED,                  1, 1,     no, ; 14 WOW - Leonardo's Workshop
 Adolf Hitler,              1, 1,     nil, ; 15 WOW - J.S. Bach's Cathedral
-Jägernotprogramm,         80, 0,     NF, ; 16 WOW - Isaac Newton's College
+Jï¿½gernotprogramm,         80, 0,     NF, ; 16 WOW - Isaac Newton's College
 Albert Speer's Reforms,   80, 0,    Rob, ; 17 WOW - Adam Smith's Trading Co.
 56th Fighter Group,        1, 1,    Cmn, ; 18 WOW - Darwin's Voyage
 No.617 RAF,               60, 0,     no, ; 19 WOW - Statue of Liberty **
@@ -401,9 +401,9 @@ Aerial Photos,        nil, 0,  1.,0,  0a,1d,  1h,1f,  2,0,  6, nil, 000000000000
 Sdkfz 7/2,            nil, 0,  8.,0,  0a,4d,  2h,2f, 40,0,  1, nil, 010000000000000 ;9
 88mm Flak Battery,    nil, 0,  4.,0,  0a,5d,  3h,2f,  50,0,  1, nil, 010000000000000 ;10
 Flak Train,           nil, 0, 10.,0,  0a,7d,  3h,2f, 50,0,  1, nil, 010000000000000 ;11
-Me109G6,              Ato, 1, 20.,4,  0a,8d,  2h,2f, 40,0,  3, Ast, 000000000001000 ;12
-Me109G14,             Ban, 1, 22.,4,  0a,9d,  2h,2f, 40,0,  3, Ato, 000000000001000 ;13
-Me109K4,              nil, 1, 24.,4,  0a,10d, 2h,2f, 40,0,  3, Ban, 000000000001000 ;14
+Me109G6,              Ato, 1, 20.,4,  8a,8d,  2h,2f, 40,0,  3, Ast, 000000000011000 ;12
+Me109G14,             Ban, 1, 22.,4,  0a,9d,  2h,2f, 40,0,  3, Ato, 000000000011000 ;13
+Me109K4,              nil, 1, 24.,4,  0a,10d, 2h,2f, 40,0,  3, Ban, 000000000011000 ;14
 Fw190A5,              Amp, 1, 30.,4,  0a,6d,  2h,2f, 45,0,  3, AFl, 000000000001000 ;15
 Fw190A8,              nil, 1, 32.,4,  0a,4d,  2h,2f, 65,0,  3, Alp, 000000000001000 ;16
 Fw190D9,              CoL, 1, 34.,4,  0a,7d,  2h,2f, 45,0,  3, Amp, 000000000001000 ;17
@@ -424,7 +424,7 @@ Do217,                 MP, 1, 20.,12, 0a,7d,  2h,2f, 35,0,  0, Mas, 000000000001
 He277,                nil, 1, 23.,12, 0a,8d,  2h,2f, 40,0,  0,  MP, 000000000001000 ;32
 Arado234,             nil, 1, 60.,2, 0a,2d,  2h,2f,  90,0,  0, Iro, 000000000001000 ;33
 Go229,                nil, 1,127.,2, 0a,2d,  2h,2f, 120,0,  0, Lab, 000000000001000 ;34
-Spitfire IX,          Ato, 1, 20.,3,  0a,7d,  2h,2f, 20,0,  3, nil, 100000000000000 ;35
+Spitfire IX,          Ato, 1, 20.,3,  7a,7d,  2h,2f, 20,0,  3, nil, 100000000010000 ;35
 Spitfire XII,         Ban, 1, 22.,3,  0a,8d,  2h,2f, 20,0,  3, Ato, 100000000000000 ;36
 Spitfire XIV,         nil, 1, 24.,3,  0a,9d,  2h,2f, 20,0,  3, Ban, 100000000000000 ;37
 Hurricane IV,         nil, 1, 15.,4,  0a,5d,  2h,2f, 20,0,  0, Eng, 100000000000000 ;38
@@ -452,7 +452,7 @@ Stirling,             E2, 1,  20.,10, 0a,6d, 3h,2f, 20,0,  0, Aut, 0000000000010
 Halifax,               Phi, 1,  22.,12, 0a,7d, 3h,2f, 20,0,  0, E2, 000000000001000 ;60
 Lancaster,            nil, 1,  25.,12, 0a,8d, 3h,2f, 20,0,  0,  Phi, 000000000001000 ;61
 Pathfinder,           nil, 1,  26.,12, 0a,9d, 2h,2f, 60,0,  0, Mat, 000000000001001 ;62
-A-20,                 Met, 1,  35.,4,  0a,5d, 2h,2f, 30,0,  0, Med, 100000000000000 ;63
+A-20,                 Met, 1,  35.,4,  5a,5d, 2h,2f, 30,0,  0, Med, 100000000000000 ;63
 B-26,                 Min, 1,  40.,4,  0a,6d, 2h,2f, 30,0,  0, Met, 100000000000000 ;64
 A-26,                 nil, 1,  45.,4,  0a,7d, 2h,2f, 30,0,  0, Min, 100000000000000 ;65
 B-17F,                MP, 1,  20.,12, 0a,7d, 2h,2f, 20,0,  0, Map,  100000000000000 ;66
@@ -813,21 +813,21 @@ NOT USED,       NOT USED,   NOT USED
 ;
 @LEADERS
 James Doolittle, James Doolittle,          0, 1, 1, Allies,          Allied,          -1,  1,  0,
-Hermann Göring, Hermann Göring,            0, 2, 2, Germans,         German,           1,  1, -1,
+Hermann Gï¿½ring, Hermann Gï¿½ring,            0, 2, 2, Germans,         German,           1,  1, -1,
 Events,    Events,                     0, 3, 3, Events,        Events,         1, -1,  1,  
 Not Used,    Not Used,                     0, 4, 3, Not used,        Not used,         1, -1,  1, 
 Not Used,    Not Used,                     0, 5, 3, Not used,        Not used,         1, -1,  1, 
 Not Used,    Not Used,                     0, 6, 3, Not used,        Not used,         1, -1,  1, 
 Not Used,    Not Used,                     0, 7, 3, Not used,        Not used,         1, -1,  1, 
 James Doolittle, James Doolittle,          0, 1, 1, Allies,          Allied,          -1,  1,  0,
-Hermann Göring, Hermann Göring,            0, 2, 2, Germans,         German,           1,  1, -1,
+Hermann Gï¿½ring, Hermann Gï¿½ring,            0, 2, 2, Germans,         German,           1,  1, -1,
 Events,    Events,                     0, 3, 3, Events,        Events,         1, -1,  1, 
 Not Used,    Not Used,                     0, 4, 3, Not used,        Not used,         1, -1,  1, 
 Not Used,    Not Used,                     0, 5, 3, Not used,        Not used,         1, -1,  1, 
 Not Used,    Not Used,                     0, 6, 3, Not used,        Not used,         1, -1,  1, 
 Not Used,    Not Used,                     0, 7, 3, Not used,        Not used,         1, -1,  1, 
 James Doolittle, James Doolittle,          0, 1, 1, Allies,          Allied,          -1,  1,  0,
-Hermann Göring, Hermann Göring,            0, 2, 2, Germans,         German,           1,  1, -1,
+Hermann Gï¿½ring, Hermann Gï¿½ring,            0, 2, 2, Germans,         German,           1,  1, -1,
 Events,    Events,                     0, 3, 3, Events,        Events,         1, -1,  1, 
 Not Used,    Not Used,                     0, 4, 3, Not used,        Not used,         1, -1,  1, 
 Not Used,    Not Used,                     0, 5, 3, Not used,        Not used,         1, -1,  1,  
@@ -927,7 +927,7 @@ Enraged
 0		; Esp	Jabo III
 0		; Exp	Engines IV
 0		; Feu	Experimental Design
-2		; Fli	Volksjäger
+2		; Fli	Volksjï¿½ger
 5		; Fun	NOT USED
 0		; FP	Centrifugal-Flow Compressor
 0		; Gen	Axial-Flow Compressor
@@ -955,7 +955,7 @@ Enraged
 0		; MT	1940s Tech II
 0		; Mys	1940s Tech III
 0		; Nav	Jet Fighter Experiments
-2		; NF	Jägernotprogramm
+2		; NF	Jï¿½gernotprogramm
 2		; NP	Wilde Sau
 1		; Phi	Night Bombing III
 0		; Phy	Industry I
@@ -969,7 +969,7 @@ Enraged
 0		; Ref	War Economy
 0		; Rfg	Rationing
 2		; Rep	The Axis Powers
-2		; Rob	Jägerstab
+2		; Rob	Jï¿½gerstab
 3		; Roc	Operation Shingle
 3		; San	Operation Overlord Prep.
 3		; Sea	Operation Neptune
