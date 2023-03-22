@@ -395,7 +395,8 @@ function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,at
             end
         end)
     end
-
+end
+--[[
     return coroutine.create(function()
         local round = 0
         while(round < maxCombatRounds and attacker.hitpoints >0 and defender.hitpoints > 0) do
@@ -515,6 +516,7 @@ function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,at
 
     end)
 end
+]]
 
 discreteEvents.onActivateUnit(function(unit,source,repeatMove)
     unit.type.range = changeRules.authoritativeDefaultRules[unit.type].range
