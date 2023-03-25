@@ -9,6 +9,7 @@ local fileModified = true -- set this to true if you change this file for your s
 --
 -- Note: See strategicTargetsDocumentation.txt in the LuaDocumentation folder
 
+---@module "generalLibrary"
 local gen = require("generalLibrary"):minVersion(1)
 local strat = require("strategicTargets")
 local discreteEvents = require("discreteEventsRegistrar")

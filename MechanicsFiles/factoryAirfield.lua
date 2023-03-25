@@ -141,10 +141,10 @@ function factoryAirfield.linkNewAirfieldToFactory(city)
         end
     end
     if activeFactory then
-        linkFactoryToAirfield(activeFactory,city)
+        factoryAirfield.linkFactoryToAirfield(activeFactory,city)
         return
     elseif defunctFactory then
-        linkFactoryToAirfield(defunctFactory,city)
+        factoryAirfield.linkFactoryToAirfield(defunctFactory,city)
         return
     end
 end
