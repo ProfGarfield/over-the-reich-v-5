@@ -110,6 +110,9 @@ combatParameters.fighterEscapeThreshold = 3
 --  If a fighter is in combat and can be destroyed in this many hits,
 --  it will try to escape combat
 
+combatParameters.maxEscapeStack = 2
+--  A unit "escaping" from combat won't be placed on a stack that has more than this number of units already.
+
 -- End Generic Combat Parameters
 gen.restrictValues(combatParameters,isCombatParameter,makeCombatParameter)
 -- Begin Aircraft Combat Parameters

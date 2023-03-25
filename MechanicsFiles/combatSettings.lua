@@ -228,8 +228,11 @@ end
 --fourth, `isCombat`, is a boolean that indicates if this invocation will be 
 --followed by combat. This function is also called by the AI to determine its 
 --goals, in which case `isCombat` is false.
-
+local defendedTile = nil
 function register.onChooseDefender(defaultFunction,tile,attacker,isCombat)
+    if isCombat then
+        defendedTile = tile
+    end
     local bestDefenderValue = -math.huge
     local bestDefender = nil
     for possibleDefender in gen.nearbyUnits(tile, combatParameters.maxInterceptionRange, tile.z) do
@@ -277,7 +280,50 @@ local function aircraftMovementAfterAttack(attacker,attackerMoveCost)
     end
 end
 
+---Puts aircraft where they should be when combat ends.
+---Escaping aircraft won't be placed in a city or in a stack that already has 3 aircraft.
+---@param winningAircraft unitObject|nil The unit which defeated or chased away the other aircraft.  If combat ended due to the maximum number of combat rounds, use nil.
+---@param escapingAircraft unitObject|nil This is the unit which 'escaped' the combat, or nil if combat ended due to defeat or maximum combat rounds.
+---@param defender unitObject The unit which was the defender/victim of the combat.
+---@param origDefenderLocation tileObject The tile where the defender was before the attack.
+local function aircraftEscapeCleanup(winningAircraft,escapingAircraft,defender,origDefenderLocation)
+    if winningAircraft == defender or 
+        (winningAircraft == nil and defender.hitpoints > 0)  then
+        defender:teleport(origDefenderLocation)
+    end
+    if escapingAircraft then
+        local escapeDist = combatParameters[escapingAircraft.type.id].interceptionRange + 1 --[[@as integer]]
+        local function allowedTiles(possibleTile)
+            if gen.distance(escapingAircraft,possibleTile) < escapeDist or
+                possibleTile.city then
+                return false
+            end
+            local tileCount = 0
+            for unit in possibleTile.units do
+                tileCount = tileCount+1
+                if tileCount > combatParameters.maxEscapeStack then
+                    return false
+                end
+            end
+            return true
+        end
+        local escapeTile = nil -- The tile the escapingAircraft will go to
+        local escapeRadius = escapeDist + 1 -- The radius of tiles to search for an escape tile.  Increments until an open tile is found
+        repeat
+            escapeTile = gen.getRandomNearbyOpenTileForTribe(escapingAircraft.location, escapeRadius, allowedTiles, escapingAircraft.owner)
+            escapeRadius = escapeRadius+1
+        until civ.isTile(escapeTile)
+        escapingAircraft:teleport(escapeTile)
+    end
+end
+
 function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,attackerPower,defenderDie,defenderPower,isSneakAttack)
+    local originalDefenderLocation = defender.location
+    if originalDefenderLocation ~= defendedTile then
+        defender:teleport(defendedTile)
+    end
+    defendedTile = nil
+
 
     local attackerStrength, attackerFirepower, defenderStrength, defenderFirepower = computeCombatStatistics(attacker, defender, isSneakAttack)
     local maxCombatRounds = math.huge -- If you want to limit combat to a specific number of
@@ -332,21 +378,26 @@ function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,at
             while true do
                 if round >= maxCombatRounds then
                     aircraftMovementAfterAttack(attacker)
+                    aircraftEscapeCleanup(nil,nil,defender,originalDefenderLocation)
                     return
                 elseif attacker.hitpoints <= 0 then
+                    aircraftEscapeCleanup(defender,nil,defender,originalDefenderLocation)
                     return
                 elseif defender.hitpoints <= 0 then
                     aircraftMovementAfterAttack(attacker)
+                    aircraftEscapeCleanup(attacker,nil,defender,originalDefenderLocation)
                     return
                 elseif attacker.hitpoints < combatParameters.fighterEscapeThreshold * defenderFirepower 
                     and round >= combatParameters.minAirCombatRounds
                     and math.random() < attackerEscapeChance then
                     aircraftMovementAfterAttack(attacker)
+                    aircraftEscapeCleanup(defender,attacker,defender,originalDefenderLocation)
                     return
                 elseif defender.hitpoints < combatParameters.fighterEscapeThreshold * attackerFirepower 
                     and round >= combatParameters.minAirCombatRounds
                     and math.random() < defenderEscapeChance then
                     aircraftMovementAfterAttack(attacker)
+                    aircraftEscapeCleanup(attacker,defender,defender,originalDefenderLocation)
                     return
                 end
                 local result = coroutine.yield(false,
@@ -361,21 +412,26 @@ function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,at
             while true do
                 if round >= maxCombatRounds then
                     aircraftMovementAfterAttack(attacker)
+                    aircraftEscapeCleanup(nil,nil,defender,originalDefenderLocation)
                     return
                 elseif attacker.hitpoints <= 0 then
+                    aircraftEscapeCleanup(defender,nil,defender,originalDefenderLocation)
                     return
                 elseif defender.hitpoints <= 0 then
                     aircraftMovementAfterAttack(attacker)
+                    aircraftEscapeCleanup(attacker,nil,defender,originalDefenderLocation)
                     return
                 elseif attacker.hitpoints < combatParameters.fighterEscapeThreshold * defenderFirepower 
                     and round >= combatParameters.minAirCombatRounds
                     and math.random() < attackerEscapeChance then
                     aircraftMovementAfterAttack(attacker)
+                    aircraftEscapeCleanup(defender,attacker,defender,originalDefenderLocation)
                     return
                 elseif math.random() < defenderEscapeChance 
                     and round >= combatParameters.minAirCombatRounds
                     then
                     aircraftMovementAfterAttack(attacker)
+                    aircraftEscapeCleanup(attacker,defender,defender,originalDefenderLocation)
                     return
                 end
                 local result = coroutine.yield(false,
