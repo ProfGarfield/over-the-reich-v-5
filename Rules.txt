@@ -139,7 +139,7 @@ Jabo II,                  0, 0,  Eng, Eco, 1, 0    ; Env 26
 Jabo III,                 0, 0,  Env,  E1, 1, 0    ; Esp 27
 Engines IV,               0, 0,   E1, Ban, 2, 1    ; Exp 28
 Experimental Design,      0, 0,   Stl, Ato, 1, 4   ; Feu 29
-Volksj�ger,               0, 0,  Hor,  NF, 1, 3    ; Fli 30
+Volksjaeger,               0, 0,  Hor,  NF, 1, 3    ; Fli 30
 NOT USED,                 0, 0,   no,  no, 0, 4    ; Fun 31
 Centrifugal-Flow Engine,  0, 0,  Inv, nil, 1, 3    ; FP  32
 Axial-Flow Compressor,    0, 0,   Nav, nil, 1, 3    ; Gen 33
@@ -167,7 +167,7 @@ NOT USED,                 0, 0,   no,  no, 0, 4    ; Mon 54
 1940s Tech II,            0, 0,  nil, nil, 0, 4    ; MT  55
 1940s Tech III,           0, 0,  nil, nil, 0, 4    ; Mys 56
 Jet Fighter Focus,        0, 0,  FP,  nil, 1, 3    ; Nav 57
-J�gernotprogramm,         0, 0,  Las, nil, 2, 1    ; NF  58
+Jaegernotprogramm,         0, 0,  Las, nil, 2, 1    ; NF  58
 Wilde Sau,                0, 0,  Cmb, nil, 1, 0    ; NP  59
 Night Bombing III,        0, 0,   E2,  E1, 1, 1    ; Phi 60
 Industry I,               0, 0,  Ref, nil, 2, 0    ; Phy 61
@@ -181,7 +181,7 @@ Fuel Production III,      0, 0,  Pot, nil, 2, 2    ; Rec 68
 War Economy,              0, 0,  nil, nil, 2, 3    ; Ref 69
 Rationing,                0, 0,  no,   no, 2, 3    ; Rfg 70
 The Axis Powers,          0, 0,  nil, nil, 0, 0    ; Rep 71
-J�gerstab,                0, 0,  Plu, Rec, 2, 1    ; Rob 72
+Jaegerstab,                0, 0,  Plu, Rec, 2, 1    ; Rob 72
 Foggia Airfields,         0, 0,  nil, nil, 0, 1    ; Roc 73
 Operation Overlord Prep., 0, 0,  nil, nil, 3, 1    ; San 74
 Operation Neptune,        0, 0,  nil, nil, 3, 1    ; Sea 75
@@ -277,12 +277,12 @@ NOT USED,                  1, 1,     no, ; 7 WOW - Sun Tzu's War Academy
 Krupp Works,              15, 0,    nil, ; 8 WOW - King Richard's Crusade
 NOT USED,                  1, 1,     no, ; 9 WOW - Marco Polo's Embassy
 NOT USED,                  1, 1,     no, ; 10 WOW - Michelangelo's Chapel
-Peenem�nde,               15, 0,    nil, ; 11 WOW - Copernicus' Observatory
+Peenemuende,               15, 0,    nil, ; 11 WOW - Copernicus' Observatory
 NOT USED,                  1, 1,     no, ; 12 WOW - Magellan's Expedition
 NOT USED,                  1, 1,     no, ; 13 WOW - Shakespeare's Theatre
 NOT USED,                  1, 1,     no, ; 14 WOW - Leonardo's Workshop
 Adolf Hitler,              1, 1,     nil, ; 15 WOW - J.S. Bach's Cathedral
-J�gernotprogramm,         80, 0,     NF, ; 16 WOW - Isaac Newton's College
+Jaegernotprogramm,         80, 0,     NF, ; 16 WOW - Isaac Newton's College
 Albert Speer's Reforms,   80, 0,    Rob, ; 17 WOW - Adam Smith's Trading Co.
 56th Fighter Group,        1, 1,    Cmn, ; 18 WOW - Darwin's Voyage
 No.617 RAF,               60, 0,     no, ; 19 WOW - Statue of Liberty **
@@ -389,133 +389,133 @@ nil,        ; Cure for Cancer
 ;
 ;
 @UNITS
-Red Army Group,       nil, 0,  8.,0, 50a,50d, 2h,2f, 127,0,  1, nil, 000000001000100 ;0 
-Construction Team,    nil, 0,  4.,0,  0a,2d,  2h,2f, 20,0,  5, nil, 000000000000010 ;1
-Bofors 40mm,          nil, 0,   2.,0,  0a,5d, 3h,2f, 25,0,  1, nil, 010000000000000 ;2
-Early Radar,          nil, 0,  1.,0,  0a,15d, 2h,2f, 30,0,  1, nil, 000000100000000 ;3
-Advanced Radar,       nil, 0,  1.,0,  0a,15d, 2h,2f, 45,0,  1, Cor, 000000100000000 ;4
-Fw200,                nil, 1,  60.,4,  0a,6d, 2h,2f, 60,0,  0, Mas, 100000000001000 ;5
-Freight Train,        nil, 0, 12.,0,  0a,2d,  2h,2f, 60,0,  1, nil, 000000000000000 ;6
-Railyard,             nil, 0,  0.,0,  0a,18d, 3h,2f,  2,0,  7, nil, 000000000000000 ;7
-Aerial Photos,        nil, 0,  1.,0,  0a,1d,  1h,1f,  2,0,  6, nil, 000000000000000 ;8
-Sdkfz 7/2,            nil, 0,  8.,0,  0a,4d,  2h,2f, 40,0,  1, nil, 010000000000000 ;9
-88mm Flak Battery,    nil, 0,  4.,0,  0a,5d,  3h,2f,  50,0,  1, nil, 010000000000000 ;10
-Flak Train,           nil, 0, 10.,0,  0a,7d,  3h,2f, 50,0,  1, nil, 010000000000000 ;11
-Me109G6,              Ato, 1, 20.,4,  8a,8d,  2h,2f, 40,0,  3, Ast, 000000000011000 ;12
-Me109G14,             Ban, 1, 22.,4,  0a,9d,  2h,2f, 40,0,  3, Ato, 000000000011000 ;13
-Me109K4,              nil, 1, 24.,4,  0a,10d, 2h,2f, 40,0,  3, Ban, 000000000011000 ;14
-Fw190A5,              Amp, 1, 30.,4,  0a,6d,  2h,2f, 45,0,  3, AFl, 000000000001000 ;15
-Fw190A8,              nil, 1, 32.,4,  0a,4d,  2h,2f, 65,0,  3, Alp, 000000000001000 ;16
-Fw190D9,              CoL, 1, 34.,4,  0a,7d,  2h,2f, 45,0,  3, Amp, 000000000001000 ;17
-Ta152,                nil, 1, 40.,4,  0a,9d,  2h,2f, 50,0,  3, CoL, 000000000001000 ;18
-Military Port,        nil, 0,  0.,0,  0a,18d, 3h,2f,  2,0,  7, nil, 000000000000000 ;19
-Me110,                Chi, 1, 16.,6,  0a,6d, 2h,2f, 40,0,  3, Che, 000000000001000 ;20
-Me410,                nil, 1, 18.,6,  0a,7d, 2h,2f, 40,0,  3, Chi, 000000000001000 ;21
-Ju88C,                Cmb, 1, 22.,6,  0a,6d,  2h,2f, 40,0,  3,  CA, 000000000001000 ;22
-Ju88G,                Cmp, 1, 24.,6,  0a,7d,  2h,2f, 40,0,  3, Cmb, 000000000001000 ;23
-He219,                nil, 1, 28.,6,  0a,8d,  2h,2f, 40,0,  3, Cmp, 000000000001001 ;24
-He162,                nil, 1, 40.,2, 0a,2d,   2h,2f, 90,0,  3, Fli, 000000000011000 ;25
-Me163,                nil, 1, 20.,1, 0a,2d,   2h,2f, 75,0,  3, Mob, 000000000001000 ;26
-Me262,                nil, 1, 80.,2, 0a,5d,  2h,2f, 127,0,  3, Hor, 000000000001000 ;27
-Ju87G,                nil, 1, 15.,4,  0a,2d,  2h,2f, 20,0,  0, Eng, 000000000001000 ;28
-Fw190F8,              Esp, 1, 20.,4,  0a,8d,  2h,2f, 25,0,  0, Env, 000000000001000 ;29
-Do335,                nil, 1, 25.,4,  0a,7d,  2h,2f, 30,0,  0, Esp, 000000000001000 ;30
-Do217,                 MP, 1, 20.,12, 0a,7d,  2h,2f, 35,0,  0, Mas, 000000000001000 ;31
-He277,                nil, 1, 23.,12, 0a,8d,  2h,2f, 40,0,  0,  MP, 000000000001000 ;32
-Arado234,             nil, 1, 60.,2, 0a,2d,  2h,2f,  90,0,  0, Iro, 000000000001000 ;33
-Go229,                nil, 1,127.,2, 0a,2d,  2h,2f, 120,0,  0, Lab, 000000000001000 ;34
-Spitfire IX,          Ato, 1, 20.,3,  7a,7d,  2h,2f, 20,0,  3, nil, 100000000010000 ;35
-Spitfire XII,         Ban, 1, 22.,3,  0a,8d,  2h,2f, 20,0,  3, Ato, 100000000000000 ;36
-Spitfire XIV,         nil, 1, 24.,3,  0a,9d,  2h,2f, 20,0,  3, Ban, 100000000000000 ;37
-Hurricane IV,         nil, 1, 15.,4,  0a,5d,  2h,2f, 20,0,  0, Eng, 100000000000000 ;38
-Typhoon,              Esp, 1, 20.,4,  0a,7d,  2h,2f, 30,0,  0, Env, 100000000000000 ;39
-Tempest,              nil, 1, 25.,4,  0a,9d,  2h,2f, 30,0,  0, Esp, 100000000000000 ;40
-Meteor,               nil, 1, 80.,2, 0a,2d,  2h,2f, 120,0,  3, Hor, 100000000010000 ;41
-Beaufighter,          nil, 1, 40.,6,  0a,6d,  2h,2f, 30,0,  3, CA,  000000000001000 ;42
-Mosquito NF Mk II,    nil, 1, 40.,8,  0a,7d,  2h,2f, 35,0,  3, Cmb, 000000000001000 ;43
-Mosquito NF Mk XIII,  nil, 1, 45.,8,  0a,8d,  2h,2f, 45,0,  3, Cmp, 100000000001000 ;44
-Industry,             nil, 0,  0.,0,  0a,20d, 3h,2f,  2,0,  7, nil, 000000000000000 ;45
-Fw190A5 - Rocket,     nil, 1,  30.,4,  0a,20d, 3h,2f,  2,0,  7, nil, 000000000000000 ;46
-Fw190A8 - Rocket,     nil, 1,  32.,4,  0a,20d, 3h,2f,  2,0,  7, nil, 000000000000000 ;47
-Me109G6 - Rocket,     nil, 1,  20.,4,  7a,1d,  1h,4f,  1,0,  0, nil,  000000000000000 ;48
-Barrage Balloons,      nil,  0,  1.,0,  0a,20d,  2h,2f, 3,0,  1, nil, 000000100000000 ;49
-P-47D11,              Ato, 1,  30.,3, 0a,8d,  2h,2f, 30,0,  3, Ast, 100000000000000 ;50
-P-47D25,              Bro, 1,  34.,3, 0a,9d,  2h,2f, 30,0,  3, Ato, 100000000000000 ;51
-P-47D40,              nil, 1,  34.,4, 0a,10d,  2h,2f, 30,0,  3, Ban, 100000000000000 ;52
-Experten,             nil, 1, 36.,4,  0a,11d,  2h,2f, 35,0,  3, nil, 100000000001001 ;53
-P-38H,                Alp, 1,  30.,4, 0a,6d,  2h,2f, 35,0,  3, AFl, 100000000000000 ;54
-P-38J,                Amp, 1,  34.,4, 0a,7d,  2h,2f, 35,0,  3, Alp, 100000000000000 ;55
-P-51B,                X1,  1,  40.,6, 0a,11d, 2h,2f, 45,0,  3, Bro, 100000000000000 ;56
-P-51D,                nil, 1,  40.,8, 0a,12d, 2h,2f, 45,0,  3,  X1, 100000000000001 ;57
-P-80,                 nil, 1,  80.,2,  0a,2d, 2h,2f, 120,0, 3, Hor, 100000000010000 ;58
-Stirling,             E2, 1,  20.,10, 0a,6d, 3h,2f, 20,0,  0, Aut, 000000000001000 ;59
-Halifax,               Phi, 1,  22.,12, 0a,7d, 3h,2f, 20,0,  0, E2, 000000000001000 ;60
-Lancaster,            nil, 1,  25.,12, 0a,8d, 3h,2f, 20,0,  0,  Phi, 000000000001000 ;61
-Pathfinder,           nil, 1,  26.,12, 0a,9d, 2h,2f, 60,0,  0, Mat, 000000000001001 ;62
-A-20,                 Met, 1,  35.,4,  5a,5d, 2h,2f, 30,0,  0, Med, 100000000000000 ;63
-B-26,                 Min, 1,  40.,4,  0a,6d, 2h,2f, 30,0,  0, Met, 100000000000000 ;64
-A-26,                 nil, 1,  45.,4,  0a,7d, 2h,2f, 30,0,  0, Min, 100000000000000 ;65
-B-17F,                MP, 1,  20.,12, 0a,7d, 2h,2f, 20,0,  0, Map,  100000000000000 ;66
-B-24J,                nil, 1,  30.,12, 0a,6d, 2h,2f, 20,0,  0, Mas, 100000000000000 ;67
-B-17G,                nil, 1,  22.,12, 0a,8d, 2h,2f, 20,0,  0,  MP, 100000000000000 ;68
-Battle Group German,           nil, 0,   4.,0, 45a,45d, 2h,2f, 127,0,  1, nil, 000000001000100 ;69
+Red Army Group,       nil, 0,  8.,0, 50a,50d,  2h,2f, 127,0, 1, nil, 000000001000100 ;0 
+Construction Team,    nil, 0,  4.,0,   0a,2d,  2h,2f, 20,0,  5, nil, 000000000000010 ;1
+Bofors 40mm,          nil, 0,  2.,0,  12a,5d,  3h,3f, 25,0,  1, nil, 010000000010000 ;2
+Early Radar,          nil, 0,  1.,0,  0a,15d,  2h,2f, 30,0,  1, nil, 000000100000000 ;3
+Advanced Radar,       nil, 0,  1.,0,  0a,15d,  2h,2f, 45,0,  1, Cor, 000000100000000 ;4
+Fw200,                nil, 1, 60.,4,   6a,6d,  2h,2f, 60,0,  0, Mas, 100000000001000 ;5
+Freight Train,        nil, 0, 12.,0,   0a,2d,  2h,2f, 60,0,  1, nil, 000000000000000 ;6
+Railyard,             nil, 0,  0.,0,  0a,18d,  3h,2f,  2,0,  7, nil, 000000000000000 ;7
+Aerial Photos,        nil, 0,  1.,0,   0a,1d,  1h,1f,  2,0,  6, nil, 000000000000000 ;8
+Sdkfz 7/2,            nil, 0,  8.,0,  12a,5d,  3h,3f, 40,0,  1, nil, 010000000010000 ;9
+88mm Flak Battery,    nil, 0,  4.,0,  15a,8d,  3h,3f, 50,0,  1, nil, 010000000010000 ;10
+Flak Train,           nil, 0, 10.,0,  15a,7d,  3h,3f, 50,0,  1, nil, 010000000010000 ;11
+Me109G6,              Ato, 1, 20.,4,   8a,8d,  2h,2f, 40,0,  3, Ast, 000000000011000 ;12
+Me109G14,             nil, 1, 22.,4,  10a,9d,  2h,2f, 40,0,  3, Ato, 000000000011000 ;13
+Me109K4,              nil, 1, 24.,4,  12a,10d, 2h,2f, 45,0,  3, Ban, 000000000011000 ;14
+Fw190A5,              Amp, 1, 30.,4,  11a,5d,  2h,2f, 45,0,  3, AFl, 000000000011000 ;15
+Fw190A8,              nil, 1, 32.,4,  13a,6d,  2h,2f, 50,0,  3, Alp, 000000000011000 ;16
+Fw190D9,              CoL, 1, 34.,4,  15a,7d,  2h,2f, 55,0,  3, Amp, 000000000011000 ;17
+Ta152,                nil, 1, 40.,4,  17a,9d,  2h,2f, 60,0,  3, CoL, 000000000011000 ;18
+Military Port,        nil, 0,  0.,0,  0a,18d,  3h,2f,  2,0,  7, nil, 000000000000000 ;19
+Me110,                Chi, 1, 16.,6,   8a,4d,  2h,3f, 40,0,  3, Che, 000000000011000 ;20
+Me410,                nil, 1, 18.,6,  10a,5d,  2h,3f, 40,0,  3, Chi, 000000000011000 ;21
+Ju88C,                Cmb, 1, 22.,6,   7a,6d,  2h,2f, 40,0,  3,  CA, 000000000011000 ;22
+Ju88G,                Cmp, 1, 24.,6,   9a,7d,  2h,2f, 40,0,  3, Cmb, 000000000011000 ;23
+He219,                nil, 1, 28.,6,  11a,8d,  2h,2f, 40,0,  3, Cmp, 000000000011001 ;24
+He162,                nil, 1, 40.,2,  19a,2d,  2h,3f, 90,0,  3, Fli, 000000000011000 ;25
+Me163,                nil, 1, 20.,1,  21a,2d,  2h,3f, 75,0,  3, Mob, 000000000011000 ;26
+Me262,                nil, 1, 80.,2,  23a,5d,  2h,3f, 127,0, 3, Hor, 000000000011000 ;27
+Ju87G,                nil, 1, 15.,4,  17a,2d,  2h,2f, 20,0,  0, Eng, 000000000001000 ;28
+Fw190F8,              Esp, 1, 20.,4,  19a,8d,  2h,2f, 25,0,  0, Env, 000000000001000 ;29
+Do335,                nil, 1, 25.,4,  21a,7d,  2h,2f, 30,0,  0, Esp, 000000000001000 ;30
+Do217,                 MP, 1, 20.,12, 22a,7d,  2h,2f, 35,0,  0, Mas, 000000000001000 ;31
+He277,                nil, 1, 23.,12, 24a,8d,  2h,2f, 40,0,  0,  MP, 000000000001000 ;32
+Arado234,             nil, 1, 60.,2,  26a,2d,  2h,2f, 90,0,  0, Iro, 000000000001000 ;33
+Go229,                nil, 1,127.,2,  30a,2d,  2h,3f,120,0,  0, Lab, 000000000001000 ;34
+Spitfire IX,          Ato, 1, 20.,3,   9a,9d,  2h,2f, 20,0,  3, nil, 100000000010000 ;35
+Spitfire XII,         Ban, 1, 22.,3,  10a,10d, 2h,2f, 20,0,  3, Ato, 100000000010000 ;36
+Spitfire XIV,         nil, 1, 24.,3,  11a,11d, 2h,2f, 20,0,  3, Ban, 100000000010000 ;37
+Hurricane IV,         nil, 1, 15.,4,  11a,2d,  2h,4f, 20,0,  0, Eng, 100000000010000 ;38
+Typhoon,              Esp, 1, 20.,4,  13a,3d,  2h,4f, 30,0,  0, Env, 100000000010000 ;39
+Tempest,              nil, 1, 25.,4,  15a,4d,  2h,4f, 30,0,  0, Esp, 100000000010000 ;40
+Meteor,               nil, 1, 80.,2,  21a,5d,  2h,3f,120,0,  3, Hor, 100000000010000 ;41
+Beaufighter,          nil, 1, 40.,6,   7a,6d,  2h,2f, 30,0,  3, CA,  000000000011000 ;42
+Mosquito NF Mk II,    nil, 1, 40.,8,   9a,7d,  2h,2f, 35,0,  3, Cmb, 000000000011000 ;43
+Mosquito NF Mk XIII,  nil, 1, 45.,8,  11a,8d,  2h,2f, 45,0,  3, Cmp, 100000000011000 ;44
+Industry,             nil, 0,  0.,0,  0a,20d,  3h,2f,  2,0,  7, nil, 000000000000000 ;45
+Fw190A5 - Rocket,     Amp, 1, 30.,4,  11a,2d,  2h,4f, 45,0,  3, AFl, 000000000011000 ;46
+Fw190A8 - Rocket,     nil, 1, 32.,4,  13a,3d,  2h,4f,  2,0,  3, Alp, 000000000011000 ;47
+Me109G6 - Rocket,     Ato, 1, 20.,4,   8a,4d,  2h,4f, 40,0,  3, Ast, 000000000011000 ;48
+Barrage Balloons,     nil, 0,  1.,0,  0a,20d,  2h,2f,  3,0,  1, nil, 000000100000000 ;49
+P-47D11,              Ato, 1, 30.,3,   8a,8d,  3h,2f, 30,0,  3, Ast, 100000000010000 ;50
+P-47D25,              Bro, 1, 34.,3,   9a,9d,  3h,2f, 30,0,  3, Ato, 100000000010000 ;51
+P-47D40,              nil, 1, 34.,4, 10a,10d,  3h,2f, 30,0,  3, Ban, 100000000010000 ;52
+Experten,             nil, 1, 36.,4, 18a,11d,  2h,2f, 35,0,  3, nil, 100000000011001 ;53
+P-38H,                Alp, 1, 30.,4,  10a,6d,  2h,2f, 35,0,  3, AFl, 100000000010000 ;54
+P-38J,                Amp, 1, 34.,4,  12a,7d,  2h,2f, 35,0,  3, Alp, 100000000010000 ;55
+P-51B,                X1,  1, 40.,6, 11a,11d,  2h,2f, 45,0,  3, Bro, 100000000010000 ;56
+P-51D,                nil, 1, 40.,8, 13a,12d,  2h,2f, 45,0,  3,  X1, 100000000010001 ;57
+P-80,                 nil, 1, 80.,2,  21a,5d,  2h,2f, 120,0, 3, Hor, 100000000010000 ;58
+Stirling,              E2, 1, 20.,10, 20a,6d,  2h,2f, 20,0,  0, Aut, 000000000001000 ;59
+Halifax,              Phi, 1, 22.,12, 22a,7d,  2h,2f, 20,0,  0,  E2, 000000000001000 ;60
+Lancaster,            nil, 1, 25.,12, 24a,8d,  2h,2f, 20,0,  0, Phi, 000000000001000 ;61
+Pathfinder,           nil, 1, 26.,12, 26a,9d,  2h,2f, 60,0,  0, Mat, 000000000001001 ;62
+A-20,                 Met, 1, 35.,4,  17a,5d,  2h,2f, 30,0,  0, Med, 100000000000000 ;63
+B-26,                 Min, 1, 40.,4,  19a,6d,  2h,2f, 30,0,  0, Met, 100000000000000 ;64
+A-26,                 nil, 1, 45.,4,  21a,7d,  2h,2f, 30,0,  0, Min, 100000000000000 ;65
+B-17F,                 MP, 1, 20.,12, 20a,7d,  2h,2f, 20,0,  0, Map, 100000000000000 ;66
+B-24J,                nil, 1, 30.,12, 22a,6d,  2h,2f, 20,0,  0, Mas, 100000000000000 ;67
+B-17G,                nil, 1, 22.,12, 24a,8d,  2h,2f, 20,0,  0,  MP, 100000000000000 ;68
+Battle Group German,  nil, 0,   4.,0, 45a,45d, 2h,2f, 127,0, 1, nil, 000000001000100 ;69
 Depleted Battle Group German,  nil, 0,   6.,0, 30a,30d, 2h,2f, 127,0,  0, nil, 000000001000100 ;70
-Egon Mayer,             nil, 1, 36.,4,  0a,14d,  2h,2f, 35,0,  3, nil, 100000000001001 ;71
-3.7-inch Flak,        nil, 0,   4.,0, 0a,7d, 3h,2f, 50,0,  1, nil, 010000000000000 ;72
-He111,                Mas, 1, 18.,10,  0a,6d, 2h,2f, 30,0,  0, Map, 000000000000000 ;73
-Battle Group Allied,           nil, 0,   10.,0, 50a,50d, 2h,2f, 127,0,  1, nil, 000000001000100 ;74
+Egon Mayer,           nil, 1, 36.,4,  24a,14d, 3h,3f, 35,0,  3, nil, 100000000011001 ;71
+3.7-inch Flak,        nil, 0,  4.,0,  15a,8d,  3h,3f, 50,0,  1, nil, 010000000010000 ;72
+He111,                Mas, 1, 18.,10, 20a,6d,  2h,2f, 30,0,  0, Map, 000000000000000 ;73
+Battle Group Allied,  nil, 0, 10.,0, 50a,50d,  2h,2f, 127,0, 1, nil, 000000001000100 ;74
 Depleted Battle Group Allied,  nil, 0,   6.,0, 30a,30d, 2h,2f,  127,0,  0, nil, 000000001000100 ;75
-Sunderland,           nil, 1,  60.,4,  0a,6d, 2h,2f, 60,0,  0, Mas, 100000000001000 ;76
-SAVE16,               nil, 1,   1.,1,  7a,1d,  1h,3f,  1,0,  0, nil,  001000000010000 ;77
-Hermann Graf,         nil, 1, 36.,4,  0a,25d,  2h,2f, 35,0,  3, nil, 100000000001001 ;78
-Josef Priller,        nil, 1, 50.,4,  0a,14d,  2h,2f, 35,0,  3, nil, 100000000001001 ;79
-Adolf Galland,        nil, 1, 80.,2, 0a,14d,  2h,2f, 120,0,  3, nil, 100000000001001 ;80
-Task Force (G),       nil, 2,   12.,0, 8a,8d, 3h,2f, 90,2,  4, nil, 010000000000000 ;81
-Task Force (A),       nil, 2,   12.,0, 8a,8d, 3h,2f, 90,2,  4, nil, 110000000000000 ;82
-332nd FG,             nil, 1,  26.,4, 0a,13d, 2h,2f, 50,0,  3, Sth, 100000000000001 ;83
-15th AF Bombers,      nil, 1,  16.,9,  0a,5d, 2h,2f, 20,0,  0, Roc, 100000000000000 ;84
-Aircraft Factory,     nil, 0,   0.,0, 0a,18d, 3h,2f,  2,0,  7, nil, 000000000000000 ;85
-Me109G14 - Rocket,     nil, 1,   22.,4, 0a,18d, 3h,2f,  2,0,  7, nil, 000000000000000 ;86
-SAVE17,    nil, 0,   0.,0, 0a,18d, 3h,2f,  2,0,  7, nil, 000000000000000 ;87
-Refinery,             nil, 0,   0.,0, 0a,18d, 3h,2f,  2,0,  7, nil, 000000000000000 ;88
-Gunther Rall,         nil, 0,   0.,0, 0a,18d, 3h,2f,  2,0,  7, nil, 000000000000000 ;89
-Walter Nowotny,       nil, 0,   0.,0, 0a,18d, 3h,2f,  2,0,  7, nil, 000000000000000 ;90
-Urban Center,         nil, 0,   0.,0, 0a,18d, 3h,2f,  2,0,  7, nil, 000000000000000 ;91
-Whirlwind,            nil, 0,   0.,0, 0a,18d, 3h,2f,  2,0,  7, nil, 000000000000000 ;92
-B-25,                 nil, 0,   0.,0, 0a,18d, 3h,2f,  2,0,  7,  nil, 000000000000000 ;93
-Gun Battery,          nil, 0,   2.,0, 0a,10d, 3h,2f, 60,0, 1, nil,  010000000000000 ;94
-P-61,                 nil, 1,   1.,1,  4a,1d,  1h,3f,  1,0,  0, nil,  001000000010000 ;95
-Mosquito B.IV,        nil, 1,   1.,1,  5a,1d,  1h,3f,  1,0,  0, nil,  001000000010000 ;96
-Francis Gabreski,     nil, 1,   1.,1,  6a,1d,  1h,3f,  1,0,  0, nil,  001000000010000 ;97
-George Preddy,        nil, 1,   1.,1,  7a,1d,  1h,4f,  1,0,  0, nil,  001000000000000 ;98
-John Braham,          nil, 1,   1.,1,  8a,1d,  1h,4f,  1,0,  0, nil,  001000000000000 ;99
-Johnnie Johnson,      nil, 1,   1.,1, 12a,1d,  1h,4f,  1,0,  0, nil,  001000000000000 ;100
-Window,               nil, 1,   2.,2,  0a,1d,  1h,1f,  1,0,  0, nil,  000000000000000 ;101
-H.W. Schnaufer,       nil, 1, 36.,4,  0a,14d,  2h,2f, 60,0,  3, Cmp,  100000000001001 ;102
-Eirch Hartmann,       nil, 1,   1.,1,  5a,1d,  1h,9f,  1,0,  0, nil,  001000000010000 ;103
-Panzer Division,      nil, 0,   8.,0, 50a,50d,  2h,2f,  1,0,  0, nil,  000000001000010 ;104
-Damaged B-17F,        nil, 1,  15.,10, 0a,4d, 2h,2f, 10,0,  0,  nil, 100000000000000 ;105
-Neutral Territory,    nil, 1,   0.,0,  0a,99d, 9h,9f,  1,0,  0, no,  1000000000000000 ;106
-Damaged B-17G,        nil, 1,  16.,10, 0a,5d, 2h,2f, 10,0,  0,  nil, 100000000000000 ;107
-P-38L,                nil, 1,  38.,4, 0a,8d,  2h,2f, 35,0,  3, Amp, 100000000000000 ;108 
-Critical Industry,    nil, 0,   0.,0, 0a,25d, 6h,2f,  2,0,  7, nil, 000000000000000 ;109 
-Gerhard Barkhorn,     nil, 1,   1.,0,  8a,1d,  1h,4f,  1,0,  0, nil,  001000000000000 ;110
-Aircraft Carrier,     nil, 2,   8.,0,  0a,5d,  3h,2f, 120,0,  2, nil,  010000010000000 ;111
-USAAF Ace,            nil, 1, 40.,8,  0a,14d,  2h,2f, 35,0,  3, nil, 100000000000001 ;112
-RAF Ace,              nil, 1, 25.,4,  0a,14d,  2h,2f, 35,0,  3, nil, 100000000000001 ;113
-Barrage,   	      nil, 1,   3.,1,  25a,1d,  1h,6f,  1,0,  0, nil,  001000000000000 ;114
-Convoy,               nil, 2,   8.,0,  2a,4d, 3h,2f, 10,0,  1, nil,  010000000001000 ;115
-SAVE18,           nil, 1,   2.,1,  6a,1d,  1h,4f,  1,0,  0, nil,  001000000010000 ;116
-Yak-3,                nil, 1,  16.,4,  0a,9d,  2h,2f, 30,0,  3, SFl, 100000000000000 ;117
-Il-2,                 nil, 1,  16.,4,  0a,8d,  4h,2f, 30,0,  0, SFl, 100000000000000 ;118
-3.7cm Flak,           nil, 0,   2.,0,  0a,5d,  3h,2f, 25,0,  1, nil, 010000000000000 ;119
+Sunderland,           nil, 1, 60.,4,   6a,6d,  2h,2f, 60,0,  0, Mas, 100000000001000 ;76
+SAVE16,               nil, 1,  1.,1,   7a,1d,  1h,3f,  1,0,  0, nil, 001000000010000 ;77
+Hermann Graf,         nil, 1, 36.,4, 24a,14d,  3h,3f, 35,0,  3, nil, 100000000011001 ;78
+Josef Priller,        nil, 1, 50.,4, 24a,14d,  3h,3f, 35,0,  3, nil, 100000000011001 ;79
+Adolf Galland,        nil, 1, 80.,2, 24a,14d,  3h,3f,120,0,  3, nil, 100000000011001 ;80
+Task Force (G),       nil, 2, 12.,0,   8a,8d,  3h,2f, 90,2,  4, nil, 010000000000000 ;81
+Task Force (A),       nil, 2, 12.,0,   8a,8d,  3h,2f, 90,2,  4, nil, 110000000000000 ;82
+332nd FG,             nil, 1, 26.,4, 14a,13d,  2h,2f, 50,0,  3, Sth, 100000000010001 ;83
+15th AF Bombers,      nil, 1, 16.,9,  24a,8d,  2h,2f, 20,0,  0, Roc, 100000000000000 ;84
+Aircraft Factory,     nil, 0,  0.,0,  0a,18d,  3h,2f,  2,0,  7, nil, 000000000000000 ;85
+Me109G14 - Rocket,    nil, 1, 22.,4,  10a,6d,  2h,4f, 40,0,  7, Ato, 000000000011000 ;86
+SAVE17,               nil, 0,  0.,0,  0a,18d,  3h,2f,  2,0,  7, nil, 000000000000000 ;87
+Refinery,             nil, 0,  0.,0,  0a,18d,  3h,2f,  2,0,  7, nil, 000000000000000 ;88
+Gunther Rall,         nil, 1,  0.,0, 24a,14d,  3h,3f,  2,0,  3, nil, 000000000011001 ;89
+Walter Nowotny,       nil, 1,  0.,0, 24a,14d,  3h,3f,  2,0,  3, nil, 000000000011001 ;90
+Urban Center,         nil, 0,  0.,0,  0a,18d,  3h,2f,  2,0,  7, nil, 000000000000000 ;91
+Whirlwind,            nil, 1, 25.,4,   9a,2d,  2h,4f, 20,0,  0, Eng, 000000000000000 ;92
+15th AF B-25,         nil, 1, 16.,9,  20a,6d,  2h,2f, 20,0,  0, Roc, 100000000000000 ;93
+Gun Battery,          nil, 0,  2.,0,  0a,10d,  3h,2f, 60,0,  1, nil, 010000000000000 ;94
+P-61,                 nil, 1, 40.,8,   9a,7d,  2h,2f, 35,0,  3, Cmb, 000000000011000 ;95
+Mosquito B.IV,        nil, 1, 60.,4,  19a,6d,  2h,2f, 40,0,  0, Mat, 000000000000000 ;96
+Francis Gabreski,     nil, 1, 34.,4, 24a,14d,  3h,3f,  1,0,  0, nil, 000000000010001 ;97
+George Preddy,        nil, 1, 40.,8, 24a,14d,  3h,3f, 60,0,  3, nil, 000000000010001 ;98
+John Braham,          nil, 1, 40.,6, 24a,14d,  3h,3f, 60,0,  3, nil, 000000000010001 ;99
+Johnnie Johnson,      nil, 1, 24.,3, 24a,14d,  3h,3f, 60,0,  3, nil, 000000000010001 ;100
+Window,               nil, 1,  2.,2,   0a,1d,  1h,1f,  1,0,  0, nil, 000000000000000 ;101
+H.W. Schnaufer,       nil, 1, 36.,4, 24a,14d,  3h,3f, 60,0,  3, Cmp, 100000000011001 ;102
+Erich Hartmann,       nil, 1, 36.,4, 24a,14d,  3h,3f, 60,0,  3, nil, 001000000011001 ;103
+Panzer Division,      nil, 0,  8.,0, 50a,50d,  2h,2f,  1,0,  0, nil, 000000001000010 ;104
+Damaged B-17F,        nil, 1, 15.,10,  0a,4d,  2h,2f, 10,0,  0, nil, 100000000000000 ;105
+Neutral Territory,    nil, 1,   0.,0, 0a,99d,  9h,9f,  1,0,  0,  no, 1000000000000000 ;106
+Damaged B-17G,        nil, 1, 16.,10,  0a,5d,  2h,2f, 10,0,  0, nil, 100000000000000 ;107
+P-38L,                nil, 1,  38.,4, 14a,8d,  2h,2f, 35,0,  3, Amp, 100000000010000 ;108 
+Critical Industry,    nil, 0,   0.,0, 0a,25d,  6h,2f,  2,0,  7, nil, 000000000000000 ;109 
+Gerhard Barkhorn,     nil, 1,  36.,4, 24a,14d, 3h,3f, 60,0,  3, nil, 000000000011001 ;110
+Aircraft Carrier,     nil, 2,   8.,0,  0a,5d,  3h,2f,120,0,  2, nil, 010000010000000 ;111
+USAAF Ace,            nil, 1, 40.,8,  18a,11d, 2h,2f, 35,0,  3, nil, 100000000010001 ;112
+RAF Ace,              nil, 1, 25.,4,  18a,11d, 2h,2f, 35,0,  3, nil, 100000000010001 ;113
+Barrage,   	      nil, 1,   3.,1, 25a,1d,  1h,6f,  1,0,  0, nil, 001000000000000 ;114
+Convoy,               nil, 2,   8.,0,  3a,3d,  3h,2f, 10,0,  1, nil, 010000000001000 ;115
+SAVE18,               nil, 1,   2.,1,  6a,1d,  1h,4f,  1,0,  0, nil, 001000000010000 ;116
+Yak-3,                nil, 1,  16.,4, 11a,9d,  2h,2f, 30,0,  3, SFl, 100000000010000 ;117
+Il-2,                 nil, 1,  16.,4, 17a,8d,  4h,2f, 30,0,  0, SFl, 100000000000000 ;118
+3.7cm Flak,           nil, 0,   2.,0, 12a,5d,  3h,3f, 25,0,  1, nil, 010000000010000 ;119
 Ju-188 (PR),          nil, 1,  80.,4,  0a,5d,  2h,2f, 60,0,  0, nil, 000000000000000 ;120
 V1 Launch Site,       nil, 0,   4.,0,  0a,10d, 2h,2f, 90,0,  1, Lit, 000000000001000 ;121
-V2 Launch Site,       nil, 0,  4.,0,  0a,10d, 2h,2f, 120,0,  1, Mag, 000000000001000 ;122
-V1 Buzzbomb,          nil, 1,  10.,6,  7a,1d,  1h,9f,  1,0,  0, nil,  001000000000000 ;123
-V2 Rocket,            nil, 1,  60.,1,  10a,1d,  1h,9f,  1,0,  0, nil,  001000000000000 ;124
+V2 Launch Site,       nil, 0,   4.,0,  0a,10d, 2h,2f,120,0,  1, Mag, 000000000001000 ;122
+V1 Buzzbomb,          nil, 1,  10.,6,  7a,1d,  1h,9f,  1,0,  0, nil, 001000000000000 ;123
+V2 Rocket,            nil, 1,  60.,1,  10a,1d,  1h,9f, 1,0,  0, nil, 001000000000000 ;124
 Mosquito (PR),        nil, 1,  80.,4,  0a,5d,  2h,2f, 60,0,  0, nil, 100000000000000 ;125
-Wolf Pack,            nil, 2,  10.,0,  0a,2d,  2h,2f,  90,0,  2, Rep,  110000000001000 ;126
+Wolf Pack,            nil, 2,  10.,0,  9a,2d,  2h,2f, 90,0,  2, Rep, 110000000001000 ;126
 
 ;
 ; Note: the above 11 unit types (extra land, ship, air, and test units) are 

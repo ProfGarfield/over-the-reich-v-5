@@ -122,12 +122,14 @@ gen.restrictValues(combatParameters,isCombatParameter,makeCombatParameter)
 --ESCORTS
 
 combatParameters[object.uMe109G6.id] = {
-    pursuitSpeedLow = 250,
-    pursuitSpeedHigh = 300,
-    pursuitSpeedNight = 200,
-    escapeSpeedLow = 250,
-    escapeSpeedHigh = 300,
-    escapeSpeedNight = 300,
+    pursuitSpeed = numberSpec,
+    escapeSpeed = numberSpec,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
     interceptionRange = 2,
     attackMoveCost = 10,
 }
