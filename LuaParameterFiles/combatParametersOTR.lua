@@ -37,8 +37,8 @@ local gen = require("generalLibrary"):minVersion(6)
 local maxInterceptionRange = 4 -- no unit can have a larger interception range.
 local numberSpec = {["number"] = true}
 local specificKeyTable = {
-	pursuitSpeed = {["number"] = true, ["nil"]=true}
-	escapeSpeed = {["number"] = true, ["nil"]=true}
+	pursuitSpeed = {["number"] = true, ["nil"]=true},
+	escapeSpeed = {["number"] = true, ["nil"]=true},
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -122,8 +122,8 @@ gen.restrictValues(combatParameters,isCombatParameter,makeCombatParameter)
 --ESCORTS
 
 combatParameters[object.uMe109G6.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 383,
+    escapeSpeed = 383,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -135,8 +135,8 @@ combatParameters[object.uMe109G6.id] = {
 }
 
 combatParameters[object.uMe109G14.id] = {
-   pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+   pursuitSpeed = 404,
+    escapeSpeed = 404,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -148,13 +148,13 @@ combatParameters[object.uMe109G14.id] = {
 }
 
 combatParameters[object.uMe109K4.id] = {
-   pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+   pursuitSpeed = 446,
+    escapeSpeed = 446,
     pursuitSpeedLow = numberSpec,
-    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedHigh = 471,
     pursuitSpeedNight = numberSpec,
     escapeSpeedLow = numberSpec,
-    escapeSpeedHigh = numberSpec,
+    escapeSpeedHigh = 471,
     escapeSpeedNight = numberSpec,
     interceptionRange = 2,
     attackMoveCost = 12,
@@ -163,50 +163,52 @@ combatParameters[object.uMe109K4.id] = {
 --INTERCEPTORS
 
 combatParameters[object.uFw190A5.id] = {
-   pursuitSpeedLow = 300,
-    pursuitSpeedHigh = 250,
-    pursuitSpeedNight = 200,
-    escapeSpeedLow = 300,
-    escapeSpeedHigh = 250,
-    escapeSpeedNight = 300,
+	pursuitSpeed = 400,
+    escapeSpeed = 400,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = 375,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = 375,
+    escapeSpeedNight = numberSpec,
     interceptionRange = 2,
     attackMoveCost = 10,
 }
 
 combatParameters[object.uFw190A8.id] = {
-   pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+   pursuitSpeed = 405,
+    escapeSpeed = 405,
     pursuitSpeedLow = numberSpec,
-    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedHigh = 380,
     pursuitSpeedNight = numberSpec,
     escapeSpeedLow = numberSpec,
-    escapeSpeedHigh = numberSpec,
+    escapeSpeedHigh = 380,
     escapeSpeedNight = numberSpec,
     interceptionRange = 2,
     attackMoveCost = 11,
 }
 
 combatParameters[object.uFw190D9.id] = {
-   pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+   pursuitSpeed = 426,
+    escapeSpeed = 426,
     pursuitSpeedLow = numberSpec,
-    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedHigh = 451,
     pursuitSpeedNight = numberSpec,
     escapeSpeedLow = numberSpec,
-    escapeSpeedHigh = numberSpec,
+    escapeSpeedHigh = 451,
     escapeSpeedNight = numberSpec,
     interceptionRange = 2,
     attackMoveCost = 12,
 }
 
 combatParameters[object.uTa152.id] = {
-   pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+   pursuitSpeed = 469,
+    escapeSpeed = 469,
     pursuitSpeedLow = numberSpec,
-    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedHigh = 494,
     pursuitSpeedNight = numberSpec,
     escapeSpeedLow = numberSpec,
-    escapeSpeedHigh = numberSpec,
+    escapeSpeedHigh = 494,
     escapeSpeedNight = numberSpec,
     interceptionRange = 3,
     attackMoveCost = 13,
@@ -215,8 +217,8 @@ combatParameters[object.uTa152.id] = {
 --BOMBER DESTROYERS
 
 combatParameters[object.uMe109G6Rocket.id] = {
-   pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+   pursuitSpeed = 358,
+    escapeSpeed = 358,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -228,8 +230,8 @@ combatParameters[object.uMe109G6Rocket.id] = {
 }
 
 combatParameters[object.uMe109G14Rocket.id] = {
-   pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+   pursuitSpeed = 379,
+    escapeSpeed = 379,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -241,34 +243,34 @@ combatParameters[object.uMe109G14Rocket.id] = {
 }
 
 combatParameters[object.uFw190A5Rocket.id] = {
-   pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+   pursuitSpeed = 375,
+    escapeSpeed = 375,
     pursuitSpeedLow = numberSpec,
-    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedHigh = 350,
     pursuitSpeedNight = numberSpec,
     escapeSpeedLow = numberSpec,
-    escapeSpeedHigh = numberSpec,
+    escapeSpeedHigh = 350,
     escapeSpeedNight = numberSpec,
     interceptionRange = 2,
     attackMoveCost = 29,
 }
 
 combatParameters[object.uFw190A8Rocket.id] = {
-   pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+   pursuitSpeed = 380,
+    escapeSpeed = 380,
     pursuitSpeedLow = numberSpec,
-    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedHigh = 355,
     pursuitSpeedNight = numberSpec,
     escapeSpeedLow = numberSpec,
-    escapeSpeedHigh = numberSpec,
+    escapeSpeedHigh = 355,
     escapeSpeedNight = numberSpec,
     interceptionRange = 2,
     attackMoveCost = 31,
 }
 
 combatParameters[object.uMe110.id] = {
-   pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+   pursuitSpeed = 336,
+    escapeSpeed = 336,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -280,8 +282,8 @@ combatParameters[object.uMe110.id] = {
 }
 
 combatParameters[object.uMe410.id] = {
-   pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+   pursuitSpeed = 388,
+    escapeSpeed = 388,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -295,8 +297,8 @@ combatParameters[object.uMe410.id] = {
 --TRUE NIGHT FIGHTERS
 
 combatParameters[object.uJu88C.id] = {
-   pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+   pursuitSpeed = 306,
+    escapeSpeed = 306,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -308,8 +310,8 @@ combatParameters[object.uJu88C.id] = {
 }
 
 combatParameters[object.uJu88G.id] = {
-   pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+   pursuitSpeed = 344,
+    escapeSpeed = 344,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -321,8 +323,8 @@ combatParameters[object.uJu88G.id] = {
 }
 
 combatParameters[object.uHe219.id] = {
-   pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+   pursuitSpeed = 422,
+    escapeSpeed = 422,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -336,8 +338,8 @@ combatParameters[object.uHe219.id] = {
 --JET & ROCKET FIGHTERS
 
 combatParameters[object.uHe162.id] = {
-   pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+   pursuitSpeed = 470,
+    escapeSpeed = 470,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -349,8 +351,8 @@ combatParameters[object.uHe162.id] = {
 }
 
 combatParameters[object.uMe163.id] = {
-   pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+   pursuitSpeed = 624,
+    escapeSpeed = 624,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -362,8 +364,8 @@ combatParameters[object.uMe163.id] = {
 }
 
 combatParameters[object.uMe262.id] = {
-   pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+   pursuitSpeed = 540,
+    escapeSpeed = 540,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -377,8 +379,8 @@ combatParameters[object.uMe262.id] = {
 --LIGHT BOMBERS
 
 combatParameters[object.uJu87G.id] = {
-   pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+   pursuitSpeed = 160,
+    escapeSpeed = 160,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -389,8 +391,8 @@ combatParameters[object.uJu87G.id] = {
 }
 
 combatParameters[object.uFw190F8.id] = {
-   pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+   pursuitSpeed = 376,
+    escapeSpeed = 376,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -401,8 +403,8 @@ combatParameters[object.uFw190F8.id] = {
 }
 
 combatParameters[object.uDo335.id] = {
-   pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+   pursuitSpeed = 474,
+    escapeSpeed = 474,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -415,72 +417,99 @@ combatParameters[object.uDo335.id] = {
 --HEAVY BOMBERS
 
 combatParameters[object.uHe111.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 100,
-    escapeSpeedHigh = 150,
-    escapeSpeedNight = 200,
+    pursuitSpeed = 193,
+    escapeSpeed = 193,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 18,
 
 }
 
 combatParameters[object.uDo217.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 100,
-    escapeSpeedHigh = 150,
-    escapeSpeedNight = 200,
+     pursuitSpeed = 323,
+    escapeSpeed = 323,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 20,
 
 }
 
 combatParameters[object.uHe277.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 125,
-    escapeSpeedHigh = 175,
-    escapeSpeedNight = 225,
+     pursuitSpeed = 284,
+    escapeSpeed = 284,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 23,
 
 }
 
 combatParameters[object.uArado234.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 400,
-    escapeSpeedHigh = 425,
-    escapeSpeedNight = 450,
+     pursuitSpeed = 459,
+    escapeSpeed = 459,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 10,
 
 }
 
 combatParameters[object.uGo229.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 425,
-    escapeSpeedHigh = 450,
-    escapeSpeedNight = 475,
+     pursuitSpeed = 620,
+    escapeSpeed = 620,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 12,
 
 }
 
 combatParameters[object.uFw200.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 425,
-    escapeSpeedHigh = 450,
-    escapeSpeedNight = 475,
-	attackMoveCost = 60,
+     pursuitSpeed = 223,
+    escapeSpeed = 223,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	interceptionRange = 2,
 }
 
 combatParameters[object.uJu188PR.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 425,
-    escapeSpeedHigh = 450,
-    escapeSpeedNight = 475,
+     pursuitSpeed = 325,
+    escapeSpeed = 325,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 60,
 }
 
 --EXPERTEN
 
 combatParameters[object.uEgonMayer.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 500,
+    escapeSpeed = 500,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -492,8 +521,8 @@ combatParameters[object.uEgonMayer.id] = {
 }
 
 combatParameters[object.uHermannGraf.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 500,
+    escapeSpeed = 500,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -505,8 +534,8 @@ combatParameters[object.uHermannGraf.id] = {
 }
 
 combatParameters[object.uJosefPriller.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 500,
+    escapeSpeed = 500,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -518,8 +547,8 @@ combatParameters[object.uJosefPriller.id] = {
 }
 
 combatParameters[object.uAdolfGalland.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 600,
+    escapeSpeed = 600,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -531,8 +560,8 @@ combatParameters[object.uAdolfGalland.id] = {
 }
 
 combatParameters[object.uGuntherRall.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 500,
+    escapeSpeed = 500,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -544,8 +573,8 @@ combatParameters[object.uGuntherRall.id] = {
 }
 
 combatParameters[object.uWalterNowotny.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 600,
+    escapeSpeed = 600,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -557,8 +586,8 @@ combatParameters[object.uWalterNowotny.id] = {
 }
 
 combatParameters[object.uHWSchnaufer.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 500,
+    escapeSpeed = 500,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -570,8 +599,8 @@ combatParameters[object.uHWSchnaufer.id] = {
 }
 
 combatParameters[object.uErichHartmann.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 500,
+    escapeSpeed = 500,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -583,8 +612,8 @@ combatParameters[object.uErichHartmann.id] = {
 }
 
 combatParameters[object.uGerhardBarkhorn.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 500,
+    escapeSpeed = 500,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -596,8 +625,8 @@ combatParameters[object.uGerhardBarkhorn.id] = {
 }
 
 combatParameters[object.uExperten.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 475,
+    escapeSpeed = 475,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -613,8 +642,8 @@ combatParameters[object.uExperten.id] = {
 --AIR SUPERIORITY FIGHTERS
 
 combatParameters[object.uSpitfireIX.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 380,
+    escapeSpeed = 380,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -626,8 +655,8 @@ combatParameters[object.uSpitfireIX.id] = {
 }
 
 combatParameters[object.uSpitfireXII.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 394,
+    escapeSpeed = 394,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -639,8 +668,8 @@ combatParameters[object.uSpitfireXII.id] = {
 }
 
 combatParameters[object.uSpitfireXIV.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 446,
+    escapeSpeed = 446,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -652,8 +681,8 @@ combatParameters[object.uSpitfireXIV.id] = {
 }
 
 combatParameters[object.uYak3.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 401,
+    escapeSpeed = 401,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -667,8 +696,8 @@ combatParameters[object.uYak3.id] = {
 --FIGHTER BOMBERS
 
 combatParameters[object.uHurricaneIV.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 310,
+    escapeSpeed = 310,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -680,8 +709,8 @@ combatParameters[object.uHurricaneIV.id] = {
 }
 
 combatParameters[object.uWhirlwind.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 360,
+    escapeSpeed = 360,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -693,8 +722,8 @@ combatParameters[object.uWhirlwind.id] = {
 }
 
 combatParameters[object.uTyphoon.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 405,
+    escapeSpeed = 405,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -706,8 +735,8 @@ combatParameters[object.uTyphoon.id] = {
 }
 
 combatParameters[object.uTempest.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 442,
+    escapeSpeed = 442,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -721,47 +750,47 @@ combatParameters[object.uTempest.id] = {
 --ESCORTS
 
 combatParameters[object.uP47D11.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 410,
+    escapeSpeed = 410,
     pursuitSpeedLow = numberSpec,
-    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedHigh = 435,
     pursuitSpeedNight = numberSpec,
     escapeSpeedLow = numberSpec,
-    escapeSpeedHigh = numberSpec,
+    escapeSpeedHigh = 435,
     escapeSpeedNight = numberSpec,
     interceptionRange = 2,
     attackMoveCost = 15,
 }
 
 combatParameters[object.uP47D25.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 420,
+    escapeSpeed = 420,
     pursuitSpeedLow = numberSpec,
-    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedHigh = 445,
     pursuitSpeedNight = numberSpec,
     escapeSpeedLow = numberSpec,
-    escapeSpeedHigh = numberSpec,
+    escapeSpeedHigh = 445,
     escapeSpeedNight = numberSpec,
     interceptionRange = 2,
     attackMoveCost = 17,
 }
 
 combatParameters[object.uP47D40.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 430,
+    escapeSpeed = 430,
     pursuitSpeedLow = numberSpec,
-    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedHigh = 455,
     pursuitSpeedNight = numberSpec,
     escapeSpeedLow = numberSpec,
-    escapeSpeedHigh = numberSpec,
+    escapeSpeedHigh = 455,
     escapeSpeedNight = numberSpec,
     interceptionRange = 2,
     attackMoveCost = 17,
 }
 
 combatParameters[object.uP51B.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 440,
+    escapeSpeed = 440,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -773,8 +802,8 @@ combatParameters[object.uP51B.id] = {
 }
 
 combatParameters[object.uP51D.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 440,
+    escapeSpeed = 440,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -786,8 +815,8 @@ combatParameters[object.uP51D.id] = {
 }
 
 combatParameters[object.u332ndFG.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 440,
+    escapeSpeed = 440,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -801,34 +830,34 @@ combatParameters[object.u332ndFG.id] = {
 --INTERCEPTORS
 
 combatParameters[object.uP38H.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 401,
+    escapeSpeed = 401,
     pursuitSpeedLow = numberSpec,
-    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedHigh = 376,
     pursuitSpeedNight = numberSpec,
     escapeSpeedLow = numberSpec,
-    escapeSpeedHigh = numberSpec,
+    escapeSpeedHigh = 376,
     escapeSpeedNight = numberSpec,
     interceptionRange = 2,
     attackMoveCost = 10,
 }
 
 combatParameters[object.uP38J.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 414,
+    escapeSpeed = 414,
     pursuitSpeedLow = numberSpec,
-    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedHigh = 389,
     pursuitSpeedNight = numberSpec,
     escapeSpeedLow = numberSpec,
-    escapeSpeedHigh = numberSpec,
+    escapeSpeedHigh = 389,
     escapeSpeedNight = numberSpec,
     interceptionRange = 2,
     attackMoveCost = 12,
 }
 
 combatParameters[object.uP38L.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 420,
+    escapeSpeed = 420,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -842,8 +871,8 @@ combatParameters[object.uP38L.id] = {
 --NIGHT FIGHTERS
 
 combatParameters[object.uBeaufighter.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 335,
+    escapeSpeed = 335,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -855,8 +884,8 @@ combatParameters[object.uBeaufighter.id] = {
 }
 
 combatParameters[object.uMosquitoNFMkII.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 366,
+    escapeSpeed = 366,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -868,8 +897,8 @@ combatParameters[object.uMosquitoNFMkII.id] = {
 }
 
 combatParameters[object.uMosquitoNFMkXIII.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 374,
+    escapeSpeed = 374,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -881,8 +910,8 @@ combatParameters[object.uMosquitoNFMkXIII.id] = {
 }
 
 combatParameters[object.uP61.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 369,
+    escapeSpeed = 369,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -896,8 +925,8 @@ combatParameters[object.uP61.id] = {
 --JET FIGHTERS
 
 combatParameters[object.uP80.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 502,
+    escapeSpeed = 502,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -909,8 +938,8 @@ combatParameters[object.uP80.id] = {
 }
 
 combatParameters[object.uMeteor.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 460,
+    escapeSpeed = 460,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -924,160 +953,232 @@ combatParameters[object.uMeteor.id] = {
 --TACTICAL BOMBERS
 
 combatParameters[object.uIl2.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 425,
-    escapeSpeedHigh = 450,
-    escapeSpeedNight = 475,
+     pursuitSpeed = 250,
+    escapeSpeed = 250,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 8,
 
 }
 
 combatParameters[object.uB25.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 425,
-    escapeSpeedHigh = 450,
-    escapeSpeedNight = 475,
+     pursuitSpeed = 275,
+    escapeSpeed = 275,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 24,
 
 }
 
 combatParameters[object.uA20.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 425,
-    escapeSpeedHigh = 450,
-    escapeSpeedNight = 475,
+     pursuitSpeed = 317,
+    escapeSpeed = 317,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 0,
 
 }
 
 combatParameters[object.uB26.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 425,
-    escapeSpeedHigh = 450,
-    escapeSpeedNight = 475,
+    pursuitSpeed = 315,
+    escapeSpeed = 315,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 0,
 
 }
 
 combatParameters[object.uA26.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 425,
-    escapeSpeedHigh = 450,
-    escapeSpeedNight = 475,
+     pursuitSpeed = 355,
+    escapeSpeed = 355,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 0,
 
 }
 
 combatParameters[object.uSunderland.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 425,
-    escapeSpeedHigh = 450,
-    escapeSpeedNight = 475,
+     pursuitSpeed = 210,
+    escapeSpeed = 210,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 60,
 
 }
 
 combatParameters[object.uMosquitoPR.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 425,
-    escapeSpeedHigh = 450,
-    escapeSpeedNight = 475,
+     pursuitSpeed = 374,
+    escapeSpeed = 374,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 40,
 }
 
 --DAYLIGHT STRATEGIC BOMBERS
 
 combatParameters[object.uB17F.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 425,
-    escapeSpeedHigh = 450,
-    escapeSpeedNight = 475,
+     pursuitSpeed = 287,
+    escapeSpeed = 287,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 20,
 
 }
 
 combatParameters[object.uDamagedB17F.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 425,
-    escapeSpeedHigh = 450,
-    escapeSpeedNight = 475,
+     pursuitSpeed = 182,
+    escapeSpeed = 182,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 20,
 
 }
 
 combatParameters[object.uB17G.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 425,
-    escapeSpeedHigh = 450,
-    escapeSpeedNight = 475,
+     pursuitSpeed = 287,
+    escapeSpeed = 287,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 22,
 
 }
 
 combatParameters[object.uDamagedB17G.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 425,
-    escapeSpeedHigh = 450,
-    escapeSpeedNight = 475,
+     pursuitSpeed = 182,
+    escapeSpeed = 182,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 22,
 }
 
 combatParameters[object.uB24J.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 425,
-    escapeSpeedHigh = 450,
-    escapeSpeedNight = 475,
+     pursuitSpeed = 290,
+    escapeSpeed = 290,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 30,
 }
 
 combatParameters[object.u15thAFBombers.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 425,
-    escapeSpeedHigh = 450,
-    escapeSpeedNight = 475,
+     pursuitSpeed = 290,
+    escapeSpeed = 290,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 22,
 }
 
 --NIGHT BOMBERS
 
 combatParameters[object.uMosquitoBIV.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 425,
-    escapeSpeedHigh = 450,
-    escapeSpeedNight = 475,
+     pursuitSpeed = 374,
+    escapeSpeed = 374,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 0,
 }
 
 combatParameters[object.uPathfinder.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 425,
-    escapeSpeedHigh = 450,
-    escapeSpeedNight = 475,
+     pursuitSpeed = 292,
+    escapeSpeed = 292,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 25,
 }
 
 combatParameters[object.uStirling.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 425,
-    escapeSpeedHigh = 450,
-    escapeSpeedNight = 475,
+     pursuitSpeed = 270,
+    escapeSpeed = 270,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 20,
 }
 
 combatParameters[object.uHalifax.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 425,
-    escapeSpeedHigh = 450,
-    escapeSpeedNight = 475,
+     pursuitSpeed = 265,
+    escapeSpeed = 265,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 22,
 
 }
 
 combatParameters[object.uLancaster.id] = {
-    pursuitSpeed = 0,
-    escapeSpeedLow = 425,
-    escapeSpeedHigh = 450,
-    escapeSpeedNight = 475,
+    pursuitSpeed = 282,
+    escapeSpeed = 282,
+    pursuitSpeedLow = numberSpec,
+    pursuitSpeedHigh = numberSpec,
+    pursuitSpeedNight = numberSpec,
+    escapeSpeedLow = numberSpec,
+    escapeSpeedHigh = numberSpec,
+    escapeSpeedNight = numberSpec,
 	attackMoveCost = 25,
 
 }
@@ -1085,8 +1186,8 @@ combatParameters[object.uLancaster.id] = {
 --ACES
 
 combatParameters[object.uFrancisGabreski.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 500,
+    escapeSpeed = 500,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -1098,8 +1199,8 @@ combatParameters[object.uFrancisGabreski.id] = {
 }
 
 combatParameters[object.uGeorgePreddy.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 500,
+    escapeSpeed = 500,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -1111,8 +1212,8 @@ combatParameters[object.uGeorgePreddy.id] = {
 }
 
 combatParameters[object.uJohnBraham.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 500,
+    escapeSpeed = 500,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -1124,8 +1225,8 @@ combatParameters[object.uJohnBraham.id] = {
 }
 
 combatParameters[object.uJohnnieJohnson.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 500,
+    escapeSpeed = 500,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -1137,8 +1238,8 @@ combatParameters[object.uJohnnieJohnson.id] = {
 }
 
 combatParameters[object.uUSAAFAce.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 475,
+    escapeSpeed = 475,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
@@ -1150,8 +1251,8 @@ combatParameters[object.uUSAAFAce.id] = {
 }
 
 combatParameters[object.uRAFAce.id] = {
-    pursuitSpeed = numberSpec,
-    escapeSpeed = numberSpec,
+    pursuitSpeed = 475,
+    escapeSpeed = 475,
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,
