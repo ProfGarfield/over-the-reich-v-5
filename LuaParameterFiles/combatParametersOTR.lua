@@ -37,8 +37,8 @@ local gen = require("generalLibrary"):minVersion(6)
 local maxInterceptionRange = 4 -- no unit can have a larger interception range.
 local numberSpec = {["number"] = true}
 local specificKeyTable = {
-	pursuitSpeed = {["number"] = true, ["nil"]=true}
-	escapeSpeed = {["number"] = true, ["nil"]=true}
+	pursuitSpeed = {["number"] = true, ["nil"]=true},
+	escapeSpeed = {["number"] = true, ["nil"]=true},
     pursuitSpeedLow = numberSpec,
     pursuitSpeedHigh = numberSpec,
     pursuitSpeedNight = numberSpec,

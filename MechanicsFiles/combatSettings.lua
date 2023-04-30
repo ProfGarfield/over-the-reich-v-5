@@ -42,7 +42,31 @@ local combatParameters = require("combatParametersOTR")
 local traits = require("traits")
 local discreteEvents = require("discreteEventsRegistrar")
 local changeRules = require("changeRules")
+local helper = require("helper")
 
+
+local domain = {ground = 0, air = 1, sea = 2}
+local function potentialDefenders(tile,attacker)
+    if attacker.domain == domain.ground or attacker.domain == domain.sea then
+        return tile.units
+    end
+
+    local searchMaps = {}
+    local searchRadius = combatParameters.maxInterceptionRange
+    return coroutine.wrap(function ()
+        for nearbyUnit in gen.nearbyUnits(tile, searchRadius, searchMaps) do
+        
+            coroutine.yield(nearbyUnit)
+        end
+    end)
+end
+
+local function computeSupportValues(attacker,defender)
+    local attackerSupport,defenderSupport = 0,0
+
+
+    return attackerSupport,defenderSupport
+end
 
 
 
@@ -126,9 +150,20 @@ Modifiers that can be disabled by setting their value to "0" (the numeric value,
 --      dTerrainDefenseValue -- overrides the terrain defense bonus (normally calculated by baseTerrain.defense/2) 
 --          requires combatCalculator version 2 to have any effect
 
-local function computeCombatStatistics(attacker, defender, isSneakAttack)
+local function computeCombatStatistics(attacker, defender, isSneakAttack,originalDefenderLocation,tileToDefend)
     
-    local combatModifierOverride = {aCustomMult=1,dCustomMult=1}
+    local defenderSuffix = helper.getCombatSuffix(originalDefenderLocation.z,tileToDefend.z)
+    local attackerSuffix = helper.getCombatSuffix(attacker.location.z,tileToDefend.z)
+    local attackerParams = combatParameters[attacker.type.id]
+    local defenderParams = combatParameters[defender.type.id]
+
+    local combatModifierOverride = {
+        aCustomMult=1,
+        dCustomMult=1,
+        dTerrainDefenseValue=tileToDefend.baseTerrain.defense/2,
+        --aCustomAdd = attackerParams["attackMod"..attackerSuffix]
+        --dCustomAdd = defenderParams["defenseMod"..defenderSuffix]
+    }
     -- Modifier from rules files:
     local aMult, dMult = rules.combatGroupCustomModifiers(attacker,defender)
     combatModifierOverride.aCustomMult = combatModifierOverride.aCustomMult*aMult
@@ -165,7 +200,6 @@ local function tileHasCarrierUnit(tile)
     end
     return false
 end
-local domain = {ground = 0, air = 1, sea = 2}
 -- use this function to add to (or subtract from) the calculated
 -- defender value in order to change onChooseDefender
 -- e.g. if you add 1e8 (100 million) to all air in air protected stacks
@@ -240,7 +274,7 @@ function register.onChooseDefender(defaultFunction,tile,attacker,isCombat)
         if dist == 0 or (combatParameters[possibleDefender.type.id] 
         and dist <= combatParameters[possibleDefender.type.id].interceptionRange and possibleDefender.owner == tile.owner) then
             local attackerStrength, attackerFirepower, defenderStrength, defenderFirepower
-                = computeCombatStatistics(attacker,possibleDefender,false)
+                = computeCombatStatistics(attacker,possibleDefender,false,possibleDefender.location,tile)
             -- below is what appears to be the standard civ II calculation
             --local defenderValue = defenderStrength*possibleDefender.hitpoints//possibleDefender.type.hitpoints
             -- instead of defender strength, however, defenderStrength/attackerStrength is used to account
@@ -318,14 +352,14 @@ local function aircraftEscapeCleanup(winningAircraft,escapingAircraft,defender,o
 end
 
 function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,attackerPower,defenderDie,defenderPower,isSneakAttack)
+
     local originalDefenderLocation = defender.location
     if originalDefenderLocation ~= defendedTile then
         defender:teleport(defendedTile)
     end
     defendedTile = nil
 
-
-    local attackerStrength, attackerFirepower, defenderStrength, defenderFirepower = computeCombatStatistics(attacker, defender, isSneakAttack)
+    local attackerStrength, attackerFirepower, defenderStrength, defenderFirepower = computeCombatStatistics(attacker, defender, isSneakAttack,originalDefenderLocation)
     local maxCombatRounds = math.huge -- If you want to limit combat to a specific number of
                                         -- turns, set this variable
 

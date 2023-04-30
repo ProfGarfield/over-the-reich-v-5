@@ -67,6 +67,31 @@ function helper.isAirfieldForbidden(tile)
     return false
 end
 
+--- Returns "Low","High","Night","Climb","Dive" based on the relative
+--- and absolute positions of fromZ and toZ
+---@param fromZ 0|1|2
+---@param toZ 0|1|2
+---@return "Low"|"High"|"Night"|"Climb"|"Dive"
+function helper.getCombatSuffix(fromZ,toZ)
+    if fromZ == 2 and toZ == 2 then
+        return "Night"
+    end
+    if fromZ == 0 then
+        if toZ == 0 then
+            return "Low"
+        elseif toZ == 1 then
+            return "Climb"
+        end
+    end
+    if fromZ == 1 then
+        if toZ == 0 then
+            return "Dive"
+        elseif toZ == 1 then 
+            return "High"
+        end
+    end
+    error("helper.getCombatSuffix("..tostring(fromZ)..","..tostring(toZ)..") was called, but that doesn't make sense for this scenario.")
+end
 
 
 return helper
