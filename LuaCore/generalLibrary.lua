@@ -7508,8 +7508,8 @@ function gen.describeAllowableValues(valueSpecification)
             number = "integer"
         end
         if valueSpecification["number"].minVal and valueSpecification["number"].maxVal then
-            desc = desc..number.." between "..tostring(valueSpecification["number"].minValue)
-            .." and "..tostring(valueSpecification["number"].maxValue)..", "
+            desc = desc..number.." between "..tostring(valueSpecification["number"].minVal)
+            .." and "..tostring(valueSpecification["number"].maxVal)..", "
         elseif valueSpecification["number"].minVal then
             desc = desc..number.." at least "..tostring(valueSpecification["number"].minValue)..", "
         elseif valueSpecification["number"].maxVal then
