@@ -1,7 +1,7 @@
 local traits = require("traits")
 local object = require("object")
 
-traits.allowedTraits("strategicImprovement","sample trait 1","fighter","bomber","fighterBomber","canBuildAirfield","photoRecon")
+traits.allowedTraits("strategicImprovement","sample trait 1","fighter","bomber","fighterBomber","canBuildAirfield","photoRecon","useCarrier","carrier")
 
 -- object 'traits' are strings that you can "assign" to
 -- objects, and check elsewhere in your code if a particular
@@ -129,7 +129,7 @@ traits.assign(object.uDamagedB17G,"bomber")
 traits.assign(object.uP38L,"fighter")
 traits.assign(object.uCriticalIndustry,"strategicImprovement")
 traits.assign(object.uGerhardBarkhorn,"fighter")
-traits.assign(object.uAircraftCarrier,"sample trait 1")
+traits.assign(object.uAircraftCarrier,"carrier")
 traits.assign(object.uUSAAFAce,"fighter")
 traits.assign(object.uRAFAce,"fighter")
 traits.assign(object.uBarrage,"sample trait 1")
@@ -375,7 +375,7 @@ traits.assign(object.bAirfieldNightBase,"sample trait 1")
 traits.assign(object.bWaterNightBase,"sample trait 1")
 traits.assign(object.bFirestormNightBase,"sample trait 1")
 traits.assign(object.bRubbleNightBase,"sample trait 1")
-traits.assign(object.bBombedRRRubleNightBase,"sample trait 1")
+traits.assign(object.bBombedRRRubbleNightBase,"sample trait 1")
 traits.assign(object.bBombedIndustryNightBase,"sample trait 1")
 
 -- Terrain Traits
@@ -503,8 +503,8 @@ traits.assign(object.tFirestormNightWhale,"sample trait 1")
 traits.assign(object.tRubbleNightBase,"sample trait 1")
 traits.assign(object.tRubbleNightFish,"sample trait 1")
 traits.assign(object.tRubbleNightWhale,"sample trait 1")
-traits.assign(object.tBombedRRRubleNightBase,"sample trait 1")
-traits.assign(object.tBombedRRRubleNightFish,"sample trait 1")
+traits.assign(object.tBombedRRRubbleNightBase,"sample trait 1")
+traits.assign(object.tBombedRRRubbleNightFish,"sample trait 1")
 traits.assign(object.tBombedRRRubbleNightWhale,"sample trait 1")
 traits.assign(object.tBombedIndustryNightBase,"sample trait 1")
 traits.assign(object.tBombedIndustryNightFish,"sample trait 1")

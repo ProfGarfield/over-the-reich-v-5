@@ -93,5 +93,59 @@ function helper.getCombatSuffix(fromZ,toZ)
     error("helper.getCombatSuffix("..tostring(fromZ)..","..tostring(toZ)..") was called, but that doesn't make sense for this scenario.")
 end
 
+---Returns the number of squares an aircraft can move before it runs out of fuel.
+---If the unit has range 0, math.huge is returned.
+---@param unit unitObject
+---@return integer
+function helper.distanceToEmpty(unit)
+    if unit.type.range == 0 then
+        return math.huge
+    end
+    if unit.owner == civ.getCurrentTribe() then
+        local turnsRemaining = unit.type.range - unit.domainSpec-1
+        local movesRemaining = unit.type.move/totpp.movementMultipliers.aggregate       
+        movesRemaining = movesRemaining*turnsRemaining
+        movesRemaining = movesRemaining + math.max(0,gen.moveRemaining(unit)//totpp.movementMultipliers.aggregate)
+        return movesRemaining
+    else
+        local turnsRemaining = unit.type.range - unit.domainSpec
+        local movesRemaining = unit.type.move//totpp.movementMultipliers.aggregate       
+        movesRemaining = movesRemaining*turnsRemaining
+        return movesRemaining
+    end
+end
 
+
+---Returns true if the unit has the range to return to an airbase,
+---after reducing its movement by the reduction.
+---Returns false if it can't.  Units with 0 range return true.
+---@param unit unitObject
+---@param reduction? integer # 0 if absent
+---@return boolean
+function helper.canReturnToAirbase(unit,reduction)
+    reduction = reduction or 0
+    if unit.type.range == 0 then
+        return true
+    end
+    local distToEmpty = helper.distanceToEmpty(unit) - reduction
+    local tribe = unit.owner
+    for city in civ.iterateCities() do
+        if city.owner == tribe and helper.isOTRAirfield(city) and
+        gen.tileDist(city.location,unit.location) <= distToEmpty then
+            return true
+        end
+    end
+    if traits.hasTrait(unit.type,"useCarrier") then
+        for possibleCarrier in civ.iterateUnits() do
+            if possibleCarrier.owner == tribe and 
+            traits.hasTrait(possibleCarrier.type,"carrier") then
+                return true
+            end
+        end
+    end
+    return false
+end
+
+
+rawset(_G,"helper",helper)
 return helper
