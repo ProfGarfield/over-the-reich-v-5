@@ -452,7 +452,13 @@ function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,at
     local attackerStrength, attackerFirepower, defenderStrength, defenderFirepower = computeCombatStatistics(attacker, defender, isSneakAttack,originalDefenderLocation,defender.location)
     local maxCombatRounds = math.huge -- If you want to limit combat to a specific number of
                                         -- turns, set this variable
-
+    local minCombatRounds = 0 -- combat must last at least this long (unless
+    -- a defender has been killed).  This is changed below
+    local defenderStackSize = 0
+    local unitsOnTile = 0
+    for u in defender.location.units do
+        unitsOnTile = unitsOnTile+1
+    end
     local combatType = nil
     local attackerParams = combatParameters[attacker.type.id]
     local defenderParams = combatParameters[defender.type.id]
@@ -490,10 +496,14 @@ function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,at
     if traits.hasAnyTrait(defender.type,"fighter","fighterBomber") and traits.hasAnyTrait(attacker.type,"fighter","fighterBomber") then
         combatType = "FighterAttackingFighter"
         maxCombatRounds = combatParameters.maxAirCombatRounds
+        minCombatRounds = combatParameters.minAirCombatRounds + 
+        unitsOnTile*combatParameters.minAirCombatRoundIncrement
     elseif traits.hasAnyTrait(attacker.type,"fighter","fighterBomber")
     and traits.hasAnyTrait(defender.type,"bomber") then
         combatType = "FighterAttackingBomber"
         maxCombatRounds = combatParameters.maxAirCombatRounds
+        minCombatRounds = combatParameters.minAirCombatRounds + 
+        unitsOnTile*combatParameters.minAirCombatRoundIncrement
     end
 
     if combatType == "FighterAttackingFighter" then
@@ -512,13 +522,13 @@ function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,at
                     aircraftEscapeCleanUp(attacker,nil,defender,originalDefenderLocation)
                     return
                 elseif attacker.hitpoints < combatParameters.fighterEscapeThreshold * defenderFirepower 
-                    and round >= combatParameters.minAirCombatRounds
+                    and round >= minCombatRounds
                     and math.random() < attackerEscapeChance then
                     aircraftMovementAfterAttack(attacker)
                     aircraftEscapeCleanUp(defender,attacker,defender,originalDefenderLocation)
                     return
                 elseif defender.hitpoints < combatParameters.fighterEscapeThreshold * attackerFirepower 
-                    and round >= combatParameters.minAirCombatRounds
+                    and round >= minCombatRounds
                     and math.random() < defenderEscapeChance then
                     aircraftMovementAfterAttack(attacker)
                     aircraftEscapeCleanUp(attacker,defender,defender,originalDefenderLocation)
@@ -546,13 +556,13 @@ function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,at
                     aircraftEscapeCleanUp(attacker,nil,defender,originalDefenderLocation)
                     return
                 elseif attacker.hitpoints < combatParameters.fighterEscapeThreshold * defenderFirepower 
-                    and round >= combatParameters.minAirCombatRounds
+                    and round >= minCombatRounds
                     and math.random() < attackerEscapeChance then
                     aircraftMovementAfterAttack(attacker)
                     aircraftEscapeCleanUp(defender,attacker,defender,originalDefenderLocation)
                     return
                 elseif math.random() < defenderEscapeChance 
-                    and round >= combatParameters.minAirCombatRounds
+                    and round >= minCombatRounds
                     then
                     aircraftMovementAfterAttack(attacker)
                     aircraftEscapeCleanUp(attacker,defender,defender,originalDefenderLocation)

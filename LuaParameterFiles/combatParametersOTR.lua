@@ -175,9 +175,15 @@ combatParameters.maxInterceptionRange = maxInterceptionRange
 --  Defined above in local form, here to supply to other modules
 --  No fighter can intercept from further away
 
-combatParameters.minAirCombatRounds = 3
+combatParameters.minAirCombatRounds = 1
 --  All air combat lasts at least this many rounds, even if one
 --  plane wants to escape
+
+combatParameters.minAirCombatRoundIncrement = 2
+--  Increase the minimum number of air combat rounds by this
+--  number for each unit on the defender's tile (including
+--  a defender that may have intercepted from another tile)
+--  (This won't increase combat beyond maxAirCombatRounds)
 
 combatParameters.maxAirCombatRounds = 10
 --  Air combat doesn't last more than this many rounds
