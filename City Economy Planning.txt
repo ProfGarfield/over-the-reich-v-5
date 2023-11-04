@@ -1,0 +1,25 @@
+GERMANY
+-95 cities
+-210 airfields (105/105)
+
+ALLIES
+-50 cities
+-100 airfields (50/50)
+
+
+COLOR CODES FOR MAP TEXT
+
+https://www.color-hex.com/
+
+https://www.computerhope.com/htmcolor.htm#color-codes
+
+Examples in Hex:
+
+White = 0xffffff
+Black = 0x000000
+A "perfect" Blue = 0x0000ff
+A "prefect" Red = 0xff0000
+A "middle" Gray = 0x7a7a7a
+Aqua = 0x00ffff
+Gold = 0xffd700
+Indigo = 0x4b0082

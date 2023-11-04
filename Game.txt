@@ -5276,8 +5276,8 @@ This square already has a railroad junction.
 @TRANSPORTOPTIONS
 Low-Alt Daylight
 High-Alt Daylight
-Night Operations
-map 3
+Low-Alt Nighttime
+High-Alt Nighttime
 
 @BUILDTRANSPORTERTYPE
 @width=200

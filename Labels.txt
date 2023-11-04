@@ -8,43 +8,43 @@
 @POPUPS
 OK
 Help
-Exit
+Cancel
 Custom
 
 
 @LABELS
 922
-Turn
-Turn
+B.C.
+A.D.
 Civilization II: Test of Time
 Building Sprites
-High Alt
+Map
 Status
-Low Alt
+World
 City
 Building World
 Moving Units
 Viewing Pieces
 Loc
 Moves
-Ace
+Veteran
 NONE
-Neutrals
-Neutral
+Barbarians
+Barbarian
 Attila
-Railtrack
-Bandits
-Fuel Dump
-Village
-Industry
+River
+Railroad
+Road
 Farmland
+Mining
+Irrigation
 More
 Units
 No Orders
 End of Turn
 Press ENTER
 Village
-Soldiers
+People
 City of
 Zoom to City
 Continue
@@ -60,13 +60,13 @@ Rename
 Food Storage
 Turns
 Turn
-Illustration
-Crash
+Fortress
+Pollution
 wise men
 scientists
-&Build New Airfield|b
+&Build New City|b
 &Join City|b
-Build &Fuel Dump|r
+Build &Road|r
 Build &RR Track|r
 Build &Irrigation|i
 Change to %STRING0|i
@@ -81,12 +81,12 @@ City Resources
 Food
 Surplus
 Support
-Diverted
+Waste
 Production
-Fuel
-Diverted
-Fuel
-Law
+Trade
+Corruption
+Tax
+Lux
 Sci
 Hunger
 Shortage
@@ -103,9 +103,9 @@ Move to front.
 Supplies
 Demands
 Wonders
-Fuel Production
-Civilian Goods
-Aircraft Research
+Taxes
+Luxuries
+Science
 Auto
 Tithes
 develop
@@ -146,12 +146,12 @@ Defense Strength
 Movement Rate
 Hit Points
 Firepower
-Needs
+Cost
 First
 Disorder
-Fuel Needs
-Fuel Production
-Technologies
+Total Cost
+Total Income
+Discoveries
 Unhappy
 Content
 of the
@@ -168,7 +168,7 @@ Civilized
 Militaristic
 Government
 Capital
-Fuel Stores
+Treasury
 Military
 At
 Contact
@@ -176,7 +176,7 @@ Maintenance
 Expires
 Build Railroad
 Keep moving.
-Leave supplies.
+Establish trade route.
 Help build WONDER.
 Att
 Def
@@ -228,7 +228,7 @@ years
 Launched
 Landed
 Launch
-Civilization POWERgraph
+Extended Game POWERgraph
 The
 in
 Civilization
@@ -271,7 +271,7 @@ Extra
 OK
 Cancel
 Maximum Rate
-What Shall We Focus On
+How Shall We Distribute The Wealth
 Lock
 Select Map To Load
 Select File Name For Saved Map
@@ -337,27 +337,27 @@ Propose This Deal
 Alliance
 Peace Treaty
 Share Maps
-Fuel
+Gold
 Auto Off
 Prev
 Next
 Close
-Forces
+Empire
 Kingdom
-Grand Alliance
+People's Republic
 Holy Empire
-Third Reich
+Republic
 United States
 CITY STATUS
 DEFENSE MINISTER
 FOREIGN MINISTER - Intelligence Report
-PROPAGANDA MINISTER
-FUEL PRODUCTION
-ENGINEERING REPORT
-ASSETS OF THE POWERS
+ATTITUDE ADVISOR
+TRADE ADVISOR
+SCIENCE ADVISOR
+WONDERS OF THE WORLD
 TOP FIVE CITIES
 Demographics
-CIVILIZATION SCORE
+EXTENDED CIVILIZATION SCORE
 Statistics          
 Casualties
 active
@@ -369,7 +369,7 @@ See 2
 Ign. ZOC
 Ign. Walls
 Amphibious
-Hard to Spot
+Carry Missiles
 Carry Air
 Paradrop
 All as Road
@@ -377,12 +377,12 @@ x2 vs. Horse
 x2 vs. Air
 Coastal
 Fundamentalism only
-Can Spot Targets
-City Fuel
-Fuel Costs
-Total Research
+Subs
+City Trade
+Maintenance Costs
+Total Science
 Supply and Demand
-Technologies Every
+Discoveries Every
 Turns
 Civilization Advances Achieved
 Goal
@@ -426,7 +426,7 @@ Bonus Score
 possible
 CHEAT MODE
 Cheater
-CIVILIZATION RATING
+EXTENDED CIVILIZATION RATING
 Looking back on your reign,
 your people forever remember you as . . .
 Scenario Files
@@ -456,10 +456,10 @@ Marginal Defeat
 Decisive Defeat
 Foreign
 Attitude
-CIVILIZATION II: HALL OF FAME
+EXTENDED CIVILIZATION II: HALL OF FAME
 to
 Score
-Civilization Rating
+Extended Civilization Rating
 Clear
 Units Supported
 City Improvements
@@ -522,12 +522,12 @@ Naval Superiority
 Air Superiority
 Sea Transport
 Settle
-Recon
-Prototypes
+Diplomacy
+Trade
 Ground
 Air
 Sea
-Expiration advancements for Assets of the Powers
+Expiration advancements for Wonders of the World
 Allow production of
 Prerequisite for
 Ancient
@@ -683,11 +683,11 @@ Effects of Mining
 Turns to Mine
 (N/A)
 Effect of Engineer Transformation
-Effects of Fuel Dump
+Effects of Roads
 Possible Resources
 Civilization Advances
 City Improvements
-Assets of the Powers
+Wonders of the World
 Unit Types
 Terrain and Special Resources
 Forms of Government
@@ -697,34 +697,34 @@ Airlift
 City Squares
 Civilization Size
 Combat Damage
-Diverted Resources
+Corruption and Waste
 Disband
 Fortify
 Fortress
 Irrigation
-Martial Law
+Luxuries
 Mining
 Pillage
-Bandits
+Pollution
 Railroads
-Fuel Dumps
+Roads
 Science
 Sentry
 Shields
 Specialists
-Fuel
+Taxes
 Trade
-Prototype Supplies
+Trade Routes
 Transforming Terrain
 Veteran Units
-Diverted
+Waste
 (Shield)
 Description
 Normal
 1/3 of a point
-Increases the amount of Food produced in %s from %d to %d.
+Increase the amount of Food produced in %s Terrain from %d to %d.
 There is no increase in Food production.
-Increases Shields from %d to %d, and
+Increase Shields from %d to %d, and
 increases Trade from %d to %d.
 does not increase Trade.
 There is no increase in Shields, and
@@ -860,28 +860,28 @@ Available Now
 Tree
 Key
 Details
-Already Own
+Already Have
 Can Research
 Can't Research Yet
-Can Never Research
+Can't Possess
 Not Available
 Betrayals
 Maximum Players
 Two Player Game
-Invisible except during attack
+Invisible until combat
 You may not disband this unit
 Net Food: %d
-Net Fuel: %d
-Net Law: %d
-Net Research: %d
+Net Taxes: %d
+Net Luxury: %d
+Net Science: %d
 Net Production: %d
 Net: %d         Eaten: %d         Support: %d
 Net: %d
 Corruption: %d
-%d %% Fuel: %d
-%d %% Law: %d
+%d %% Tax: %d
+%d %% Lux: %d
 %d %% Sci: %d
-Diverted: %d        Support: %d
+Waste: %d        Support: %d
 Next Citizen: %d turns
 Danger: People starving
 Warning: Stagnant growth
@@ -893,10 +893,10 @@ Improvements
 You cannot build this unit
 Impassable to most units
 Impassable to all units except
-Steal Or Trade Only
-Switchyards
-Switchyards
-Switchyards
+Can't Research
+QT Portal
+Tig Earth'ta
+Teleporter type 3
 Intercept Chat Messages
 Mute/Send
 Basic Game

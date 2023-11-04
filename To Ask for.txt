@@ -1,0 +1,1 @@
+- Heavy Flak Battery improvement (civ.getImprovement(27)) needs to connect with unit 12.8cm Flak 40 civ.getUnitType(165) BUT the trick is if a city sells the improvement, the unit disappears.  So perhaps a quick loop check afterProduction and if a city has the unit but doesn't have the improvement, the unit is disbanded.
