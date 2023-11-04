@@ -3,7 +3,7 @@
 ;   Copyright (c) 1997 MicroProse Software, Inc.
 ;
 ;
-;	File generated on 04 January, 2023 using the Civilopedia module
+;	File generated on 04 November, 2023 using the Civilopedia module
 ;   The generated file is based on the Describe.txt file that shipped
 ;   with Knighttime's Medieval Millennium mod
 ;
@@ -12,2206 +12,2134 @@
 
 ;
 @@ADVANCE_INDEX
--1,		;	0	Interceptors I (Advanced Flight)
--1,		;	1	Interceptors II (Alphabet)
--1,		;	2	Interceptors III (Amphibious Warfare)
--1,		;	3	Escort Fighters I (Astronomy)
--1,		;	4	Escort Fighters II (Atomic Theory)
--1,		;	5	Night Bombing I (Automobile)
--1,		;	6	Escort Fighters III (Banking)
--1,		;	7	NOT USED (Bridge Building)
--1,		;	8	Cadillac of the Skies (Bronze Working)
--1,		;	9	1940s Tech I (Ceremonial Burial)
--1,		;	10	Bomber Destroyers I (Chemistry)
--1,		;	11	Bomber Destroyers II (Chivalry)
--1,		;	12	Interceptors IV (Code of Laws)
--1,		;	13	Night Fighters I (Combined Arms)
--1,		;	14	Night Fighters II (Combustion)
--1,		;	15	The Grand Alliance (Communism)
--1,		;	16	Night Fighters III (Computers)
--1,		;	17	Advanced Radar I (Conscription)
--1,		;	18	NOT USED (Construction)
--1,		;	19	Advanced Radar II (Corporation)
--1,		;	20	Engines I (Currency)
--1,		;	21	NOT USED (Democracy)
--1,		;	22	Engines II (Economics)
--1,		;	23	Engines III (Electricity)
--1,		;	24	Night Bombing II (Electronics)
--1,		;	25	Jabo I (Engineering)
--1,		;	26	Jabo II (Environmentalism)
--1,		;	27	Jabo III (Espionage)
--1,		;	28	Engines IV (Explosives)
--1,		;	29	Experimental Design (Feudalism)
--1,		;	30	Volksjäger (Flight)
--1,		;	31	NOT USED (Fundamentalism)
--1,		;	32	Centrifugal-Flow Engine (Fusion Power)
--1,		;	33	Axial-Flow Compressor (Genetic Engineering)
--1,		;	34	NOT USED (Guerrilla Warfare)
--1,		;	35	NOT USED (Gunpowder)
--1,		;	36	Jet Fighters (Horseback Riding)
--1,		;	37	The Third Reich (Industrialization)
--1,		;	38	Jet Fighter Design (Invention)
--1,		;	39	Jet Bombers I (Iron Working)
--1,		;	40	Jet Bombers II (Labor Union)
--1,		;	41	Wunderwaffe Program (Laser)
--1,		;	42	Pulse-Jet Engines (Leadership)
--1,		;	43	Vergeltungswaffen 1 (Literacy)
--1,		;	44	Rocketry (Machine Tools)
--1,		;	45	Vergeltungswaffen 2 (Magnetism)
--1,		;	46	Strategic Bombers I (Map Making)
--1,		;	47	Strategic Bombers II (Masonry)
--1,		;	48	Strategic Bombers III (Mass Production)
--1,		;	49	Window (Mathematics)
--1,		;	50	Tactical Bombers I (Medicine)
--1,		;	51	Tactical Bombers II (Metallurgy)
--1,		;	52	Tactical Bombers III (Miniaturization)
--1,		;	53	Rocket Fighters (Mobile Warfare)
--1,		;	54	NOT USED (Monarchy)
--1,		;	55	1940s Tech II (Monotheism)
--1,		;	56	1940s Tech III (Mysticism)
--1,		;	57	Jet Fighter Focus (Navigation)
--1,		;	58	Jägernotprogramm (Nuclear Fission)
--1,		;	59	Wilde Sau (Nuclear Power)
--1,		;	60	Night Bombing III (Philosophy)
--1,		;	61	Industry I (Physics)
--1,		;	62	Industry II (Plastics)
--1,		;	63	Industry III (Plumbing)
--1,		;	64	Fuel Production I (Polytheism)
--1,		;	65	Fuel Production II (Pottery)
--1,		;	66	NOT USED (Radio)
--1,		;	67	NOT USED (Railroad)
--1,		;	68	Fuel Production III (Recycling)
--1,		;	69	War Economy (Refining)
--1,		;	70	Rationing (Refrigeration)
--1,		;	71	The Axis Powers (Republic)
--1,		;	72	Jägerstab (Robotics)
--1,		;	73	Foggia Airfields (Rocketry)
--1,		;	74	Operation Overlord Prep. (Sanitation)
--1,		;	75	Operation Neptune (Seafaring)
--1,		;	76	Vistula-Oder Offensive (Space Flight)
--1,		;	77	Tuskeegee Airmen (Stealth)
--1,		;	78	Mass-Production Focus (Steam Engine)
--1,		;	79	High-Technology Focus (Steel)
--1,		;	80	Argument for Jet Jabo (Superconductor)
--1,		;	81	Jet Fighters Prioritized (Tactics)
--1,		;	82	1940s Tech IV (Theology)
--1,		;	83	Proximity Fuses (Theory of Gravity)
--1,		;	84	Aircraft Prototypes (Trade)
--1,		;	85	--Search for Long-Range Fighter (University)
--1,		;	86	--The Allison-Powered Mustang (Warrior Code)
--1,		;	87	Rolls-Royce Merlin 61 Refit (Wheel)
--1,		;	88	Advanced Radar III (Writing)
--1,		;	89	Delays (Future Technology)
--1,		;	90	Tactics I (User Def Tech A)
--1,		;	91	Tactics II (User Def Tech B)
--1,		;	92	Tactics III (User Def Tech C)
--1,		;	93	Roam at Will (Extra Advance 1)
--1,		;	94	Long-Range Escorts Needed (Extra Advance 2)
--1,		;	95	Albert Speer's Death (Extra Advance 3)
--1,		;	96	Political Support I (Extra Advance 4)
--1,		;	97	Political Support II (Extra Advance 5)
--1,		;	98	Political Support III (Extra Advance 6)
--1,		;	99	Political Support IV (Extra Advance 7)
--1,		;	100	Not Included
--1,		;	101	Not Included
--1,		;	102	Not Included
--1,		;	103	Not Included
--1,		;	104	Not Included
--1,		;	105	Not Included
--1,		;	106	Not Included
--1,		;	107	Not Included
--1,		;	108	Not Included
--1,		;	109	Not Included
--1,		;	110	Not Included
--1,		;	111	Not Included
--1,		;	112	Not Included
--1,		;	113	Not Included
--1,		;	114	Not Included
--1,		;	115	Not Included
--1,		;	116	Not Included
--1,		;	117	Not Included
--1,		;	118	Not Included
--1,		;	119	Not Included
--1,		;	120	Not Included
--1,		;	121	Not Included
--1,		;	122	Not Included
--1,		;	123	Not Included
--1,		;	124	Not Included
--1,		;	125	Not Included
--1,		;	126	Not Included
--1,		;	127	Not Included
--1,		;	128	Not Included
--1,		;	129	Not Included
--1,		;	130	Not Included
--1,		;	131	Not Included
--1,		;	132	Not Included
--1,		;	133	Not Included
--1,		;	134	Not Included
--1,		;	135	Not Included
--1,		;	136	Not Included
--1,		;	137	Not Included
--1,		;	138	Not Included
--1,		;	139	Not Included
--1,		;	140	Not Included
--1,		;	141	Not Included
--1,		;	142	Not Included
--1,		;	143	Not Included
--1,		;	144	Not Included
--1,		;	145	Not Included
--1,		;	146	Not Included
--1,		;	147	Not Included
--1,		;	148	Not Included
--1,		;	149	Not Included
--1,		;	150	Not Included
--1,		;	151	Not Included
--1,		;	152	Not Included
--1,		;	153	Not Included
--1,		;	154	Not Included
--1,		;	155	Not Included
--1,		;	156	Not Included
--1,		;	157	Not Included
--1,		;	158	Not Included
--1,		;	159	Not Included
--1,		;	160	Not Included
--1,		;	161	Not Included
--1,		;	162	Not Included
--1,		;	163	Not Included
--1,		;	164	Not Included
--1,		;	165	Not Included
--1,		;	166	Not Included
--1,		;	167	Not Included
--1,		;	168	Not Included
--1,		;	169	Not Included
--1,		;	170	Not Included
--1,		;	171	Not Included
--1,		;	172	Not Included
--1,		;	173	Not Included
--1,		;	174	Not Included
--1,		;	175	Not Included
--1,		;	176	Not Included
--1,		;	177	Not Included
--1,		;	178	Not Included
--1,		;	179	Not Included
--1,		;	180	Not Included
--1,		;	181	Not Included
--1,		;	182	Not Included
--1,		;	183	Not Included
--1,		;	184	Not Included
--1,		;	185	Not Included
--1,		;	186	Not Included
--1,		;	187	Not Included
--1,		;	188	Not Included
--1,		;	189	Not Included
--1,		;	190	Not Included
--1,		;	191	Not Included
--1,		;	192	Not Included
--1,		;	193	Not Included
--1,		;	194	Not Included
--1,		;	195	Not Included
--1,		;	196	Not Included
--1,		;	197	Not Included
--1,		;	198	Not Included
--1,		;	199	Not Included
--1,		;	200	Not Included
--1,		;	201	Not Included
--1,		;	202	Not Included
--1,		;	203	Not Included
--1,		;	204	Not Included
--1,		;	205	Not Included
--1,		;	206	Not Included
--1,		;	207	Not Included
--1,		;	208	Not Included
--1,		;	209	Not Included
--1,		;	210	Not Included
--1,		;	211	Not Included
--1,		;	212	Not Included
--1,		;	213	Not Included
--1,		;	214	Not Included
--1,		;	215	Not Included
--1,		;	216	Not Included
--1,		;	217	Not Included
--1,		;	218	Not Included
--1,		;	219	Not Included
--1,		;	220	Not Included
--1,		;	221	Not Included
--1,		;	222	Not Included
--1,		;	223	Not Included
--1,		;	224	Not Included
--1,		;	225	Not Included
--1,		;	226	Not Included
--1,		;	227	Not Included
--1,		;	228	Not Included
--1,		;	229	Not Included
--1,		;	230	Not Included
--1,		;	231	Not Included
--1,		;	232	Not Included
--1,		;	233	Not Included
--1,		;	234	Not Included
--1,		;	235	Not Included
--1,		;	236	Not Included
--1,		;	237	Not Included
--1,		;	238	Not Included
--1,		;	239	Not Included
--1,		;	240	Not Included
--1,		;	241	Not Included
--1,		;	242	Not Included
--1,		;	243	Not Included
--1,		;	244	Not Included
--1,		;	245	Not Included
--1,		;	246	Not Included
--1,		;	247	Not Included
--1,		;	248	Not Included
--1,		;	249	Not Included
--1,		;	250	Not Included
--1,		;	251	Not Included
--1,		;	252	Not Included
+-1,		;	0	Advanced Flight (Advanced Flight)
+-1,		;	1	Alphabet (Alphabet)
+-1,		;	2	Amphibious Warfare (Amphibious Warfare)
+-1,		;	3	Astronomy (Astronomy)
+-1,		;	4	Atomic Theory (Atomic Theory)
+-1,		;	5	Automobile (Automobile)
+-1,		;	6	Banking (Banking)
+-1,		;	7	Bridge Building (Bridge Building)
+-1,		;	8	Bronze Working (Bronze Working)
+-1,		;	9	Ceremonial Burial (Ceremonial Burial)
+-1,		;	10	Chemistry (Chemistry)
+-1,		;	11	Chivalry (Chivalry)
+-1,		;	12	Code of Laws (Code of Laws)
+-1,		;	13	Combined Arms (Combined Arms)
+-1,		;	14	Combustion (Combustion)
+-1,		;	15	Communism (Communism)
+-1,		;	16	Computers (Computers)
+-1,		;	17	Conscription (Conscription)
+-1,		;	18	Construction (Construction)
+-1,		;	19	Corporation (Corporation)
+-1,		;	20	Currency (Currency)
+-1,		;	21	Democracy (Democracy)
+-1,		;	22	Economics (Economics)
+-1,		;	23	Electricity (Electricity)
+-1,		;	24	Electronics (Electronics)
+-1,		;	25	Engineering (Engineering)
+-1,		;	26	Environmentalism (Environmentalism)
+-1,		;	27	Espionage (Espionage)
+-1,		;	28	Explosives (Explosives)
+-1,		;	29	Feudalism (Feudalism)
+-1,		;	30	Flight (Flight)
+-1,		;	31	Fundamentalism (Fundamentalism)
+-1,		;	32	Fusion Power (Fusion Power)
+-1,		;	33	Genetic Engineering (Genetic Engineering)
+-1,		;	34	Guerrilla Warfare (Guerrilla Warfare)
+-1,		;	35	Gunpowder (Gunpowder)
+-1,		;	36	Horseback Riding (Horseback Riding)
+-1,		;	37	Industrialization (Industrialization)
+-1,		;	38	Invention (Invention)
+-1,		;	39	Iron Working (Iron Working)
+-1,		;	40	Labor Union (Labor Union)
+-1,		;	41	Laser (Laser)
+-1,		;	42	Leadership (Leadership)
+-1,		;	43	Literacy (Literacy)
+-1,		;	44	Machine Tools (Machine Tools)
+-1,		;	45	Magnetism (Magnetism)
+-1,		;	46	Map Making (Map Making)
+-1,		;	47	Masonry (Masonry)
+-1,		;	48	Mass Production (Mass Production)
+-1,		;	49	Mathematics (Mathematics)
+-1,		;	50	Medicine (Medicine)
+-1,		;	51	Metallurgy (Metallurgy)
+-1,		;	52	Miniaturization (Miniaturization)
+-1,		;	53	Mobile Warfare (Mobile Warfare)
+-1,		;	54	Monarchy (Monarchy)
+-1,		;	55	Monotheism (Monotheism)
+-1,		;	56	Mysticism (Mysticism)
+-1,		;	57	Navigation (Navigation)
+-1,		;	58	Nuclear Fission (Nuclear Fission)
+-1,		;	59	Nuclear Power (Nuclear Power)
+-1,		;	60	Philosophy (Philosophy)
+-1,		;	61	Physics (Physics)
+-1,		;	62	Plastics (Plastics)
+-1,		;	63	Plumbing (Plumbing)
+-1,		;	64	Polytheism (Polytheism)
+-1,		;	65	Pottery (Pottery)
+-1,		;	66	Radio (Radio)
+-1,		;	67	Railroad (Railroad)
+-1,		;	68	Recycling (Recycling)
+-1,		;	69	Refining (Refining)
+-1,		;	70	Refrigeration (Refrigeration)
+-1,		;	71	Republic (Republic)
+-1,		;	72	Robotics (Robotics)
+-1,		;	73	Rocketry (Rocketry)
+-1,		;	74	Sanitation (Sanitation)
+-1,		;	75	Seafaring (Seafaring)
+-1,		;	76	Space Flight (Space Flight)
+-1,		;	77	Stealth (Stealth)
+-1,		;	78	Steam Engine (Steam Engine)
+-1,		;	79	Steel (Steel)
+-1,		;	80	Superconductor (Superconductor)
+-1,		;	81	Tactics (Tactics)
+-1,		;	82	Theology (Theology)
+-1,		;	83	Theory of Gravity (Theory of Gravity)
+-1,		;	84	Trade (Trade)
+-1,		;	85	University (University)
+-1,		;	86	Warrior Code (Warrior Code)
+-1,		;	87	Wheel (Wheel)
+-1,		;	88	Writing (Writing)
+-1,		;	89	Future Technology (Future Technology)
+-1,		;	90	User Def Tech A (User Def Tech A)
+-1,		;	91	User Def Tech B (User Def Tech B)
+-1,		;	92	User Def Tech C (User Def Tech C)
+-1,		;	93	Extra Advance 1 (Extra Advance 1)
+-1,		;	94	Extra Advance 2 (Extra Advance 2)
+-1,		;	95	Extra Advance 3 (Extra Advance 3)
+-1,		;	96	Extra Advance 4 (Extra Advance 4)
+-1,		;	97	Extra Advance 5 (Extra Advance 5)
+-1,		;	98	Extra Advance 6 (Extra Advance 6)
+-1,		;	99	Extra Advance 7 (Extra Advance 7)
+-1,		;	100	Tech With ID 100
+-1,		;	101	Tech With ID 100
+-1,		;	102	Tech With ID 101
+-1,		;	103	Tech With ID 102
+-1,		;	104	Tech With ID 103
+-1,		;	105	Tech With ID 104
+-1,		;	106	Tech With ID 105
+-1,		;	107	Tech With ID 106
+-1,		;	108	Tech With ID 107
+-1,		;	109	Tech With ID 108
+-1,		;	110	Tech With ID 109
+-1,		;	111	Tech With ID 110
+-1,		;	112	Tech With ID 111
+-1,		;	113	Tech With ID 112
+-1,		;	114	Tech With ID 113
+-1,		;	115	Tech With ID 114
+-1,		;	116	Tech With ID 115
+-1,		;	117	Tech With ID 116
+-1,		;	118	Tech With ID 117
+-1,		;	119	Tech With ID 118
+-1,		;	120	Tech With ID 119
+-1,		;	121	Tech With ID 120
+-1,		;	122	Tech With ID 121
+-1,		;	123	Tech With ID 122
+-1,		;	124	Tech With ID 123
+-1,		;	125	Tech With ID 124
+-1,		;	126	Tech With ID 125
+-1,		;	127	Tech With ID 126
+-1,		;	128	Tech With ID 127
+-1,		;	129	Tech With ID 128
+-1,		;	130	Tech With ID 129
+-1,		;	131	Tech With ID 130
+-1,		;	132	Tech With ID 131
+-1,		;	133	Tech With ID 132
+-1,		;	134	Tech With ID 133
+-1,		;	135	Tech With ID 134
+-1,		;	136	Tech With ID 135
+-1,		;	137	Tech With ID 136
+-1,		;	138	Tech With ID 137
+-1,		;	139	Tech With ID 138
+-1,		;	140	Tech With ID 139
+-1,		;	141	Tech With ID 140
+-1,		;	142	Tech With ID 141
+-1,		;	143	Tech With ID 142
+-1,		;	144	Tech With ID 143
+-1,		;	145	Tech With ID 144
+-1,		;	146	Tech With ID 145
+-1,		;	147	Tech With ID 146
+-1,		;	148	Tech With ID 147
+-1,		;	149	Tech With ID 148
+-1,		;	150	Tech With ID 149
+-1,		;	151	Tech With ID 150
+-1,		;	152	Tech With ID 151
+-1,		;	153	Tech With ID 152
+-1,		;	154	Tech With ID 153
+-1,		;	155	Tech With ID 154
+-1,		;	156	Tech With ID 154
+-1,		;	157	Tech With ID 155
+-1,		;	158	Tech With ID 156
+-1,		;	159	Tech With ID 157
+-1,		;	160	Tech With ID 158
+-1,		;	161	Tech With ID 159
+-1,		;	162	Tech With ID 160
+-1,		;	163	Tech With ID 161
+-1,		;	164	Tech With ID 162
+-1,		;	165	Tech With ID 163
+-1,		;	166	Tech With ID 164
+-1,		;	167	Tech With ID 165
+-1,		;	168	Tech With ID 166
+-1,		;	169	Tech With ID 167
+-1,		;	170	Tech With ID 168
+-1,		;	171	Tech With ID 169
+-1,		;	172	Tech With ID 170
+-1,		;	173	Tech With ID 171
+-1,		;	174	Tech With ID 172
+-1,		;	175	Tech With ID 173
+-1,		;	176	Tech With ID 174
+-1,		;	177	Tech With ID 175
+-1,		;	178	Tech With ID 176
+-1,		;	179	Tech With ID 177
+-1,		;	180	Tech With ID 178
+-1,		;	181	Tech With ID 179
+-1,		;	182	Tech With ID 180
+-1,		;	183	Tech With ID 181
+-1,		;	184	Tech With ID 182
+-1,		;	185	Tech With ID 183
+-1,		;	186	Tech With ID 184
+-1,		;	187	Tech With ID 185
+-1,		;	188	Tech With ID 186
+-1,		;	189	Tech With ID 187
+-1,		;	190	Tech With ID 188
+-1,		;	191	Tech With ID 189
+-1,		;	192	Tech With ID 190
+-1,		;	193	Tech With ID 191
+-1,		;	194	Tech With ID 192
+-1,		;	195	Tech With ID 193
+-1,		;	196	Tech With ID 194
+-1,		;	197	Tech With ID 195
+-1,		;	198	Tech With ID 196
+-1,		;	199	Tech With ID 197
+-1,		;	200	Tech With ID 198
+-1,		;	201	Tech With ID 199
+-1,		;	202	Tech With ID 200
+-1,		;	203	Tech With ID 201
+-1,		;	204	Tech With ID 202
+-1,		;	205	Tech With ID 203
+-1,		;	206	Tech With ID 204
+-1,		;	207	Tech With ID 205
+-1,		;	208	Tech With ID 206
+-1,		;	209	Tech With ID 207
+-1,		;	210	Tech With ID 208
+-1,		;	211	Tech With ID 209
+-1,		;	212	Tech With ID 210
+-1,		;	213	Tech With ID 211
+-1,		;	214	Tech With ID 212
+-1,		;	215	Tech With ID 213
+-1,		;	216	Tech With ID 214
+-1,		;	217	Tech With ID 215
+-1,		;	218	Tech With ID 216
+-1,		;	219	Tech With ID 217
+-1,		;	220	Tech With ID 218
+-1,		;	221	Tech With ID 219
+-1,		;	222	Tech With ID 220
+-1,		;	223	Tech With ID 221
+-1,		;	224	Tech With ID 222
+-1,		;	225	Tech With ID 223
+-1,		;	226	Tech With ID 224
+-1,		;	227	Tech With ID 225
+-1,		;	228	Tech With ID 226
+-1,		;	229	Tech With ID 227
+-1,		;	230	Tech With ID 228
+-1,		;	231	Tech With ID 229
+-1,		;	232	Tech With ID 230
+-1,		;	233	Tech With ID 231
+-1,		;	234	Tech With ID 232
+-1,		;	235	Tech With ID 233
+-1,		;	236	Tech With ID 234
+-1,		;	237	Tech With ID 235
+-1,		;	238	Tech With ID 236
+-1,		;	239	Tech With ID 237
+-1,		;	240	Tech With ID 238
+-1,		;	241	Tech With ID 239
+-1,		;	242	Tech With ID 240
+-1,		;	243	Tech With ID 241
+-1,		;	244	Tech With ID 242
+-1,		;	245	Tech With ID 243
+-1,		;	246	Tech With ID 244
+-1,		;	247	Tech With ID 245
+-1,		;	248	Tech With ID 246
+-1,		;	249	Tech With ID 247
+-1,		;	250	Tech With ID 248
+-1,		;	251	Tech With ID 249
+-1,		;	252	Tech With ID 250
 -2,		;	MUST BE HERE! TERMINATOR!
 
-@@0,	Interceptors I (Advanced Flight)
+@@0,	Advanced Flight (Advanced Flight)
 
-@@1,	Interceptors II (Alphabet)
+@@1,	Alphabet (Alphabet)
 
-@@2,	Interceptors III (Amphibious Warfare)
+@@2,	Amphibious Warfare (Amphibious Warfare)
 
-@@3,	Escort Fighters I (Astronomy)
+@@3,	Astronomy (Astronomy)
 
-@@4,	Escort Fighters II (Atomic Theory)
+@@4,	Atomic Theory (Atomic Theory)
 
-@@5,	Night Bombing I (Automobile)
+@@5,	Automobile (Automobile)
 
-@@6,	Escort Fighters III (Banking)
+@@6,	Banking (Banking)
 
-@@7,	NOT USED (Bridge Building)
+@@7,	Bridge Building (Bridge Building)
 
-@@8,	Cadillac of the Skies (Bronze Working)
+@@8,	Bronze Working (Bronze Working)
 
-@@9,	1940s Tech I (Ceremonial Burial)
+@@9,	Ceremonial Burial (Ceremonial Burial)
 
-@@10,	Bomber Destroyers I (Chemistry)
+@@10,	Chemistry (Chemistry)
 
-@@11,	Bomber Destroyers II (Chivalry)
+@@11,	Chivalry (Chivalry)
 
-@@12,	Interceptors IV (Code of Laws)
+@@12,	Code of Laws (Code of Laws)
 
-@@13,	Night Fighters I (Combined Arms)
+@@13,	Combined Arms (Combined Arms)
 
-@@14,	Night Fighters II (Combustion)
+@@14,	Combustion (Combustion)
 
-@@15,	The Grand Alliance (Communism)
+@@15,	Communism (Communism)
 
-@@16,	Night Fighters III (Computers)
+@@16,	Computers (Computers)
 
-@@17,	Advanced Radar I (Conscription)
+@@17,	Conscription (Conscription)
 
-@@18,	NOT USED (Construction)
+@@18,	Construction (Construction)
 
-@@19,	Advanced Radar II (Corporation)
+@@19,	Corporation (Corporation)
 
-@@20,	Engines I (Currency)
+@@20,	Currency (Currency)
 
-@@21,	NOT USED (Democracy)
+@@21,	Democracy (Democracy)
 
-@@22,	Engines II (Economics)
+@@22,	Economics (Economics)
 
-@@23,	Engines III (Electricity)
+@@23,	Electricity (Electricity)
 
-@@24,	Night Bombing II (Electronics)
+@@24,	Electronics (Electronics)
 
-@@25,	Jabo I (Engineering)
+@@25,	Engineering (Engineering)
 
-@@26,	Jabo II (Environmentalism)
+@@26,	Environmentalism (Environmentalism)
 
-@@27,	Jabo III (Espionage)
+@@27,	Espionage (Espionage)
 
-@@28,	Engines IV (Explosives)
+@@28,	Explosives (Explosives)
 
-@@29,	Experimental Design (Feudalism)
+@@29,	Feudalism (Feudalism)
 
-@@30,	Volksjäger (Flight)
+@@30,	Flight (Flight)
 
-@@31,	NOT USED (Fundamentalism)
+@@31,	Fundamentalism (Fundamentalism)
 
-@@32,	Centrifugal-Flow Engine (Fusion Power)
+@@32,	Fusion Power (Fusion Power)
 
-@@33,	Axial-Flow Compressor (Genetic Engineering)
+@@33,	Genetic Engineering (Genetic Engineering)
 
-@@34,	NOT USED (Guerrilla Warfare)
+@@34,	Guerrilla Warfare (Guerrilla Warfare)
 
-@@35,	NOT USED (Gunpowder)
+@@35,	Gunpowder (Gunpowder)
 
-@@36,	Jet Fighters (Horseback Riding)
+@@36,	Horseback Riding (Horseback Riding)
 
-@@37,	The Third Reich (Industrialization)
+@@37,	Industrialization (Industrialization)
 
-@@38,	Jet Fighter Design (Invention)
+@@38,	Invention (Invention)
 
-@@39,	Jet Bombers I (Iron Working)
+@@39,	Iron Working (Iron Working)
 
-@@40,	Jet Bombers II (Labor Union)
+@@40,	Labor Union (Labor Union)
 
-@@41,	Wunderwaffe Program (Laser)
+@@41,	Laser (Laser)
 
-@@42,	Pulse-Jet Engines (Leadership)
+@@42,	Leadership (Leadership)
 
-@@43,	Vergeltungswaffen 1 (Literacy)
+@@43,	Literacy (Literacy)
 
-@@44,	Rocketry (Machine Tools)
+@@44,	Machine Tools (Machine Tools)
 
-@@45,	Vergeltungswaffen 2 (Magnetism)
+@@45,	Magnetism (Magnetism)
 
-@@46,	Strategic Bombers I (Map Making)
+@@46,	Map Making (Map Making)
 
-@@47,	Strategic Bombers II (Masonry)
+@@47,	Masonry (Masonry)
 
-@@48,	Strategic Bombers III (Mass Production)
+@@48,	Mass Production (Mass Production)
 
-@@49,	Window (Mathematics)
+@@49,	Mathematics (Mathematics)
 
-@@50,	Tactical Bombers I (Medicine)
+@@50,	Medicine (Medicine)
 
-@@51,	Tactical Bombers II (Metallurgy)
+@@51,	Metallurgy (Metallurgy)
 
-@@52,	Tactical Bombers III (Miniaturization)
+@@52,	Miniaturization (Miniaturization)
 
-@@53,	Rocket Fighters (Mobile Warfare)
+@@53,	Mobile Warfare (Mobile Warfare)
 
-@@54,	NOT USED (Monarchy)
+@@54,	Monarchy (Monarchy)
 
-@@55,	1940s Tech II (Monotheism)
+@@55,	Monotheism (Monotheism)
 
-@@56,	1940s Tech III (Mysticism)
+@@56,	Mysticism (Mysticism)
 
-@@57,	Jet Fighter Focus (Navigation)
+@@57,	Navigation (Navigation)
 
-@@58,	Jägernotprogramm (Nuclear Fission)
+@@58,	Nuclear Fission (Nuclear Fission)
 
-@@59,	Wilde Sau (Nuclear Power)
+@@59,	Nuclear Power (Nuclear Power)
 
-@@60,	Night Bombing III (Philosophy)
+@@60,	Philosophy (Philosophy)
 
-@@61,	Industry I (Physics)
+@@61,	Physics (Physics)
 
-@@62,	Industry II (Plastics)
+@@62,	Plastics (Plastics)
 
-@@63,	Industry III (Plumbing)
+@@63,	Plumbing (Plumbing)
 
-@@64,	Fuel Production I (Polytheism)
+@@64,	Polytheism (Polytheism)
 
-@@65,	Fuel Production II (Pottery)
+@@65,	Pottery (Pottery)
 
-@@66,	NOT USED (Radio)
+@@66,	Radio (Radio)
 
-@@67,	NOT USED (Railroad)
+@@67,	Railroad (Railroad)
 
-@@68,	Fuel Production III (Recycling)
+@@68,	Recycling (Recycling)
 
-@@69,	War Economy (Refining)
+@@69,	Refining (Refining)
 
-@@70,	Rationing (Refrigeration)
+@@70,	Refrigeration (Refrigeration)
 
-@@71,	The Axis Powers (Republic)
+@@71,	Republic (Republic)
 
-@@72,	Jägerstab (Robotics)
+@@72,	Robotics (Robotics)
 
-@@73,	Foggia Airfields (Rocketry)
+@@73,	Rocketry (Rocketry)
 
-@@74,	Operation Overlord Prep. (Sanitation)
+@@74,	Sanitation (Sanitation)
 
-@@75,	Operation Neptune (Seafaring)
+@@75,	Seafaring (Seafaring)
 
-@@76,	Vistula-Oder Offensive (Space Flight)
+@@76,	Space Flight (Space Flight)
 
-@@77,	Tuskeegee Airmen (Stealth)
+@@77,	Stealth (Stealth)
 
-@@78,	Mass-Production Focus (Steam Engine)
+@@78,	Steam Engine (Steam Engine)
 
-@@79,	High-Technology Focus (Steel)
+@@79,	Steel (Steel)
 
-@@80,	Argument for Jet Jabo (Superconductor)
+@@80,	Superconductor (Superconductor)
 
-@@81,	Jet Fighters Prioritized (Tactics)
+@@81,	Tactics (Tactics)
 
-@@82,	1940s Tech IV (Theology)
+@@82,	Theology (Theology)
 
-@@83,	Proximity Fuses (Theory of Gravity)
+@@83,	Theory of Gravity (Theory of Gravity)
 
-@@84,	Aircraft Prototypes (Trade)
+@@84,	Trade (Trade)
 
-@@85,	--Search for Long-Range Fighter (University)
+@@85,	University (University)
 
-@@86,	--The Allison-Powered Mustang (Warrior Code)
+@@86,	Warrior Code (Warrior Code)
 
-@@87,	Rolls-Royce Merlin 61 Refit (Wheel)
+@@87,	Wheel (Wheel)
 
-@@88,	Advanced Radar III (Writing)
+@@88,	Writing (Writing)
 
-@@89,	Delays (Future Technology)
+@@89,	Future Technology (Future Technology)
 
-@@90,	Tactics I (User Def Tech A)
+@@90,	User Def Tech A (User Def Tech A)
 
-@@91,	Tactics II (User Def Tech B)
+@@91,	User Def Tech B (User Def Tech B)
 
-@@92,	Tactics III (User Def Tech C)
+@@92,	User Def Tech C (User Def Tech C)
 
-@@93,	Roam at Will (Extra Advance 1)
+@@93,	Extra Advance 1 (Extra Advance 1)
 
-@@94,	Long-Range Escorts Needed (Extra Advance 2)
+@@94,	Extra Advance 2 (Extra Advance 2)
 
-@@95,	Albert Speer's Death (Extra Advance 3)
+@@95,	Extra Advance 3 (Extra Advance 3)
 
-@@96,	Political Support I (Extra Advance 4)
+@@96,	Extra Advance 4 (Extra Advance 4)
 
-@@97,	Political Support II (Extra Advance 5)
+@@97,	Extra Advance 5 (Extra Advance 5)
 
-@@98,	Political Support III (Extra Advance 6)
+@@98,	Extra Advance 6 (Extra Advance 6)
 
-@@99,	Political Support IV (Extra Advance 7)
+@@99,	Extra Advance 7 (Extra Advance 7)
 
-@@100,	Not Included
+@@100,	Tech With ID 100
 
-@@101,	Not Included
+@@101,	Tech With ID 100
 
-@@102,	Not Included
+@@102,	Tech With ID 101
 
-@@103,	Not Included
+@@103,	Tech With ID 102
 
-@@104,	Not Included
+@@104,	Tech With ID 103
 
-@@105,	Not Included
+@@105,	Tech With ID 104
 
-@@106,	Not Included
+@@106,	Tech With ID 105
 
-@@107,	Not Included
+@@107,	Tech With ID 106
 
-@@108,	Not Included
+@@108,	Tech With ID 107
 
-@@109,	Not Included
+@@109,	Tech With ID 108
 
-@@110,	Not Included
+@@110,	Tech With ID 109
 
-@@111,	Not Included
+@@111,	Tech With ID 110
 
-@@112,	Not Included
+@@112,	Tech With ID 111
 
-@@113,	Not Included
+@@113,	Tech With ID 112
 
-@@114,	Not Included
+@@114,	Tech With ID 113
 
-@@115,	Not Included
+@@115,	Tech With ID 114
 
-@@116,	Not Included
+@@116,	Tech With ID 115
 
-@@117,	Not Included
+@@117,	Tech With ID 116
 
-@@118,	Not Included
+@@118,	Tech With ID 117
 
-@@119,	Not Included
+@@119,	Tech With ID 118
 
-@@120,	Not Included
+@@120,	Tech With ID 119
 
-@@121,	Not Included
+@@121,	Tech With ID 120
 
-@@122,	Not Included
+@@122,	Tech With ID 121
 
-@@123,	Not Included
+@@123,	Tech With ID 122
 
-@@124,	Not Included
+@@124,	Tech With ID 123
 
-@@125,	Not Included
+@@125,	Tech With ID 124
 
-@@126,	Not Included
+@@126,	Tech With ID 125
 
-@@127,	Not Included
+@@127,	Tech With ID 126
 
-@@128,	Not Included
+@@128,	Tech With ID 127
 
-@@129,	Not Included
+@@129,	Tech With ID 128
 
-@@130,	Not Included
+@@130,	Tech With ID 129
 
-@@131,	Not Included
+@@131,	Tech With ID 130
 
-@@132,	Not Included
+@@132,	Tech With ID 131
 
-@@133,	Not Included
+@@133,	Tech With ID 132
 
-@@134,	Not Included
+@@134,	Tech With ID 133
 
-@@135,	Not Included
+@@135,	Tech With ID 134
 
-@@136,	Not Included
+@@136,	Tech With ID 135
 
-@@137,	Not Included
+@@137,	Tech With ID 136
 
-@@138,	Not Included
+@@138,	Tech With ID 137
 
-@@139,	Not Included
+@@139,	Tech With ID 138
 
-@@140,	Not Included
+@@140,	Tech With ID 139
 
-@@141,	Not Included
+@@141,	Tech With ID 140
 
-@@142,	Not Included
+@@142,	Tech With ID 141
 
-@@143,	Not Included
+@@143,	Tech With ID 142
 
-@@144,	Not Included
+@@144,	Tech With ID 143
 
-@@145,	Not Included
+@@145,	Tech With ID 144
 
-@@146,	Not Included
+@@146,	Tech With ID 145
 
-@@147,	Not Included
+@@147,	Tech With ID 146
 
-@@148,	Not Included
+@@148,	Tech With ID 147
 
-@@149,	Not Included
+@@149,	Tech With ID 148
 
-@@150,	Not Included
+@@150,	Tech With ID 149
 
-@@151,	Not Included
+@@151,	Tech With ID 150
 
-@@152,	Not Included
+@@152,	Tech With ID 151
 
-@@153,	Not Included
+@@153,	Tech With ID 152
 
-@@154,	Not Included
+@@154,	Tech With ID 153
 
-@@155,	Not Included
+@@155,	Tech With ID 154
 
-@@156,	Not Included
+@@156,	Tech With ID 154
 
-@@157,	Not Included
+@@157,	Tech With ID 155
 
-@@158,	Not Included
+@@158,	Tech With ID 156
 
-@@159,	Not Included
+@@159,	Tech With ID 157
 
-@@160,	Not Included
+@@160,	Tech With ID 158
 
-@@161,	Not Included
+@@161,	Tech With ID 159
 
-@@162,	Not Included
+@@162,	Tech With ID 160
 
-@@163,	Not Included
+@@163,	Tech With ID 161
 
-@@164,	Not Included
+@@164,	Tech With ID 162
 
-@@165,	Not Included
+@@165,	Tech With ID 163
 
-@@166,	Not Included
+@@166,	Tech With ID 164
 
-@@167,	Not Included
+@@167,	Tech With ID 165
 
-@@168,	Not Included
+@@168,	Tech With ID 166
 
-@@169,	Not Included
+@@169,	Tech With ID 167
 
-@@170,	Not Included
+@@170,	Tech With ID 168
 
-@@171,	Not Included
+@@171,	Tech With ID 169
 
-@@172,	Not Included
+@@172,	Tech With ID 170
 
-@@173,	Not Included
+@@173,	Tech With ID 171
 
-@@174,	Not Included
+@@174,	Tech With ID 172
 
-@@175,	Not Included
+@@175,	Tech With ID 173
 
-@@176,	Not Included
+@@176,	Tech With ID 174
 
-@@177,	Not Included
+@@177,	Tech With ID 175
 
-@@178,	Not Included
+@@178,	Tech With ID 176
 
-@@179,	Not Included
+@@179,	Tech With ID 177
 
-@@180,	Not Included
+@@180,	Tech With ID 178
 
-@@181,	Not Included
+@@181,	Tech With ID 179
 
-@@182,	Not Included
+@@182,	Tech With ID 180
 
-@@183,	Not Included
+@@183,	Tech With ID 181
 
-@@184,	Not Included
+@@184,	Tech With ID 182
 
-@@185,	Not Included
+@@185,	Tech With ID 183
 
-@@186,	Not Included
+@@186,	Tech With ID 184
 
-@@187,	Not Included
+@@187,	Tech With ID 185
 
-@@188,	Not Included
+@@188,	Tech With ID 186
 
-@@189,	Not Included
+@@189,	Tech With ID 187
 
-@@190,	Not Included
+@@190,	Tech With ID 188
 
-@@191,	Not Included
+@@191,	Tech With ID 189
 
-@@192,	Not Included
+@@192,	Tech With ID 190
 
-@@193,	Not Included
+@@193,	Tech With ID 191
 
-@@194,	Not Included
+@@194,	Tech With ID 192
 
-@@195,	Not Included
+@@195,	Tech With ID 193
 
-@@196,	Not Included
+@@196,	Tech With ID 194
 
-@@197,	Not Included
+@@197,	Tech With ID 195
 
-@@198,	Not Included
+@@198,	Tech With ID 196
 
-@@199,	Not Included
+@@199,	Tech With ID 197
 
-@@200,	Not Included
+@@200,	Tech With ID 198
 
-@@201,	Not Included
+@@201,	Tech With ID 199
 
-@@202,	Not Included
+@@202,	Tech With ID 200
 
-@@203,	Not Included
+@@203,	Tech With ID 201
 
-@@204,	Not Included
+@@204,	Tech With ID 202
 
-@@205,	Not Included
+@@205,	Tech With ID 203
 
-@@206,	Not Included
+@@206,	Tech With ID 204
 
-@@207,	Not Included
+@@207,	Tech With ID 205
 
-@@208,	Not Included
+@@208,	Tech With ID 206
 
-@@209,	Not Included
+@@209,	Tech With ID 207
 
-@@210,	Not Included
+@@210,	Tech With ID 208
 
-@@211,	Not Included
+@@211,	Tech With ID 209
 
-@@212,	Not Included
+@@212,	Tech With ID 210
 
-@@213,	Not Included
+@@213,	Tech With ID 211
 
-@@214,	Not Included
+@@214,	Tech With ID 212
 
-@@215,	Not Included
+@@215,	Tech With ID 213
 
-@@216,	Not Included
+@@216,	Tech With ID 214
 
-@@217,	Not Included
+@@217,	Tech With ID 215
 
-@@218,	Not Included
+@@218,	Tech With ID 216
 
-@@219,	Not Included
+@@219,	Tech With ID 217
 
-@@220,	Not Included
+@@220,	Tech With ID 218
 
-@@221,	Not Included
+@@221,	Tech With ID 219
 
-@@222,	Not Included
+@@222,	Tech With ID 220
 
-@@223,	Not Included
+@@223,	Tech With ID 221
 
-@@224,	Not Included
+@@224,	Tech With ID 222
 
-@@225,	Not Included
+@@225,	Tech With ID 223
 
-@@226,	Not Included
+@@226,	Tech With ID 224
 
-@@227,	Not Included
+@@227,	Tech With ID 225
 
-@@228,	Not Included
+@@228,	Tech With ID 226
 
-@@229,	Not Included
+@@229,	Tech With ID 227
 
-@@230,	Not Included
+@@230,	Tech With ID 228
 
-@@231,	Not Included
+@@231,	Tech With ID 229
 
-@@232,	Not Included
+@@232,	Tech With ID 230
 
-@@233,	Not Included
+@@233,	Tech With ID 231
 
-@@234,	Not Included
+@@234,	Tech With ID 232
 
-@@235,	Not Included
+@@235,	Tech With ID 233
 
-@@236,	Not Included
+@@236,	Tech With ID 234
 
-@@237,	Not Included
+@@237,	Tech With ID 235
 
-@@238,	Not Included
+@@238,	Tech With ID 236
 
-@@239,	Not Included
+@@239,	Tech With ID 237
 
-@@240,	Not Included
+@@240,	Tech With ID 238
 
-@@241,	Not Included
+@@241,	Tech With ID 239
 
-@@242,	Not Included
+@@242,	Tech With ID 240
 
-@@243,	Not Included
+@@243,	Tech With ID 241
 
-@@244,	Not Included
+@@244,	Tech With ID 242
 
-@@245,	Not Included
+@@245,	Tech With ID 243
 
-@@246,	Not Included
+@@246,	Tech With ID 244
 
-@@247,	Not Included
+@@247,	Tech With ID 245
 
-@@248,	Not Included
+@@248,	Tech With ID 246
 
-@@249,	Not Included
+@@249,	Tech With ID 247
 
-@@250,	Not Included
+@@250,	Tech With ID 248
 
-@@251,	Not Included
+@@251,	Tech With ID 249
 
-@@252,	Not Included
+@@252,	Tech With ID 250
 
 @IMPROVEMENT_DESCRIPTIONS
 ;
 @@IMPROVEMENT_INDEX
 -1,		;	0	Nothing (Nothing)
 -1,		;	1	Headquarters (Palace)
--1,		;	2	NOT USED (Barracks)
--1,		;	3	Red Army (Granary)
--1,		;	4	Civilian Population I (Temple)
--1,		;	5	Fuel Refinery I (MarketPlace)
--1,		;	6	Aircraft Factory I (Library)
--1,		;	7	Quartermaster (Courthouse)
--1,		;	8	City I (City Walls)
--1,		;	9	City II (Aqueduct)
--1,		;	10	Fuel Refinery II (Bank)
--1,		;	11	Civilian Population II (Cathedral)
--1,		;	12	Aircraft Factory II (University)
--1,		;	13	Critical Industry (Mass Transit)
--1,		;	14	Civilian Population III (Colosseum)
--1,		;	15	Industry I (Factory)
--1,		;	16	Industry II (Manufacturing Plant)
+-1,		;	2	Railyards (Barracks)
+-1,		;	3	Oil Refinery (Granary)
+-1,		;	4	Housing District I (Temple)
+-1,		;	5	Electric Power Plant I (MarketPlace)
+-1,		;	6	Research Facility (Library)
+-1,		;	7	Synthetic Fuel Refinery (Courthouse)
+-1,		;	8	City (City Walls)
+-1,		;	9	Government Offices (Aqueduct)
+-1,		;	10	Electric Power Plant II (Bank)
+-1,		;	11	Housing District II (Cathedral)
+-1,		;	12	Testing Site (University)
+-1,		;	13	Armaments Factory (Mass Transit)
+-1,		;	14	Housing District III (Colosseum)
+-1,		;	15	Aircraft Factory (Factory)
+-1,		;	16	Engine Factory (Manufacturing Plant)
 -1,		;	17	Airbase (SDI Defense)
--1,		;	18	15th Air Force (Recycling Center)
--1,		;	19	OLD Industry III (Power Plant)
--1,		;	20	NOT USED (Hydro Plant)
--1,		;	21	NOT USED (Nuclear Plant)
--1,		;	22	Fuel Refinery III (Stock Exchange)
--1,		;	23	City III (Sewer System)
--1,		;	24	Rationing (Supermarket)
--1,		;	25	Railyards (Superhighways)
--1,		;	26	Aircraft Factory III (Research Lab)
--1,		;	27	Experimental Aircraft (SAM Missile Battery)
--1,		;	28	Firefighters (Coastal Fortress)
--1,		;	29	Industry III (Solar Plant)
--1,		;	30	Docks (Harbor)
--1,		;	31	NOT USED (Offshore Platform)
+-1,		;	18	SAVE(Recycling Center) (Recycling Center)
+-1,		;	19	NOT USED(Power Plant) (Power Plant)
+-1,		;	20	NOT USED(Hydro Plant) (Hydro Plant)
+-1,		;	21	NOT USED(Nuclear Plant) (Nuclear Plant)
+-1,		;	22	Electric Power Plant III (Stock Exchange)
+-1,		;	23	City Infrastructure (Sewer System)
+-1,		;	24	Metropolis (Supermarket)
+-1,		;	25	Fuel Storage Silos (Superhighways)
+-1,		;	26	Aircraft Testing Program (Research Lab)
+-1,		;	27	Heavy Flak Battery (SAM Missile Battery)
+-1,		;	28	U-Boat Pens (Coastal Fortress)
+-1,		;	29	Avionics Factory (Solar Plant)
+-1,		;	30	Harbor (Harbor)
+-1,		;	31	Convoy Routes (Offshore Platform)
 -1,		;	32	Jagdfliegerschule (Airport)
--1,		;	33	Wehrmacht (Police Station)
--1,		;	34	Military Port (Port Facility)
--1,		;	35	NOT USED (Transporter)
--1,		;	36	NOT USED (SS Structural)
--1,		;	37	NOT USED (SS Component)
--1,		;	38	NOT USED (SS Module)
--1,		;	39	(Stockpile Fuel) ((Capitalization))
+-1,		;	33	V-Weapon Site (Police Station)
+-1,		;	34	Port Facility (Port Facility)
+-1,		;	35	NOT USED(Transporter) (Transporter)
+-1,		;	36	NOT USED(Structural) (SS Structural)
+-1,		;	37	NOT USED(Component) (SS Component)
+-1,		;	38	NOT USED(Module) (SS Module)
+-1,		;	39	(Accumulate Resources) ((Capitalization))
 -2,		;	MUST BE HERE! TERMINATOR!
 
 @@0,	Nothing (Nothing)
 
 @@1,	Headquarters (Palace)
 
-@@2,	NOT USED (Barracks)
+@@2,	Railyards (Barracks)
 
-@@3,	Red Army (Granary)
+@@3,	Oil Refinery (Granary)
 
-@@4,	Civilian Population I (Temple)
+@@4,	Housing District I (Temple)
 
-@@5,	Fuel Refinery I (MarketPlace)
+@@5,	Electric Power Plant I (MarketPlace)
 
-@@6,	Aircraft Factory I (Library)
+@@6,	Research Facility (Library)
 
-@@7,	Quartermaster (Courthouse)
+@@7,	Synthetic Fuel Refinery (Courthouse)
 
-@@8,	City I (City Walls)
+@@8,	City (City Walls)
 
-@@9,	City II (Aqueduct)
+@@9,	Government Offices (Aqueduct)
 
-@@10,	Fuel Refinery II (Bank)
+@@10,	Electric Power Plant II (Bank)
 
-@@11,	Civilian Population II (Cathedral)
+@@11,	Housing District II (Cathedral)
 
-@@12,	Aircraft Factory II (University)
+@@12,	Testing Site (University)
 
-@@13,	Critical Industry (Mass Transit)
+@@13,	Armaments Factory (Mass Transit)
 
-@@14,	Civilian Population III (Colosseum)
+@@14,	Housing District III (Colosseum)
 
-@@15,	Industry I (Factory)
+@@15,	Aircraft Factory (Factory)
 
-@@16,	Industry II (Manufacturing Plant)
+@@16,	Engine Factory (Manufacturing Plant)
 
 @@17,	Airbase (SDI Defense)
 
-@@18,	15th Air Force (Recycling Center)
+@@18,	SAVE(Recycling Center) (Recycling Center)
 
-@@19,	OLD Industry III (Power Plant)
+@@19,	NOT USED(Power Plant) (Power Plant)
 
-@@20,	NOT USED (Hydro Plant)
+@@20,	NOT USED(Hydro Plant) (Hydro Plant)
 
-@@21,	NOT USED (Nuclear Plant)
+@@21,	NOT USED(Nuclear Plant) (Nuclear Plant)
 
-@@22,	Fuel Refinery III (Stock Exchange)
+@@22,	Electric Power Plant III (Stock Exchange)
 
-@@23,	City III (Sewer System)
+@@23,	City Infrastructure (Sewer System)
 
-@@24,	Rationing (Supermarket)
+@@24,	Metropolis (Supermarket)
 
-@@25,	Railyards (Superhighways)
+@@25,	Fuel Storage Silos (Superhighways)
 
-@@26,	Aircraft Factory III (Research Lab)
+@@26,	Aircraft Testing Program (Research Lab)
 
-@@27,	Experimental Aircraft (SAM Missile Battery)
+@@27,	Heavy Flak Battery (SAM Missile Battery)
 
-@@28,	Firefighters (Coastal Fortress)
+@@28,	U-Boat Pens (Coastal Fortress)
 
-@@29,	Industry III (Solar Plant)
+@@29,	Avionics Factory (Solar Plant)
 
-@@30,	Docks (Harbor)
+@@30,	Harbor (Harbor)
 
-@@31,	NOT USED (Offshore Platform)
+@@31,	Convoy Routes (Offshore Platform)
 
 @@32,	Jagdfliegerschule (Airport)
 
-@@33,	Wehrmacht (Police Station)
+@@33,	V-Weapon Site (Police Station)
 
-@@34,	Military Port (Port Facility)
+@@34,	Port Facility (Port Facility)
 
-@@35,	NOT USED (Transporter)
+@@35,	NOT USED(Transporter) (Transporter)
 
-@@36,	NOT USED (SS Structural)
+@@36,	NOT USED(Structural) (SS Structural)
 
-@@37,	NOT USED (SS Component)
+@@37,	NOT USED(Component) (SS Component)
 
-@@38,	NOT USED (SS Module)
+@@38,	NOT USED(Module) (SS Module)
 
-@@39,	(Stockpile Fuel) ((Capitalization))
+@@39,	(Accumulate Resources) ((Capitalization))
 
 @WONDER_DESCRIPTIONS
 ;
 @@WONDER_INDEX
--1,		;	0	NOT USED (Pyramids)
--1,		;	1	NOT USED (Hanging Gardens)
--1,		;	2	I.G. Farben (Colossus)
--1,		;	3	NOT USED (Lighthouse)
--1,		;	4	NOT USED (Great Library)
--1,		;	5	NOT USED (Oracle)
--1,		;	6	NOT USED (Great Wall)
--1,		;	7	NOT USED (Sun Tzu's War Academy)
+-1,		;	0	NOT USED(Pyramids) (Pyramids)
+-1,		;	1	NOT USED(Hanging Gardens) (Hanging Gardens)
+-1,		;	2	Arsenal of Democracy (Colossus)
+-1,		;	3	NOT USED(Lighthouse) (Lighthouse)
+-1,		;	4	NOT USED(Great Library) (Great Library)
+-1,		;	5	NOT USED(Oracle) (Oracle)
+-1,		;	6	NOT USED(Great Wall) (Great Wall)
+-1,		;	7	NOT USED(Sun Tzu War) (Sun Tzu's War Academy)
 -1,		;	8	Krupp Works (King Richard's Crusade)
--1,		;	9	NOT USED (Marco Polo's Embassy)
--1,		;	10	NOT USED (Michelangelo's Chapel)
--1,		;	11	Peenemünde (Copernicus' Observatory)
--1,		;	12	NOT USED (Magellan's Expedition)
--1,		;	13	NOT USED (Shakespeare's Theatre)
--1,		;	14	NOT USED (Leonardo's Workshop)
--1,		;	15	Adolf Hitler (J. S. Bach's Cathedral)
--1,		;	16	Jägernotprogramm (Isaac Newton's College)
+-1,		;	9	NOT USED(Marco Polo) (Marco Polo's Embassy)
+-1,		;	10	NOT USED (Michelangelo) (Michelangelo's Chapel)
+-1,		;	11	Erprobungsstelle der Luftwaffe (Copernicus' Observatory)
+-1,		;	12	NOT USED (Magellan) (Magellan's Expedition)
+-1,		;	13	NOT USED (Shakespeare) (Shakespeare's Theatre)
+-1,		;	14	NOT USED (Leonardo) (Leonardo's Workshop)
+-1,		;	15	Fortress Europe (J. S. Bach's Cathedral)
+-1,		;	16	Bletchley Park (Isaac Newton's College)
 -1,		;	17	Albert Speer's Reforms (Adam Smith's Trading Co.)
--1,		;	18	56th Fighter Group (Darwin's Voyage)
--1,		;	19	No.617 RAF (Statue of Liberty)
--1,		;	20	JG2 Richthofen (Eiffel Tower)
--1,		;	21	NOT USED (Women's Suffrage)
--1,		;	22	Arsenal of Democracy (Hoover Dam)
--1,		;	23	NOT USED (Manhattan Project)
--1,		;	24	JG26 Schlageter (United Nations)
--1,		;	25	NOT USED (Apollo Program)
--1,		;	26	NOT USED (SETI Program)
--1,		;	27	NOT USED (Cure for Cancer)
+-1,		;	18	SAVE(Darwin's Voyage) (Darwin's Voyage)
+-1,		;	19	NOT USED(Statue of Lib) (Statue of Liberty)
+-1,		;	20	NOT USED(Eiffel Tower) (Eiffel Tower)
+-1,		;	21	NOT USED(Women's Suf.) (Women's Suffrage)
+-1,		;	22	NOT USED(Hoover Dam) (Hoover Dam)
+-1,		;	23	NOT USED(Manhattan) (Manhattan Project)
+-1,		;	24	NOT USED(United Nations) (United Nations)
+-1,		;	25	NOT USED(Apollo) (Apollo Program)
+-1,		;	26	JÃ¤gernotprogramm (SETI Program)
+-1,		;	27	NOT USED(Cure for Cancer) (Cure for Cancer)
 -2,		;	MUST BE HERE! TERMINATOR!
 
-@@0,	NOT USED (Pyramids)
+@@0,	NOT USED(Pyramids) (Pyramids)
 
-@@1,	NOT USED (Hanging Gardens)
+@@1,	NOT USED(Hanging Gardens) (Hanging Gardens)
 
-@@2,	I.G. Farben (Colossus)
+@@2,	Arsenal of Democracy (Colossus)
 
-@@3,	NOT USED (Lighthouse)
+@@3,	NOT USED(Lighthouse) (Lighthouse)
 
-@@4,	NOT USED (Great Library)
+@@4,	NOT USED(Great Library) (Great Library)
 
-@@5,	NOT USED (Oracle)
+@@5,	NOT USED(Oracle) (Oracle)
 
-@@6,	NOT USED (Great Wall)
+@@6,	NOT USED(Great Wall) (Great Wall)
 
-@@7,	NOT USED (Sun Tzu's War Academy)
+@@7,	NOT USED(Sun Tzu War) (Sun Tzu's War Academy)
 
 @@8,	Krupp Works (King Richard's Crusade)
 
-@@9,	NOT USED (Marco Polo's Embassy)
+@@9,	NOT USED(Marco Polo) (Marco Polo's Embassy)
 
-@@10,	NOT USED (Michelangelo's Chapel)
+@@10,	NOT USED (Michelangelo) (Michelangelo's Chapel)
 
-@@11,	Peenemünde (Copernicus' Observatory)
+@@11,	Erprobungsstelle der Luftwaffe (Copernicus' Observatory)
 
-@@12,	NOT USED (Magellan's Expedition)
+@@12,	NOT USED (Magellan) (Magellan's Expedition)
 
-@@13,	NOT USED (Shakespeare's Theatre)
+@@13,	NOT USED (Shakespeare) (Shakespeare's Theatre)
 
-@@14,	NOT USED (Leonardo's Workshop)
+@@14,	NOT USED (Leonardo) (Leonardo's Workshop)
 
-@@15,	Adolf Hitler (J. S. Bach's Cathedral)
+@@15,	Fortress Europe (J. S. Bach's Cathedral)
 
-@@16,	Jägernotprogramm (Isaac Newton's College)
+@@16,	Bletchley Park (Isaac Newton's College)
 
 @@17,	Albert Speer's Reforms (Adam Smith's Trading Co.)
 
-@@18,	56th Fighter Group (Darwin's Voyage)
+@@18,	SAVE(Darwin's Voyage) (Darwin's Voyage)
 
-@@19,	No.617 RAF (Statue of Liberty)
+@@19,	NOT USED(Statue of Lib) (Statue of Liberty)
 
-@@20,	JG2 Richthofen (Eiffel Tower)
+@@20,	NOT USED(Eiffel Tower) (Eiffel Tower)
 
-@@21,	NOT USED (Women's Suffrage)
+@@21,	NOT USED(Women's Suf.) (Women's Suffrage)
 
-@@22,	Arsenal of Democracy (Hoover Dam)
+@@22,	NOT USED(Hoover Dam) (Hoover Dam)
 
-@@23,	NOT USED (Manhattan Project)
+@@23,	NOT USED(Manhattan) (Manhattan Project)
 
-@@24,	JG26 Schlageter (United Nations)
+@@24,	NOT USED(United Nations) (United Nations)
 
-@@25,	NOT USED (Apollo Program)
+@@25,	NOT USED(Apollo) (Apollo Program)
 
-@@26,	NOT USED (SETI Program)
+@@26,	JÃ¤gernotprogramm (SETI Program)
 
-@@27,	NOT USED (Cure for Cancer)
+@@27,	NOT USED(Cure for Cancer) (Cure for Cancer)
 
 @UNIT_DESCRIPTIONS
 ;
 @@UNIT_INDEX
-0,		;	0	Red Army Group (Settlers)
-1,		;	1	Construction Team (Engineers)
-2,		;	2	Bofors 40mm (Warriors)
-3,		;	3	Early Radar (Phalanx)
-4,		;	4	Advanced Radar (Archers)
-5,		;	5	Fw200 (Legion)
-6,		;	6	Freight Train (Pikemen)
-7,		;	7	Railyard (Musketeers)
-8,		;	8	Aerial Photos (Fanatics)
-9,		;	9	Sdkfz 7/2 (Partisans)
-10,		;	10	88mm Flak Battery (Alpine Troops)
-11,		;	11	Flak Train (Riflemen)
-12,		;	12	Me109G6 (Marines)
-13,		;	13	Me109G14 (Paratroopers)
-14,		;	14	Me109K4 (Mech. Inf.)
-15,		;	15	Fw190A5 (Horsemen)
-16,		;	16	Fw190A8 (Chariot)
-17,		;	17	Fw190D9 (Elephant)
-18,		;	18	Ta152 (Crusaders)
-19,		;	19	Military Port (Knights)
-20,		;	20	Me110 (Dragoons)
-21,		;	21	Me410 (Cavalry)
-22,		;	22	Ju88C (Armor)
-23,		;	23	Ju88G (Catapult)
-24,		;	24	He219 (Cannon)
-25,		;	25	He162 (Artillery)
-26,		;	26	Me163 (Howitzer)
-27,		;	27	Me262 (Fighter)
-28,		;	28	Ju87G (Bomber)
-29,		;	29	Fw190F8 (Helicopter)
-30,		;	30	Do335 (Stlth Ftr.)
-31,		;	31	Do217 (Stlth Bmbr.)
-32,		;	32	He277 (Trireme)
-33,		;	33	Arado234 (Caravel)
-34,		;	34	Go229 (Galleon)
-35,		;	35	Spitfire IX (Frigate)
-36,		;	36	Spitfire XII (Ironclad)
-37,		;	37	Spitfire XIV (Destroyer)
-38,		;	38	Hurricane IV (Cruiser)
-39,		;	39	Typhoon (AEGIS Cruiser)
-40,		;	40	Tempest (Battleship)
-41,		;	41	Meteor (Submarine)
-42,		;	42	Beaufighter (Carrier)
-43,		;	43	Mosquito NF Mk II (Transport)
-44,		;	44	Mosquito NF Mk XIII (Cruise Msl.)
-45,		;	45	Industry (Nuclear Msl.)
-46,		;	46	Fw190A5 - Rocket (Diplomat)
-47,		;	47	Fw190A8 - Rocket (Spy)
-48,		;	48	Me109G6 - Rocket (Caravan)
-49,		;	49	Barrage Balloons (Freight)
-50,		;	50	P-47D11 (Explorer)
-51,		;	51	P-47D25 (Extra Land)
-52,		;	52	P-47D40 (Extra Ship)
-53,		;	53	Experten (Extra Air)
-54,		;	54	P-38H
-55,		;	55	P-38J
-56,		;	56	P-51B
-57,		;	57	P-51D
-58,		;	58	P-80
-59,		;	59	Stirling
-60,		;	60	Halifax
-61,		;	61	Lancaster
-62,		;	62	Pathfinder
-63,		;	63	A-20
-64,		;	64	B-26
-65,		;	65	A-26
-66,		;	66	B-17F
-67,		;	67	B-24J
-68,		;	68	B-17G
-69,		;	69	Battle Group German
-70,		;	70	Depleted Battle Group German
-71,		;	71	Egon Mayer
-72,		;	72	3.7-inch Flak
-73,		;	73	He111
-74,		;	74	Battle Group Allied
-75,		;	75	Depleted Battle Group Allied
-76,		;	76	Sunderland
-77,		;	77	SAVE16
-78,		;	78	Hermann Graf
-79,		;	79	Josef Priller
-80,		;	80	Adolf Galland
-81,		;	81	Task Force (G)
-82,		;	82	Task Force (A)
-83,		;	83	332nd FG
-84,		;	84	15th AF Bombers
-85,		;	85	Aircraft Factory
-86,		;	86	Me109G14 - Rocket
-87,		;	87	SAVE17
-88,		;	88	Refinery
-89,		;	89	Gunther Rall
-90,		;	90	Walter Nowotny
-91,		;	91	Urban Center
-92,		;	92	Whirlwind
-93,		;	93	B-25
-94,		;	94	Gun Battery
-95,		;	95	P-61
-96,		;	96	Mosquito B.IV
-97,		;	97	Francis Gabreski
-98,		;	98	George Preddy
-99,		;	99	John Braham
-100,		;	100	Johnnie Johnson
-101,		;	101	Window
-102,		;	102	H.W. Schnaufer
-103,		;	103	Eirch Hartmann
-104,		;	104	Panzer Division
-105,		;	105	Damaged B-17F
-106,		;	106	Neutral Territory
-107,		;	107	Damaged B-17G
-108,		;	108	P-38L
-109,		;	109	Critical Industry
-110,		;	110	Gerhard Barkhorn
-111,		;	111	Aircraft Carrier
-112,		;	112	USAAF Ace
-113,		;	113	RAF Ace
-114,		;	114	Barrage
-115,		;	115	Convoy
-116,		;	116	SAVE18
-117,		;	117	Yak-3
-118,		;	118	Il-2
-119,		;	119	3.7cm Flak
-120,		;	120	Ju-188 (PR)
-121,		;	121	V1 Launch Site
-122,		;	122	V2 Launch Site
-123,		;	123	V1 Buzzbomb
-124,		;	124	V2 Rocket
-125,		;	125	Mosquito (PR)
-126,		;	126	Wolf Pack
+-1,		;	0	Chain Home Radar (Settlers)
+-1,		;	1	Engineer (Engineers)
+-1,		;	2	Freya Radar (Warriors)
+-1,		;	3	Wurzburg Radar (Phalanx)
+-1,		;	4	Barrage Balloon (Archers)
+-1,		;	5	Urban Area (Legion)
+-1,		;	6	Electric Power Plant (Pikemen)
+-1,		;	7	Synthetic Fuel Ref. (Musketeers)
+-1,		;	8	Oil Refinery (Fanatics)
+-1,		;	9	Fuel Storage Silos (Partisans)
+-1,		;	10	Rubber Factory (Alpine Troops)
+-1,		;	11	Steel Factory (Riflemen)
+-1,		;	12	Aluminum Factory (Marines)
+-1,		;	13	Ball Bearings Fac. (Paratroopers)
+-1,		;	14	Engine Factory (Mech. Inf.)
+-1,		;	15	Aircraft Factory (Horsemen)
+-1,		;	16	Avionics Factory (Chariot)
+-1,		;	17	Armaments Factory (Elephant)
+-1,		;	18	Port Facility (Crusaders)
+-1,		;	19	Convoy Route (Knights)
+-1,		;	20	Railyards (Dragoons)
+-1,		;	21	Freight Train (Cavalry)
+-1,		;	22	Fuel Train (Armor)
+-1,		;	23	U-Boat Pens (Catapult)
+-1,		;	24	V-Weapons Site (Cannon)
+-1,		;	25	German Division (Artillery)
+-1,		;	26	Allied Division (Howitzer)
+-1,		;	27	MS 406 (Fighter)
+-1,		;	28	Bf 109G-6 (Bomber)
+-1,		;	29	Bf 109G-6/R6 (Helicopter)
+-1,		;	30	Bf 109G-10 (Stlth Ftr.)
+-1,		;	31	Bf 109G-10/R6 (Stlth Bmbr.)
+-1,		;	32	Bf 109G-14 (Trireme)
+-1,		;	33	Bf 109G-14/R6 (Caravel)
+-1,		;	34	Bf 109K-4 (Galleon)
+-1,		;	35	Fw 190A-5 (Frigate)
+-1,		;	36	Fw 190A-6 (Ironclad)
+-1,		;	37	Fw 190A-6/R6 (Destroyer)
+-1,		;	38	Fw 190A-8 (Cruiser)
+-1,		;	39	Fw 190A-8/R6 (AEGIS Cruiser)
+-1,		;	40	Fw 190D-9 (Battleship)
+-1,		;	41	Ta 152 (Submarine)
+-1,		;	42	Bf 110G-2 (Carrier)
+-1,		;	43	Bf 110G-2/R3 (Transport)
+-1,		;	44	Bf 110G-4 (Cruise Msl.)
+-1,		;	45	Me 210 (Nuclear Msl.)
+-1,		;	46	Me 410B-2 (Diplomat)
+-1,		;	47	Me 410B-2/R3 (Spy)
+-1,		;	48	He 219 (Caravan)
+-1,		;	49	Do 217N-2 (Freight)
+-1,		;	50	Ju 88C-6 (Explorer)
+-1,		;	51	Ju 88G (Extra Land)
+-1,		;	52	He 162A (Extra Ship)
+-1,		;	53	Me 163 (Extra Air)
+-1,		;	54	Me 262
+-1,		;	55	Ta 183
+-1,		;	56	Fw 190F
+-1,		;	57	Do 335
+-1,		;	58	He 177
+-1,		;	59	He 277
+-1,		;	60	Arado 234
+-1,		;	61	Go 229
+-1,		;	62	Ju-188 (PR)
+-1,		;	63	Experten
+-1,		;	64	Egon Mayer
+-1,		;	65	Hermann Graf
+-1,		;	66	Josef Priller
+-1,		;	67	Adolf Galland
+-1,		;	68	Gunther Rall
+-1,		;	69	Walter Nowotny
+-1,		;	70	H.W. Schnaufer
+-1,		;	71	Erich Hartmann
+-1,		;	72	SAVE - LUFT1
+-1,		;	73	SAVE - LUFT2
+-1,		;	74	SAVE - LUFT3
+-1,		;	75	SAVE - LUFT4
+-1,		;	76	SAVE - LUFT5
+-1,		;	77	SAVE - LUFT6
+-1,		;	78	SAVE - LUFT7
+-1,		;	79	SAVE - LUFT8
+-1,		;	80	SAVE - LUFT9
+-1,		;	81	Spitfire Mk V
+-1,		;	82	Spitfire Mk IX LF
+-1,		;	83	Spitfire Mk IX
+-1,		;	84	Spitfire Mk XIV
+-1,		;	85	P-47D-6 Thunderbolt
+-1,		;	86	P-47D-15 Thunderbolt
+-1,		;	87	P-47D-20 Thunderbolt
+-1,		;	88	P-47D-25 Thunderbolt
+-1,		;	89	P-47M Thunderbolt
+-1,		;	90	P-38H Lightning
+-1,		;	91	P-38J Lightning
+-1,		;	92	P-38L Lightning
+-1,		;	93	P-51B Mustang
+-1,		;	94	Mustang III
+-1,		;	95	P-51D Mustang
+-1,		;	96	Mustang IV
+-1,		;	97	Beaufighter
+-1,		;	98	Mosquito N.F. II
+-1,		;	99	Mosquito N.F. XIX
+-1,		;	100	P-61A Black Widow
+-1,		;	101	P-80 Shooting Star
+-1,		;	102	Meteor
+-1,		;	103	Whirlwind IA
+-1,		;	104	Hurricane IV
+-1,		;	105	Mustang I
+-1,		;	106	Typhoon IB
+-1,		;	107	Tempest V
+-1,		;	108	P-38J (Jabo)
+-1,		;	109	P-38L (Jabo)
+-1,		;	110	P-47D-15 (Jabo)
+-1,		;	111	P-47D-20 (Jabo)
+-1,		;	112	P-47D-25 (Jabo)
+-1,		;	113	P-51B (Jabo)
+-1,		;	114	Mustang III (Jabo)
+-1,		;	115	P-51D (Jabo)
+-1,		;	116	Mustang IV (Jabo)
+-1,		;	117	332nd Fighter Group
+-1,		;	118	Francis Gabreski
+-1,		;	119	George Preddy
+-1,		;	120	John Braham
+-1,		;	121	Johnnie Johnson
+-1,		;	122	US Ace
+-1,		;	123	UK Ace
+-1,		;	124	Baltimore V
+-1,		;	125	Boston III
+-1,		;	126	Wellington
+-1,		;	127	Stirling
+-1,		;	128	Halifax
+-1,		;	129	Lancaster
+-1,		;	130	Mosquito B.IV
+-1,		;	131	Wellington RCM
+-1,		;	132	A-20G Havoc
+-1,		;	133	A-26B Invader
+-1,		;	134	B-25 Mitchell
+-1,		;	135	B-26 Marauder
+-1,		;	136	B-17F Fortress
+-1,		;	137	B-17F (Damaged)
+-1,		;	138	B-17G Fortress
+-1,		;	139	B-17G (Damaged)
+-1,		;	140	B-24 Liberator
+-1,		;	141	B-17 (Pathfinder)
+-1,		;	142	B-24 (Pathfinder)
+-1,		;	143	15th AF B-25
+-1,		;	144	15th AF B-24
+-1,		;	145	Med Air Beaufighter
+-1,		;	146	Med Air Wellington
+-1,		;	147	Yak-3
+-1,		;	148	La-7
+-1,		;	149	Il-2
+-1,		;	150	Mosquito (PR)
+-1,		;	151	SAVE - ALLY1
+-1,		;	152	SAVE - ALLY2
+-1,		;	153	SAVE - ALLY3
+-1,		;	154	SAVE - ALLY4
+-1,		;	155	SAVE - ALLY5
+-1,		;	156	SAVE - ALLY6
+-1,		;	157	SAVE - ALLY7
+-1,		;	158	SAVE - ALLY8
+-1,		;	159	SAVE - ALLY9
+-1,		;	160	SAVE - ALLY10
+-1,		;	161	SAVE - ALLY11
+-1,		;	162	2cm Flakvierling
+-1,		;	163	3.7cm Flak 36
+-1,		;	164	8.8cm Flak 18
+-1,		;	165	12.8cm Flak 40
+-1,		;	166	Flakzug
+-1,		;	167	Polsten 20mm
+-1,		;	168	Bofors 40mm (UK)
+-1,		;	169	Bofors 40mm (US)
+-1,		;	170	3.7" Flak
+-1,		;	171	Light Payload
+-1,		;	172	Medium Payload
+-1,		;	173	Heavy Payload
+-1,		;	174	New Unit 174
+-1,		;	175	New Unit 175
+-1,		;	176	New Unit 176
+-1,		;	177	New Unit 177
+-1,		;	178	New Unit 178
+-1,		;	179	New Unit 179
+-1,		;	180	New Unit 180
+-1,		;	181	New Unit 181
+-1,		;	182	New Unit 182
+-1,		;	183	New Unit 183
+-1,		;	184	New Unit 184
+-1,		;	185	New Unit 185
+-1,		;	186	New Unit 186
+-1,		;	187	New Unit 187
+-1,		;	188	New Unit 188
 -2,		;	MUST BE HERE! TERMINATOR!
 
-@@0,	Red Army Group (Settlers)
+@@0,	Chain Home Radar (Settlers)
 
+@@1,	Engineer (Engineers)
 
-Can't board transports.
+@@2,	Freya Radar (Warriors)
 
+@@3,	Wurzburg Radar (Phalanx)
 
+@@4,	Barrage Balloon (Archers)
 
-@@1,	Construction Team (Engineers)
+@@5,	Urban Area (Legion)
 
+@@6,	Electric Power Plant (Pikemen)
 
-Must board and unload from transports in cities.
+@@7,	Synthetic Fuel Ref. (Musketeers)
 
+@@8,	Oil Refinery (Fanatics)
 
+@@9,	Fuel Storage Silos (Partisans)
 
-@@2,	Bofors 40mm (Warriors)
+@@10,	Rubber Factory (Alpine Troops)
 
+@@11,	Steel Factory (Riflemen)
 
+@@12,	Aluminum Factory (Marines)
 
+@@13,	Ball Bearings Fac. (Paratroopers)
 
-@@3,	Early Radar (Phalanx)
+@@14,	Engine Factory (Mech. Inf.)
 
+@@15,	Aircraft Factory (Horsemen)
 
-Can't board transports.
+@@16,	Avionics Factory (Chariot)
 
+@@17,	Armaments Factory (Elephant)
 
+@@18,	Port Facility (Crusaders)
 
-@@4,	Advanced Radar (Archers)
+@@19,	Convoy Route (Knights)
 
+@@20,	Railyards (Dragoons)
 
-Can't board transports.
+@@21,	Freight Train (Cavalry)
 
+@@22,	Fuel Train (Armor)
 
+@@23,	U-Boat Pens (Catapult)
 
-@@5,	Fw200 (Legion)
+@@24,	V-Weapons Site (Cannon)
 
+@@25,	German Division (Artillery)
 
+@@26,	Allied Division (Howitzer)
 
+@@27,	MS 406 (Fighter)
 
-@@6,	Freight Train (Pikemen)
+@@28,	Bf 109G-6 (Bomber)
 
+@@29,	Bf 109G-6/R6 (Helicopter)
 
-Can't board transports.
+@@30,	Bf 109G-10 (Stlth Ftr.)
 
+@@31,	Bf 109G-10/R6 (Stlth Bmbr.)
 
+@@32,	Bf 109G-14 (Trireme)
 
-@@7,	Railyard (Musketeers)
+@@33,	Bf 109G-14/R6 (Caravel)
 
+@@34,	Bf 109K-4 (Galleon)
 
+@@35,	Fw 190A-5 (Frigate)
 
+@@36,	Fw 190A-6 (Ironclad)
 
-@@8,	Aerial Photos (Fanatics)
-The NOT USED improvement does not increase the chance of producing a veteran.
-The NOT USED wonder does not increase the chance of producing a veteran.
-Grand Alliance increases chance to produce a veteran by 0%.
+@@37,	Fw 190A-6/R6 (Destroyer)
 
+@@38,	Fw 190A-8 (Cruiser)
 
+@@39,	Fw 190A-8/R6 (AEGIS Cruiser)
 
+@@40,	Fw 190D-9 (Battleship)
 
-@@9,	Sdkfz 7/2 (Partisans)
+@@41,	Ta 152 (Submarine)
 
+@@42,	Bf 110G-2 (Carrier)
 
+@@43,	Bf 110G-2/R3 (Transport)
 
+@@44,	Bf 110G-4 (Cruise Msl.)
 
-@@10,	88mm Flak Battery (Alpine Troops)
+@@45,	Me 210 (Nuclear Msl.)
 
+@@46,	Me 410B-2 (Diplomat)
 
+@@47,	Me 410B-2/R3 (Spy)
 
+@@48,	He 219 (Caravan)
 
-@@11,	Flak Train (Riflemen)
+@@49,	Do 217N-2 (Freight)
 
+@@50,	Ju 88C-6 (Explorer)
 
-Can't board transports.
+@@51,	Ju 88G (Extra Land)
 
+@@52,	He 162A (Extra Ship)
 
+@@53,	Me 163 (Extra Air)
 
-@@12,	Me109G6 (Marines)
+@@54,	Me 262
 
+@@55,	Ta 183
 
+@@56,	Fw 190F
 
+@@57,	Do 335
 
-@@13,	Me109G14 (Paratroopers)
+@@58,	He 177
 
+@@59,	He 277
 
+@@60,	Arado 234
 
+@@61,	Go 229
 
-@@14,	Me109K4 (Mech. Inf.)
+@@62,	Ju-188 (PR)
 
+@@63,	Experten
 
+@@64,	Egon Mayer
 
+@@65,	Hermann Graf
 
-@@15,	Fw190A5 (Horsemen)
+@@66,	Josef Priller
 
+@@67,	Adolf Galland
 
+@@68,	Gunther Rall
 
+@@69,	Walter Nowotny
 
-@@16,	Fw190A8 (Chariot)
+@@70,	H.W. Schnaufer
 
+@@71,	Erich Hartmann
 
+@@72,	SAVE - LUFT1
 
+@@73,	SAVE - LUFT2
 
-@@17,	Fw190D9 (Elephant)
+@@74,	SAVE - LUFT3
 
+@@75,	SAVE - LUFT4
 
+@@76,	SAVE - LUFT5
 
+@@77,	SAVE - LUFT6
 
-@@18,	Ta152 (Crusaders)
+@@78,	SAVE - LUFT7
 
+@@79,	SAVE - LUFT8
 
+@@80,	SAVE - LUFT9
 
+@@81,	Spitfire Mk V
 
-@@19,	Military Port (Knights)
+@@82,	Spitfire Mk IX LF
 
+@@83,	Spitfire Mk IX
 
+@@84,	Spitfire Mk XIV
 
+@@85,	P-47D-6 Thunderbolt
 
-@@20,	Me110 (Dragoons)
+@@86,	P-47D-15 Thunderbolt
 
+@@87,	P-47D-20 Thunderbolt
 
+@@88,	P-47D-25 Thunderbolt
 
+@@89,	P-47M Thunderbolt
 
-@@21,	Me410 (Cavalry)
+@@90,	P-38H Lightning
 
+@@91,	P-38J Lightning
 
+@@92,	P-38L Lightning
 
+@@93,	P-51B Mustang
 
-@@22,	Ju88C (Armor)
+@@94,	Mustang III
 
+@@95,	P-51D Mustang
 
+@@96,	Mustang IV
 
+@@97,	Beaufighter
 
-@@23,	Ju88G (Catapult)
+@@98,	Mosquito N.F. II
 
+@@99,	Mosquito N.F. XIX
 
+@@100,	P-61A Black Widow
 
+@@101,	P-80 Shooting Star
 
-@@24,	He219 (Cannon)
+@@102,	Meteor
 
+@@103,	Whirlwind IA
 
+@@104,	Hurricane IV
 
+@@105,	Mustang I
 
-@@25,	He162 (Artillery)
+@@106,	Typhoon IB
 
+@@107,	Tempest V
 
+@@108,	P-38J (Jabo)
 
+@@109,	P-38L (Jabo)
 
-@@26,	Me163 (Howitzer)
+@@110,	P-47D-15 (Jabo)
 
+@@111,	P-47D-20 (Jabo)
 
+@@112,	P-47D-25 (Jabo)
 
+@@113,	P-51B (Jabo)
 
-@@27,	Me262 (Fighter)
+@@114,	Mustang III (Jabo)
 
+@@115,	P-51D (Jabo)
 
+@@116,	Mustang IV (Jabo)
 
+@@117,	332nd Fighter Group
 
-@@28,	Ju87G (Bomber)
+@@118,	Francis Gabreski
 
+@@119,	George Preddy
 
+@@120,	John Braham
 
+@@121,	Johnnie Johnson
 
-@@29,	Fw190F8 (Helicopter)
+@@122,	US Ace
 
+@@123,	UK Ace
 
+@@124,	Baltimore V
 
+@@125,	Boston III
 
-@@30,	Do335 (Stlth Ftr.)
+@@126,	Wellington
 
+@@127,	Stirling
 
+@@128,	Halifax
 
+@@129,	Lancaster
 
-@@31,	Do217 (Stlth Bmbr.)
+@@130,	Mosquito B.IV
 
+@@131,	Wellington RCM
 
+@@132,	A-20G Havoc
 
+@@133,	A-26B Invader
 
-@@32,	He277 (Trireme)
+@@134,	B-25 Mitchell
 
+@@135,	B-26 Marauder
 
+@@136,	B-17F Fortress
 
+@@137,	B-17F (Damaged)
 
-@@33,	Arado234 (Caravel)
+@@138,	B-17G Fortress
 
+@@139,	B-17G (Damaged)
 
+@@140,	B-24 Liberator
 
+@@141,	B-17 (Pathfinder)
 
-@@34,	Go229 (Galleon)
+@@142,	B-24 (Pathfinder)
 
+@@143,	15th AF B-25
 
+@@144,	15th AF B-24
 
+@@145,	Med Air Beaufighter
 
-@@35,	Spitfire IX (Frigate)
+@@146,	Med Air Wellington
 
+@@147,	Yak-3
 
+@@148,	La-7
 
+@@149,	Il-2
 
-@@36,	Spitfire XII (Ironclad)
+@@150,	Mosquito (PR)
 
+@@151,	SAVE - ALLY1
 
+@@152,	SAVE - ALLY2
 
+@@153,	SAVE - ALLY3
 
-@@37,	Spitfire XIV (Destroyer)
+@@154,	SAVE - ALLY4
 
+@@155,	SAVE - ALLY5
 
+@@156,	SAVE - ALLY6
 
+@@157,	SAVE - ALLY7
 
-@@38,	Hurricane IV (Cruiser)
+@@158,	SAVE - ALLY8
 
+@@159,	SAVE - ALLY9
 
+@@160,	SAVE - ALLY10
 
+@@161,	SAVE - ALLY11
 
-@@39,	Typhoon (AEGIS Cruiser)
+@@162,	2cm Flakvierling
 
+@@163,	3.7cm Flak 36
 
+@@164,	8.8cm Flak 18
 
+@@165,	12.8cm Flak 40
 
-@@40,	Tempest (Battleship)
+@@166,	Flakzug
 
+@@167,	Polsten 20mm
 
+@@168,	Bofors 40mm (UK)
 
+@@169,	Bofors 40mm (US)
 
-@@41,	Meteor (Submarine)
+@@170,	3.7" Flak
 
+@@171,	Light Payload
 
+@@172,	Medium Payload
 
+@@173,	Heavy Payload
 
-@@42,	Beaufighter (Carrier)
+@@174,	New Unit 174
 
+@@175,	New Unit 175
 
+@@176,	New Unit 176
 
+@@177,	New Unit 177
 
-@@43,	Mosquito NF Mk II (Transport)
+@@178,	New Unit 178
 
+@@179,	New Unit 179
 
+@@180,	New Unit 180
 
+@@181,	New Unit 181
 
-@@44,	Mosquito NF Mk XIII (Cruise Msl.)
+@@182,	New Unit 182
 
+@@183,	New Unit 183
 
+@@184,	New Unit 184
 
+@@185,	New Unit 185
 
-@@45,	Industry (Nuclear Msl.)
+@@186,	New Unit 186
 
+@@187,	New Unit 187
 
-
-
-@@46,	Fw190A5 - Rocket (Diplomat)
-
-
-
-
-@@47,	Fw190A8 - Rocket (Spy)
-
-
-
-
-@@48,	Me109G6 - Rocket (Caravan)
-
-
-
-
-@@49,	Barrage Balloons (Freight)
-
-
-
-
-@@50,	P-47D11 (Explorer)
-
-
-
-
-@@51,	P-47D25 (Extra Land)
-
-
-
-
-@@52,	P-47D40 (Extra Ship)
-
-
-
-
-@@53,	Experten (Extra Air)
-
-
-
-
-@@54,	P-38H
-
-
-
-
-@@55,	P-38J
-
-
-
-
-@@56,	P-51B
-
-
-
-
-@@57,	P-51D
-
-
-
-
-@@58,	P-80
-
-
-
-
-@@59,	Stirling
-
-
-
-
-@@60,	Halifax
-
-
-
-
-@@61,	Lancaster
-
-
-
-
-@@62,	Pathfinder
-
-
-
-
-@@63,	A-20
-
-
-
-
-@@64,	B-26
-
-
-
-
-@@65,	A-26
-
-
-
-
-@@66,	B-17F
-
-
-
-
-@@67,	B-24J
-
-
-
-
-@@68,	B-17G
-
-
-
-
-@@69,	Battle Group German
-
-
-
-
-@@70,	Depleted Battle Group German
-
-
-
-
-@@71,	Egon Mayer
-
-
-
-
-@@72,	3.7-inch Flak
-
-
-
-
-@@73,	He111
-
-
-
-
-@@74,	Battle Group Allied
-
-
-
-
-@@75,	Depleted Battle Group Allied
-
-
-
-
-@@76,	Sunderland
-
-
-
-
-@@77,	SAVE16
-
-
-
-
-@@78,	Hermann Graf
-
-
-
-
-@@79,	Josef Priller
-
-
-
-
-@@80,	Adolf Galland
-
-
-
-
-@@81,	Task Force (G)
-
-
-
-
-@@82,	Task Force (A)
-
-
-
-
-@@83,	332nd FG
-
-
-
-
-@@84,	15th AF Bombers
-
-
-
-
-@@85,	Aircraft Factory
-
-
-
-
-@@86,	Me109G14 - Rocket
-
-
-
-
-@@87,	SAVE17
-
-
-
-
-@@88,	Refinery
-
-
-
-
-@@89,	Gunther Rall
-
-
-
-
-@@90,	Walter Nowotny
-
-
-
-
-@@91,	Urban Center
-
-
-
-
-@@92,	Whirlwind
-
-
-
-
-@@93,	B-25
-
-
-
-
-@@94,	Gun Battery
-
-
-Can't board transports.
-
-
-
-@@95,	P-61
-
-
-
-
-@@96,	Mosquito B.IV
-
-
-
-
-@@97,	Francis Gabreski
-
-
-
-
-@@98,	George Preddy
-
-
-
-
-@@99,	John Braham
-
-
-
-
-@@100,	Johnnie Johnson
-
-
-
-
-@@101,	Window
-
-
-
-
-@@102,	H.W. Schnaufer
-
-
-
-
-@@103,	Eirch Hartmann
-
-
-
-
-@@104,	Panzer Division
-
-
-
-
-@@105,	Damaged B-17F
-
-
-
-
-@@106,	Neutral Territory
-
-
-
-
-@@107,	Damaged B-17G
-
-
-
-
-@@108,	P-38L
-
-
-
-
-@@109,	Critical Industry
-
-
-
-
-@@110,	Gerhard Barkhorn
-
-
-
-
-@@111,	Aircraft Carrier
-
-
-
-
-@@112,	USAAF Ace
-
-
-
-
-@@113,	RAF Ace
-
-
-
-
-@@114,	Barrage
-
-
-
-
-@@115,	Convoy
-
-
-
-
-@@116,	SAVE18
-
-
-
-
-@@117,	Yak-3
-
-
-
-
-@@118,	Il-2
-
-
-
-
-@@119,	3.7cm Flak
-
-
-
-
-@@120,	Ju-188 (PR)
-
-
-
-
-@@121,	V1 Launch Site
-
-
-Can't board transports.
-
-
-
-@@122,	V2 Launch Site
-
-
-Can't board transports.
-
-
-
-@@123,	V1 Buzzbomb
-
-
-
-
-@@124,	V2 Rocket
-
-
-
-
-@@125,	Mosquito (PR)
-
-
-
-
-@@126,	Wolf Pack
-
-
-
+@@188,	New Unit 188
 
 
 @TERRAIN_AND_RESOURCE_DESCRIPTIONS
 ;
 @@TERRAIN_INDEX
--1,		;	0	City
--1,		;	1	Railtrack
+-1,		;	0	City Center
+-1,		;	1	Highlands
 -1,		;	2	Grassland
 -1,		;	3	Forest
--1,		;	4	Urban
--1,		;	5	Hills
--1,		;	6	Refinery
--1,		;	7	Installation
--1,		;	8	Industry
--1,		;	9	Airfield
+-1,		;	4	Hills
+-1,		;	5	Mountains
+-1,		;	6	Airfield
+-1,		;	7	Urban
+-1,		;	8	Swamp
+-1,		;	9	Railtrack
 -1,		;	10	Water
--1,		;	11	Bombed RR
--1,		;	12	Bombed Refinery
--1,		;	13	Bombed Urban
--1,		;	14	Bombed Industry
--1,		;	15	Residential
--1,		;	16	City
--1,		;	17	Railtrack
+-1,		;	11	Industry
+-1,		;	12	Refinery
+-1,		;	13	Urban Rubble
+-1,		;	14	Rubble
+-1,		;	15	Cloud Cover
+-1,		;	16	National Capitol
+-1,		;	17	Village
 -1,		;	18	Grassland
--1,		;	19	Lumber
--1,		;	20	Urban
--1,		;	21	Coal
--1,		;	22	Refinery
--1,		;	23	Installation
--1,		;	24	Assembly Line
--1,		;	25	Airfield
--1,		;	26	Water
--1,		;	27	Bombed RR
--1,		;	28	Bombed Refinery
--1,		;	29	Bombed Urban
--1,		;	30	Bombed Industry
--1,		;	31	Residential
--1,		;	32	City
--1,		;	33	Railtrack
+-1,		;	19	Mill
+-1,		;	20	Coal
+-1,		;	21	Bauxite
+-1,		;	22	Major Airfield
+-1,		;	23	Urban
+-1,		;	24	Swamp
+-1,		;	25	Railtrack
+-1,		;	26	Shipping
+-1,		;	27	Assembly Line
+-1,		;	28	Adv. Refinery
+-1,		;	29	Devastation
+-1,		;	30	Destruction
+-1,		;	31	Cloud Cover
+-1,		;	32	Industrial Giant
+-1,		;	33	Hamlet
 -1,		;	34	Grassland
--1,		;	35	Game
--1,		;	36	Urban
+-1,		;	35	Lumber
+-1,		;	36	Vinyards
 -1,		;	37	Iron
--1,		;	38	Refinery
--1,		;	39	Installation
--1,		;	40	Assembly Line
--1,		;	41	Airfield
--1,		;	42	Water
--1,		;	43	Bombed RR
--1,		;	44	Bombed Refinery
--1,		;	45	Bombed Urban
--1,		;	46	Bombed Industry
--1,		;	47	Residential
--1,		;	48	City
--1,		;	49	Hills
+-1,		;	38	Major Airfield
+-1,		;	39	Urban
+-1,		;	40	Swamp
+-1,		;	41	Railtrack
+-1,		;	42	U-Boats
+-1,		;	43	Assembly Line
+-1,		;	44	Adv. Refinery
+-1,		;	45	Devastation
+-1,		;	46	Destruction
+-1,		;	47	Cloud Cover
+-1,		;	48	City Center
+-1,		;	49	Highlands
 -1,		;	50	Grassland
 -1,		;	51	Forest
--1,		;	52	Urban
--1,		;	53	Cloud Cover
--1,		;	54	Refinery
--1,		;	55	SAVE
--1,		;	56	Industry
--1,		;	57	Airfield
+-1,		;	52	Hills
+-1,		;	53	Mountains
+-1,		;	54	Airfield
+-1,		;	55	Urban
+-1,		;	56	Swamp
+-1,		;	57	Railtrack
 -1,		;	58	Water
--1,		;	59	Rubble
--1,		;	60	Bombed Refinery
--1,		;	61	Bombed RR
--1,		;	62	Bombed Industry
--1,		;	63	Target
--1,		;	64	City
--1,		;	65	Hills
+-1,		;	59	Industry
+-1,		;	60	Refinery
+-1,		;	61	Urban Rubble
+-1,		;	62	Rubble
+-1,		;	63	Cloud Cover
+-1,		;	64	National Capitol
+-1,		;	65	Village
 -1,		;	66	Grassland
--1,		;	67	Forest
--1,		;	68	Urban
--1,		;	69	Cloud Cover
--1,		;	70	Refinery
--1,		;	71	SAVE
--1,		;	72	Industry
--1,		;	73	Airfield
--1,		;	74	Water
--1,		;	75	Rubble
--1,		;	76	Bombed Refinery
--1,		;	77	Bombed RR
--1,		;	78	Bombed Industry
--1,		;	79	Target
--1,		;	80	City
--1,		;	81	Hills
+-1,		;	67	Mill
+-1,		;	68	Coal
+-1,		;	69	Bauxite
+-1,		;	70	Major Airfield
+-1,		;	71	Urban
+-1,		;	72	Swamp
+-1,		;	73	Railtrack
+-1,		;	74	Shipping
+-1,		;	75	Assembly Line
+-1,		;	76	Adv. Refinery
+-1,		;	77	Devastation
+-1,		;	78	Destruction
+-1,		;	79	Cloud Cover
+-1,		;	80	Industrial Giant
+-1,		;	81	Hamlet
 -1,		;	82	Grassland
--1,		;	83	Forest
--1,		;	84	Urban
--1,		;	85	Cloud Cover
--1,		;	86	Refinery
--1,		;	87	SAVE
--1,		;	88	Industry
--1,		;	89	Airfield
--1,		;	90	Water
--1,		;	91	Rubble
--1,		;	92	Bombed Refinery
--1,		;	93	Bombed RR
--1,		;	94	Bombed Industry
--1,		;	95	Target
--1,		;	96	City
--1,		;	97	Railtrack
+-1,		;	83	Lumber
+-1,		;	84	Vinyards
+-1,		;	85	Iron
+-1,		;	86	Major Airfield
+-1,		;	87	Urban
+-1,		;	88	Swamp
+-1,		;	89	Railtrack
+-1,		;	90	U-Boats
+-1,		;	91	Assembly Line
+-1,		;	92	Adv. Refinery
+-1,		;	93	Devastation
+-1,		;	94	Destruction
+-1,		;	95	Cloud Cover
+-1,		;	96	City Center
+-1,		;	97	Highlands
 -1,		;	98	Grassland
 -1,		;	99	Forest
--1,		;	100	Urban
--1,		;	101	Cloud Cover
--1,		;	102	Searchlights
--1,		;	103	Hills
--1,		;	104	Bombed RR
--1,		;	105	Airfield
+-1,		;	100	Hills
+-1,		;	101	Mountains
+-1,		;	102	Airfield
+-1,		;	103	Urban
+-1,		;	104	Swamp
+-1,		;	105	Railtrack
 -1,		;	106	Water
--1,		;	107	Firestorm
--1,		;	108	Rubble
--1,		;	109	Bombed RR Ruble
--1,		;	110	Bombed Industry
--1,		;	111	Target
--1,		;	112	City
--1,		;	113	Railtrack
+-1,		;	107	Industry
+-1,		;	108	Refinery
+-1,		;	109	Urban Rubble
+-1,		;	110	Rubble
+-1,		;	111	Cloud Cover
+-1,		;	112	National Capitol
+-1,		;	113	Village
 -1,		;	114	Grassland
--1,		;	115	Forest
--1,		;	116	Urban
--1,		;	117	Cloud Cover
--1,		;	118	Searchlights
--1,		;	119	Hills
--1,		;	120	Bombed RR
--1,		;	121	Airfield
--1,		;	122	Water
--1,		;	123	Firestorm
--1,		;	124	Rubble
--1,		;	125	Bombed RR Ruble
--1,		;	126	Bombed Industry
--1,		;	127	Target
--1,		;	128	City
--1,		;	129	Railtrack
+-1,		;	115	Mill
+-1,		;	116	Coal
+-1,		;	117	Bauxite
+-1,		;	118	Major Airfield
+-1,		;	119	Urban
+-1,		;	120	Swamp
+-1,		;	121	Railtrack
+-1,		;	122	Shipping
+-1,		;	123	Assembly Line
+-1,		;	124	Adv. Refinery
+-1,		;	125	Devastation
+-1,		;	126	Destruction
+-1,		;	127	Cloud Cover
+-1,		;	128	Industrial Giant
+-1,		;	129	Hamlet
 -1,		;	130	Grassland
--1,		;	131	Forest
--1,		;	132	Urban
--1,		;	133	Cloud Cover
--1,		;	134	Searchlights
--1,		;	135	Hills
--1,		;	136	Bombed RR
--1,		;	137	Airfield
--1,		;	138	Water
--1,		;	139	Firestorm
--1,		;	140	Rubble
--1,		;	141	Bombed RR Rubbl
--1,		;	142	Bombed Industry
--1,		;	143	Target
+-1,		;	131	Lumber
+-1,		;	132	Vinyards
+-1,		;	133	Iron
+-1,		;	134	Major Airfield
+-1,		;	135	Urban
+-1,		;	136	Swamp
+-1,		;	137	Railtrack
+-1,		;	138	U-Boats
+-1,		;	139	Assembly Line
+-1,		;	140	Adv. Refinery
+-1,		;	141	Devastation
+-1,		;	142	Destruction
+-1,		;	143	Cloud Cover
+-1,		;	144	City Center
+-1,		;	145	Highlands
+-1,		;	146	Grassland
+-1,		;	147	Forest
+-1,		;	148	Hills
+-1,		;	149	Mountains
+-1,		;	150	Airfield
+-1,		;	151	Urban
+-1,		;	152	Swamp
+-1,		;	153	Railtrack
+-1,		;	154	Water
+-1,		;	155	Industry
+-1,		;	156	Refinery
+-1,		;	157	Urban Rubble
+-1,		;	158	Rubble
+-1,		;	159	Cloud Cover
+-1,		;	160	National Capitol
+-1,		;	161	Village
+-1,		;	162	Grassland
+-1,		;	163	Mill
+-1,		;	164	Coal
+-1,		;	165	Bauxite
+-1,		;	166	Major Airfield
+-1,		;	167	Urban
+-1,		;	168	Swamp
+-1,		;	169	Railtrack
+-1,		;	170	Shipping
+-1,		;	171	Assembly Line
+-1,		;	172	Adv. Refinery
+-1,		;	173	Devastation
+-1,		;	174	Destruction
+-1,		;	175	Cloud Cover
+-1,		;	176	Industrial Giant
+-1,		;	177	Hamlet
+-1,		;	178	Grassland
+-1,		;	179	Lumber
+-1,		;	180	Vinyards
+-1,		;	181	Iron
+-1,		;	182	Major Airfield
+-1,		;	183	Urban
+-1,		;	184	Swamp
+-1,		;	185	Railtrack
+-1,		;	186	U-Boats
+-1,		;	187	Assembly Line
+-1,		;	188	Adv. Refinery
+-1,		;	189	Devastation
+-1,		;	190	Destruction
+-1,		;	191	Cloud Cover
 -2,		;	MUST BE HERE! TERMINATOR!
 
-@@0,	City
+@@0,	City Center
 
-@@1,	Railtrack
+@@1,	Highlands
 
 @@2,	Grassland
 
 @@3,	Forest
 
-@@4,	Urban
+@@4,	Hills
 
-@@5,	Hills
+@@5,	Mountains
 
-@@6,	Refinery
+@@6,	Airfield
 
-@@7,	Installation
+@@7,	Urban
 
-@@8,	Industry
+@@8,	Swamp
 
-@@9,	Airfield
+@@9,	Railtrack
 
 @@10,	Water
 
-@@11,	Bombed RR
+@@11,	Industry
 
-@@12,	Bombed Refinery
+@@12,	Refinery
 
-@@13,	Bombed Urban
+@@13,	Urban Rubble
 
-@@14,	Bombed Industry
+@@14,	Rubble
 
-@@15,	Residential
+@@15,	Cloud Cover
 
-@@16,	City
+@@16,	National Capitol
 
-@@17,	Railtrack
+@@17,	Village
 
 @@18,	Grassland
 
-@@19,	Lumber
+@@19,	Mill
 
-@@20,	Urban
+@@20,	Coal
 
-@@21,	Coal
+@@21,	Bauxite
 
-@@22,	Refinery
+@@22,	Major Airfield
 
-@@23,	Installation
+@@23,	Urban
 
-@@24,	Assembly Line
+@@24,	Swamp
 
-@@25,	Airfield
+@@25,	Railtrack
 
-@@26,	Water
+@@26,	Shipping
 
-@@27,	Bombed RR
+@@27,	Assembly Line
 
-@@28,	Bombed Refinery
+@@28,	Adv. Refinery
 
-@@29,	Bombed Urban
+@@29,	Devastation
 
-@@30,	Bombed Industry
+@@30,	Destruction
 
-@@31,	Residential
+@@31,	Cloud Cover
 
-@@32,	City
+@@32,	Industrial Giant
 
-@@33,	Railtrack
+@@33,	Hamlet
 
 @@34,	Grassland
 
-@@35,	Game
+@@35,	Lumber
 
-@@36,	Urban
+@@36,	Vinyards
 
 @@37,	Iron
 
-@@38,	Refinery
+@@38,	Major Airfield
 
-@@39,	Installation
+@@39,	Urban
 
-@@40,	Assembly Line
+@@40,	Swamp
 
-@@41,	Airfield
+@@41,	Railtrack
 
-@@42,	Water
+@@42,	U-Boats
 
-@@43,	Bombed RR
+@@43,	Assembly Line
 
-@@44,	Bombed Refinery
+@@44,	Adv. Refinery
 
-@@45,	Bombed Urban
+@@45,	Devastation
 
-@@46,	Bombed Industry
+@@46,	Destruction
 
-@@47,	Residential
+@@47,	Cloud Cover
 
-@@48,	City
+@@48,	City Center
 
-@@49,	Hills
+@@49,	Highlands
 
 @@50,	Grassland
 
 @@51,	Forest
 
-@@52,	Urban
+@@52,	Hills
 
-@@53,	Cloud Cover
+@@53,	Mountains
 
-@@54,	Refinery
+@@54,	Airfield
 
-@@55,	SAVE
+@@55,	Urban
 
-@@56,	Industry
+@@56,	Swamp
 
-@@57,	Airfield
+@@57,	Railtrack
 
 @@58,	Water
 
-@@59,	Rubble
+@@59,	Industry
 
-@@60,	Bombed Refinery
+@@60,	Refinery
 
-@@61,	Bombed RR
+@@61,	Urban Rubble
 
-@@62,	Bombed Industry
+@@62,	Rubble
 
-@@63,	Target
+@@63,	Cloud Cover
 
-@@64,	City
+@@64,	National Capitol
 
-@@65,	Hills
+@@65,	Village
 
 @@66,	Grassland
 
-@@67,	Forest
+@@67,	Mill
 
-@@68,	Urban
+@@68,	Coal
 
-@@69,	Cloud Cover
+@@69,	Bauxite
 
-@@70,	Refinery
+@@70,	Major Airfield
 
-@@71,	SAVE
+@@71,	Urban
 
-@@72,	Industry
+@@72,	Swamp
 
-@@73,	Airfield
+@@73,	Railtrack
 
-@@74,	Water
+@@74,	Shipping
 
-@@75,	Rubble
+@@75,	Assembly Line
 
-@@76,	Bombed Refinery
+@@76,	Adv. Refinery
 
-@@77,	Bombed RR
+@@77,	Devastation
 
-@@78,	Bombed Industry
+@@78,	Destruction
 
-@@79,	Target
+@@79,	Cloud Cover
 
-@@80,	City
+@@80,	Industrial Giant
 
-@@81,	Hills
+@@81,	Hamlet
 
 @@82,	Grassland
 
-@@83,	Forest
+@@83,	Lumber
 
-@@84,	Urban
+@@84,	Vinyards
 
-@@85,	Cloud Cover
+@@85,	Iron
 
-@@86,	Refinery
+@@86,	Major Airfield
 
-@@87,	SAVE
+@@87,	Urban
 
-@@88,	Industry
+@@88,	Swamp
 
-@@89,	Airfield
+@@89,	Railtrack
 
-@@90,	Water
+@@90,	U-Boats
 
-@@91,	Rubble
+@@91,	Assembly Line
 
-@@92,	Bombed Refinery
+@@92,	Adv. Refinery
 
-@@93,	Bombed RR
+@@93,	Devastation
 
-@@94,	Bombed Industry
+@@94,	Destruction
 
-@@95,	Target
+@@95,	Cloud Cover
 
-@@96,	City
+@@96,	City Center
 
-@@97,	Railtrack
+@@97,	Highlands
 
 @@98,	Grassland
 
 @@99,	Forest
 
-@@100,	Urban
+@@100,	Hills
 
-@@101,	Cloud Cover
+@@101,	Mountains
 
-@@102,	Searchlights
+@@102,	Airfield
 
-@@103,	Hills
+@@103,	Urban
 
-@@104,	Bombed RR
+@@104,	Swamp
 
-@@105,	Airfield
+@@105,	Railtrack
 
 @@106,	Water
 
-@@107,	Firestorm
+@@107,	Industry
 
-@@108,	Rubble
+@@108,	Refinery
 
-@@109,	Bombed RR Ruble
+@@109,	Urban Rubble
 
-@@110,	Bombed Industry
+@@110,	Rubble
 
-@@111,	Target
+@@111,	Cloud Cover
 
-@@112,	City
+@@112,	National Capitol
 
-@@113,	Railtrack
+@@113,	Village
 
 @@114,	Grassland
 
-@@115,	Forest
+@@115,	Mill
 
-@@116,	Urban
+@@116,	Coal
 
-@@117,	Cloud Cover
+@@117,	Bauxite
 
-@@118,	Searchlights
+@@118,	Major Airfield
 
-@@119,	Hills
+@@119,	Urban
 
-@@120,	Bombed RR
+@@120,	Swamp
 
-@@121,	Airfield
+@@121,	Railtrack
 
-@@122,	Water
+@@122,	Shipping
 
-@@123,	Firestorm
+@@123,	Assembly Line
 
-@@124,	Rubble
+@@124,	Adv. Refinery
 
-@@125,	Bombed RR Ruble
+@@125,	Devastation
 
-@@126,	Bombed Industry
+@@126,	Destruction
 
-@@127,	Target
+@@127,	Cloud Cover
 
-@@128,	City
+@@128,	Industrial Giant
 
-@@129,	Railtrack
+@@129,	Hamlet
 
 @@130,	Grassland
 
-@@131,	Forest
+@@131,	Lumber
 
-@@132,	Urban
+@@132,	Vinyards
 
-@@133,	Cloud Cover
+@@133,	Iron
 
-@@134,	Searchlights
+@@134,	Major Airfield
 
-@@135,	Hills
+@@135,	Urban
 
-@@136,	Bombed RR
+@@136,	Swamp
 
-@@137,	Airfield
+@@137,	Railtrack
 
-@@138,	Water
+@@138,	U-Boats
 
-@@139,	Firestorm
+@@139,	Assembly Line
 
-@@140,	Rubble
+@@140,	Adv. Refinery
 
-@@141,	Bombed RR Rubbl
+@@141,	Devastation
 
-@@142,	Bombed Industry
+@@142,	Destruction
 
-@@143,	Target
+@@143,	Cloud Cover
+
+@@144,	City Center
+
+@@145,	Highlands
+
+@@146,	Grassland
+
+@@147,	Forest
+
+@@148,	Hills
+
+@@149,	Mountains
+
+@@150,	Airfield
+
+@@151,	Urban
+
+@@152,	Swamp
+
+@@153,	Railtrack
+
+@@154,	Water
+
+@@155,	Industry
+
+@@156,	Refinery
+
+@@157,	Urban Rubble
+
+@@158,	Rubble
+
+@@159,	Cloud Cover
+
+@@160,	National Capitol
+
+@@161,	Village
+
+@@162,	Grassland
+
+@@163,	Mill
+
+@@164,	Coal
+
+@@165,	Bauxite
+
+@@166,	Major Airfield
+
+@@167,	Urban
+
+@@168,	Swamp
+
+@@169,	Railtrack
+
+@@170,	Shipping
+
+@@171,	Assembly Line
+
+@@172,	Adv. Refinery
+
+@@173,	Devastation
+
+@@174,	Destruction
+
+@@175,	Cloud Cover
+
+@@176,	Industrial Giant
+
+@@177,	Hamlet
+
+@@178,	Grassland
+
+@@179,	Lumber
+
+@@180,	Vinyards
+
+@@181,	Iron
+
+@@182,	Major Airfield
+
+@@183,	Urban
+
+@@184,	Swamp
+
+@@185,	Railtrack
+
+@@186,	U-Boats
+
+@@187,	Assembly Line
+
+@@188,	Adv. Refinery
+
+@@189,	Devastation
+
+@@190,	Destruction
+
+@@191,	Cloud Cover
 
 
 @GOVERNMENT_DESCRIPTIONS

@@ -1,6 +1,6 @@
 --
-local versionNumber = 2
-local fileModified = true -- set this to true if you change this file for your scenario
+local versionNumber = 4
+local fileModified = false -- set this to true if you change this file for your scenario
 -- if another file requires this file, it checks the version number to ensure that the
 -- version is recent enough to have all the expected functionality
 -- if you set fileModified to true, the error generated if this file is out of date will
@@ -28,9 +28,8 @@ local fileModified = true -- set this to true if you change this file for your s
 --  It is also the place where you can change the way combat behaves.
 
 local register = {}
-
----@module "generalLibrary"
 local gen = require("generalLibrary"):minVersion(1)
+local landAirCargo = require("landAirCargo")
 gen.versionFunctions(register,versionNumber,fileModified,"MechanicsFiles".."\\".."combatSettings.lua")
 --
 local combatCalculator = require("combatCalculator"):recommendedVersion(2)
@@ -38,125 +37,8 @@ local rules = require("rules"):minVersion(1)
 local text = require("text")
 local simpleSettings = require("simpleSettings"):recommendedVersion(1)
 local combatModifiers = require("combatModifiers"):minVersion(1)
-local combatParameters = require("combatParametersOTR")
-local traits = require("traits")
-local discreteEvents = require("discreteEventsRegistrar")
-local changeRules = require("changeRules")
-local helper = require("helper")
+local leaderBonus = require("leaderBonus"):minVersion(1)
 
-
-local domain = {ground = 0, air = 1, sea = 2}
----Finds units that are able to defend the `tile` from the `attacker`
----@param tile tileObject
----@param attacker unitTypeObject
----@return iterator
-local function potentialDefenders(tile,attacker)
-    if attacker.domain == domain.ground or attacker.domain == domain.sea then
-        return tile.units
-    end
-
-    local tribe = tile.defender
-    local searchMaps = {}
-    if tile.z == 2 then
-        searchMaps[1] = 2
-    else
-        searchMaps[1] = 0
-        searchMaps[2] = 1
-    end
-    local searchRadius = combatParameters.maxInterceptionRange
-    local function isQualifiedDefender(unit)
-        -- units on the tile must always be qualified to defend
-        if unit.location == tile then
-            return true
-        end
-        if unit.owner ~= tribe then
-            return false
-        end
-        if not gen.isAllowedOnMap(unit.type,tile.z) then
-            return false
-        end
-        local cParam = combatParameters[unit.type.id]
-        if not cParam then
-            return false
-        end
-        if gen.tileDist(unit.location,tile) > combatParameters[unit.type.id].interceptionRange then
-            return false
-        end
-        if not helper.canReturnToAirbase(unit) then
-            return false
-        end
-        return true
-    end
-
----@diagnostic disable-next-line: return-type-mismatch
-    return coroutine.wrap(function ()
-        for nearbyUnit in gen.nearbyUnits(tile, searchRadius, searchMaps) do
-            if isQualifiedDefender(nearbyUnit) then
-                coroutine.yield(nearbyUnit)
-            end
-        end
-    end)
-end
-
----Computes the "combat support" that the attacker and defender
----receive from nearby units.  Note, the attacker and defender
----each receive 1 support from themselves in order to make
----the math easier in later steps. 
----@param attacker unitObject
----@param defender unitObject
----@param combatTile tileObject
----@return integer # Support the attacker receives
----@return integer # Support the defender receives
-local function computeSupportValues(attacker,defender,combatTile)
-    local attackTribe = attacker.owner
-    local defenseTribe = defender.owner
-    local function computeUnitSupport(possibleSupporter)
-        local typeInfo = combatParameters[possibleSupporter.type.id]
-        if not typeInfo then 
-            return 0,0
-        end
-        if possibleSupporter.owner == attackTribe then
-            if possibleSupporter == attacker then
-                return 1,0
-            end
-            local range = typeInfo.attackSupportRange
-            if range < gen.tileDist(combatTile,possibleSupporter.location) or not helper.canReturnToAirbase(possibleSupporter) then
-                return 0,0
-            end
-            if possibleSupporter.location.z ~= combatTile.z then
-                return 0,0
-            end
-            local support = typeInfo["attackSupport"..helper.getCombatSuffix(possibleSupporter.location.z,combatTile.z)] or 0
-            return support,0
-        elseif possibleSupporter.owner == defenseTribe then
-            if possibleSupporter == defender then
-                return 0,1
-            end
-            local range = typeInfo.defenseSupportRange
-            if range < gen.tileDist(combatTile,possibleSupporter.location) 
-            or not helper.canReturnToAirbase(possibleSupporter) then 
-                return 0,0
-            end
-            local support = typeInfo["defenseSupport"..helper.getCombatSuffix(possibleSupporter.location.z,combatTile.z)] or 0
-            return 0,support
-        end
-        return 0,0
-    end
-    local attackerSupport,defenderSupport = 0,0
-    local searchMaps = {}
-    if combatTile.z == 2 then
-        searchMaps[1] = 2
-    else
-        searchMaps[1] = 0
-        searchMaps[2] = 1
-    end
-    for possibleSupporter in gen.nearbyUnits(combatTile, combatParameters.maxInterceptionRange, searchMaps) do
-        local newAttackSupport,newDefenseSupport = computeUnitSupport(possibleSupporter)
-        attackerSupport = attackerSupport+ newAttackSupport
-        defenderSupport = defenderSupport+ newDefenseSupport
-    end
-    return math.max(1,attackerSupport),math.max(1,defenderSupport)
-end
 
 
 
@@ -240,28 +122,16 @@ Modifiers that can be disabled by setting their value to "0" (the numeric value,
 --      dTerrainDefenseValue -- overrides the terrain defense bonus (normally calculated by baseTerrain.defense/2) 
 --          requires combatCalculator version 2 to have any effect
 
-local function computeCombatStatistics(attacker, defender, isSneakAttack,originalDefenderLocation,tileToDefend)
+local function computeCombatStatistics(attacker, defender, isSneakAttack)
     
-    local defenderSuffix = helper.getCombatSuffix(originalDefenderLocation.z,tileToDefend.z)
-    local attackerSuffix = helper.getCombatSuffix(attacker.location.z,tileToDefend.z)
-    local attackerParams = combatParameters[attacker.type.id]
-    local defenderParams = combatParameters[defender.type.id]
-
-    local attackSupport,defenseSupport = computeSupportValues(attacker, defender, tileToDefend)
-    attackSupport = math.log(attackSupport,2)
-    defenseSupport = math.log(defenseSupport,2)
-    local combatModifierOverride = {
-        aCustomMult=1,
-        dCustomMult=1,
-        dTerrainDefenseValue=tileToDefend.baseTerrain.defense/2,
-        aCustomAdd = attackerParams["attackMod"..attackerSuffix]+attackSupport,
-        dCustomAdd = defenderParams["defenseMod"..defenderSuffix]+defenseSupport,
-    }
+    local combatModifierOverride = {aCustomMult=1,dCustomMult=1}
     -- Modifier from rules files:
     local aMult, dMult = rules.combatGroupCustomModifiers(attacker,defender)
     combatModifierOverride.aCustomMult = combatModifierOverride.aCustomMult*aMult
     combatModifierOverride.dCustomMult = combatModifierOverride.dCustomMult*dMult
     combatModifiers.applyRegisteredRules(attacker,defender,combatModifierOverride)
+    dMult = landAirCargo.getDefenseModifier(defender)
+    combatModifierOverride.dCustomMult = combatModifierOverride.dCustomMult*dMult
 
 
 
@@ -279,7 +149,6 @@ local function computeCombatStatistics(attacker, defender, isSneakAttack,origina
         print(defenderStrengthModifiersApplied)
         print(defenderFirepowerModifiersApplied)
     end
-    
 
     return attackerStrength, attackerFirepower, defenderStrength, defenderFirepower
 end
@@ -294,6 +163,9 @@ local function tileHasCarrierUnit(tile)
     end
     return false
 end
+local domain = {ground = 0, air = 1, sea = 2}
+
+---&autoDoc defenderValueModifier
 -- use this function to add to (or subtract from) the calculated
 -- defender value in order to change onChooseDefender
 -- e.g. if you add 1e8 (100 million) to all air in air protected stacks
@@ -317,34 +189,13 @@ local function defenderValueModifier(defender,tile,attacker)
     if defender.type.domain == domain.ground and tile.baseTerrain.type == 10 then
         return -1e8
     end
+    if not landAirCargo.canDefend(defender) then
+        return -1e8
+    end
     return 0
 end
---[[
--- a sample function for making fighters attack air protected
--- stacks first.  Replaces above function if simpleSettings
--- key is set to true
-if simpleSettings.fightersAttackAirFirst then
-    local function tileHasCarrierUnit(tile)
-        for unit in tile.units do
-            if gen.isCarryAir(unit.type) then
-                return true
-            end
-        end
-        return false
-    end
-    defenderValueModifier = function(defender,tile,attacker)
-        if gen.isAttackAir(attacker.type) and defender.type.domain == 1 
-            and defender.type.range >= 2 and
-            not gen.hasAirbase(tile) and not tile.city and
-            not tileHasCarrierUnit(tile) then
-            return 1e8
-        else
-            return 0
-        end
+---&endAutoDoc
 
-    end
-end
---]]
 
 
 -- register.onChooseDefender
@@ -356,16 +207,14 @@ end
 --fourth, `isCombat`, is a boolean that indicates if this invocation will be 
 --followed by combat. This function is also called by the AI to determine its 
 --goals, in which case `isCombat` is false.
-local defendedTile = nil
+
+---&autoDoc onChooseDefender
 function register.onChooseDefender(defaultFunction,tile,attacker,isCombat)
-    if isCombat then
-        defendedTile = tile
-    end
     local bestDefenderValue = -math.huge
     local bestDefender = nil
-    for possibleDefender in potentialDefenders(tile, attacker) do
+    for possibleDefender in tile.units do
         local attackerStrength, attackerFirepower, defenderStrength, defenderFirepower
-            = computeCombatStatistics(attacker,possibleDefender,false,possibleDefender.location,tile)
+            = computeCombatStatistics(attacker,possibleDefender,false)
         -- below is what appears to be the standard civ II calculation
         --local defenderValue = defenderStrength*possibleDefender.hitpoints//possibleDefender.type.hitpoints
         -- instead of defender strength, however, defenderStrength/attackerStrength is used to account
@@ -386,336 +235,14 @@ function register.onChooseDefender(defaultFunction,tile,attacker,isCombat)
     return bestDefender
     --return defaultFunction(tile,attacker)
 end
+---&endAutoDoc
 
---- Increments attacker's move spent, and changes the
---- aircraft range to 1 so the game doesn't automatically spend all
---- the remaining movement points (unless the aircraft has used them all up).
----@param attacker unitObject The attacking aircraft
----@param attackerMoveCost? integer the movement cost to spend (default uses the combatParameters)
-local function aircraftMovementAfterAttack(attacker,attackerMoveCost)
-    attackerMoveCost = attackerMoveCost or  combatParameters[attacker.type.id].attackMoveCost
-    attacker.moveSpent = math.min(255,attacker.moveSpent +attackerMoveCost*totpp.movementMultipliers.aggregate)
-    -- did not use gen.spendMovementPoints since that would automatically
-    -- increment domainSpec if all movement points were used up, 
-    -- and it would be incremented again autmatically by the game if range
-    -- is not set to 1.
-    if gen.moveRemaining(attacker) > 0 then
-        attacker.type.range = 1
-    end
-end
 
----Puts aircraft where they should be when combat ends.
----Escaping aircraft won't be placed in a city or in a stack that already has 3 aircraft.
----@param winningAircraft unitObject|nil The unit which defeated or chased away the other aircraft.  If combat ended due to the maximum number of combat rounds, use nil.
----@param escapingAircraft unitObject|nil This is the unit which 'escaped' the combat, or nil if combat ended due to defeat or maximum combat rounds.
----@param defender unitObject The unit which was the defender/victim of the combat.
----@param origDefenderLocation tileObject The tile where the defender was before the attack.
-local function aircraftEscapeCleanUp(winningAircraft,escapingAircraft,defender,origDefenderLocation)
-    if winningAircraft == defender or 
-        (winningAircraft == nil and defender.hitpoints > 0)  then
-        defender:teleport(origDefenderLocation)
-    end
-    if escapingAircraft then
-        local escapeDist = combatParameters[escapingAircraft.type.id].interceptionRange + 1 --[[@as integer]]
-        local function allowedTiles(possibleTile)
-            if gen.distance(escapingAircraft,possibleTile) < escapeDist or
-                possibleTile.city then
-                return false
-            end
-            local tileCount = 0
-            for unit in possibleTile.units do
-                tileCount = tileCount+1
-                if tileCount > combatParameters.maxEscapeStack then
-                    return false
-                end
-            end
-            return true
-        end
-        local escapeTile = nil -- The tile the escapingAircraft will go to
-        local escapeRadius = escapeDist + 1 -- The radius of tiles to search for an escape tile.  Increments until an open tile is found
-        repeat
-            escapeTile = gen.getRandomNearbyOpenTileForTribe(escapingAircraft.location, escapeRadius, allowedTiles, escapingAircraft.owner)
-            escapeRadius = escapeRadius+1
-        until civ.isTile(escapeTile)
-        escapingAircraft:teleport(escapeTile --[[@as tileObject]])
-    end
-end
-
+---&autoDoc onInitiateCombatMakeCoroutine
 function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,attackerPower,defenderDie,defenderPower,isSneakAttack)
 
-    local originalDefenderLocation = defender.location
-    if originalDefenderLocation ~= defendedTile then
-        defender:teleport(defendedTile)
-    end
-    defendedTile = nil
-
-    local attackerStrength, attackerFirepower, defenderStrength, defenderFirepower = computeCombatStatistics(attacker, defender, isSneakAttack,originalDefenderLocation,defender.location)
-    local maxCombatRounds = math.huge -- If you want to limit combat to a specific number of
-                                        -- turns, set this variable
-    local minCombatRounds = 0 -- combat must last at least this long (unless
-    -- a defender has been killed).  This is changed below
-    local defenderStackSize = 0
-    local unitsOnTile = 0
-    for u in defender.location.units do
-        unitsOnTile = unitsOnTile+1
-    end
-    local combatType = nil
-    local attackerParams = combatParameters[attacker.type.id]
-    local defenderParams = combatParameters[defender.type.id]
-    local attackerEscapeChance = 0
-    local defenderEscapeChance = 0
-    -- combat takes place on the attacker's map
-    local mapTitle = "low"
-    local MapTitle = "Low"
-    if attacker.location.z == 0 then
-        mapTitle = "low"
-        MapTitle = "Low"
-    elseif attacker.location.z == 1 then
-        mapTitle = "high"
-        MapTitle = "High"
-    elseif attacker.location.z == 2 then
-        mapTitle = "night"
-        MapTitle = "Night"
-    end
-    attackerEscapeChance = combatParameters[mapTitle.."EscapeScale"]
-    defenderEscapeChance = combatParameters[mapTitle.."EscapeScale"]
-    if attacker.veteran then
-        attackerEscapeChance = attackerEscapeChance * 
-        combatParameters[mapTitle.."AceEscapeModifier"]
-        defenderEscapeChance = defenderEscapeChance *
-        combatParameters[mapTitle.."AcePursuitModifier"]
-    end
-    if defender.veteran then
-        defenderEscapeChance = defenderEscapeChance * combatParameters[mapTitle.."AceEscapeModifier"]
-        attackerEscapeChance = attackerEscapeChance * combatParameters[mapTitle.."AcePursuitModifier"]
-    end
-    attackerEscapeChance = attackerEscapeChance*attackerParams["escapeSpeed"..MapTitle]/(attackerParams["escapeSpeed"..MapTitle]+defenderParams["escapeSpeed"..MapTitle])
-    defenderEscapeChance = defenderEscapeChance*defenderParams["escapeSpeed"..MapTitle]/(attackerParams["escapeSpeed"..MapTitle]+defenderParams["escapeSpeed"..MapTitle])
-    civ.ui.text("Attacker Escape Probability: "..tostring(attackerEscapeChance),
-        "^Defender Escape Chance: "..tostring(defenderEscapeChance),"^Attacker Strength: "..tostring(attackerStrength/8),"Defender Strength: "..tostring(defenderStrength/8))
-    if traits.hasAnyTrait(defender.type,"fighter","fighterBomber") and traits.hasAnyTrait(attacker.type,"fighter","fighterBomber") then
-        combatType = "FighterAttackingFighter"
-        maxCombatRounds = combatParameters.maxAirCombatRounds
-        minCombatRounds = combatParameters.minAirCombatRounds + 
-        unitsOnTile*combatParameters.minAirCombatRoundIncrement
-    elseif traits.hasAnyTrait(attacker.type,"fighter","fighterBomber")
-    and traits.hasAnyTrait(defender.type,"bomber") then
-        combatType = "FighterAttackingBomber"
-        maxCombatRounds = combatParameters.maxAirCombatRounds
-        minCombatRounds = combatParameters.minAirCombatRounds + 
-        unitsOnTile*combatParameters.minAirCombatRoundIncrement
-    end
-
-    if combatType == "FighterAttackingFighter" then
-        return coroutine.create(function()
-            local round = 0
-            while true do
-                if round >= maxCombatRounds then
-                    aircraftMovementAfterAttack(attacker)
-                    aircraftEscapeCleanUp(nil,nil,defender,originalDefenderLocation)
-                    return
-                elseif attacker.hitpoints <= 0 then
-                    aircraftEscapeCleanUp(defender,nil,defender,originalDefenderLocation)
-                    return
-                elseif defender.hitpoints <= 0 then
-                    aircraftMovementAfterAttack(attacker)
-                    aircraftEscapeCleanUp(attacker,nil,defender,originalDefenderLocation)
-                    return
-                elseif attacker.hitpoints < combatParameters.fighterEscapeThreshold * defenderFirepower 
-                    and round >= minCombatRounds
-                    and math.random() < attackerEscapeChance then
-                    aircraftMovementAfterAttack(attacker)
-                    aircraftEscapeCleanUp(defender,attacker,defender,originalDefenderLocation)
-                    return
-                elseif defender.hitpoints < combatParameters.fighterEscapeThreshold * attackerFirepower 
-                    and round >= minCombatRounds
-                    and math.random() < defenderEscapeChance then
-                    aircraftMovementAfterAttack(attacker)
-                    aircraftEscapeCleanUp(attacker,defender,defender,originalDefenderLocation)
-                    return
-                end
-                local result = coroutine.yield(false,
-                    attackerStrength,attackerFirepower,
-                    defenderStrength,defenderFirepower)
-                round = round + 1
-            end
-        end)
-    elseif combatType == "FighterAttackingBomber" then
-        return coroutine.create(function()
-            local round = 0
-            while true do
-                if round >= maxCombatRounds then
-                    aircraftMovementAfterAttack(attacker)
-                    aircraftEscapeCleanUp(nil,nil,defender,originalDefenderLocation)
-                    return
-                elseif attacker.hitpoints <= 0 then
-                    aircraftEscapeCleanUp(defender,nil,defender,originalDefenderLocation)
-                    return
-                elseif defender.hitpoints <= 0 then
-                    aircraftMovementAfterAttack(attacker)
-                    aircraftEscapeCleanUp(attacker,nil,defender,originalDefenderLocation)
-                    return
-                elseif attacker.hitpoints < combatParameters.fighterEscapeThreshold * defenderFirepower 
-                    and round >= minCombatRounds
-                    and math.random() < attackerEscapeChance then
-                    aircraftMovementAfterAttack(attacker)
-                    aircraftEscapeCleanUp(defender,attacker,defender,originalDefenderLocation)
-                    return
-                elseif math.random() < defenderEscapeChance 
-                    and round >= minCombatRounds
-                    then
-                    aircraftMovementAfterAttack(attacker)
-                    aircraftEscapeCleanUp(attacker,defender,defender,originalDefenderLocation)
-                    return
-                end
-                local result = coroutine.yield(false,
-                    attackerStrength,attackerFirepower,
-                    defenderStrength,defenderFirepower)
-                round = round + 1
-            end
-        end)
-
-    else
-        -- Regular Combat
-        return coroutine.create(function()
-            local round = 0
-            while(round < maxCombatRounds and attacker.hitpoints >0 and defender.hitpoints > 0) do
-                local result = coroutine.yield(false,attackerStrength,
-                attackerFirepower,defenderStrength,defenderFirepower)
-            end
-        end)
-    end
-end
---[[
-    return coroutine.create(function()
-        local round = 0
-        while(round < maxCombatRounds and attacker.hitpoints >0 and defender.hitpoints > 0) do
-
-            if false then
-                -- If the coroutine yields true as its first value, 
-                -- the game's default combat resolution is skipped for that round 
-                -- and the designer is responsible for updating damage. 
-                -- The second value yielded is either the attacker or the defender, 
-                -- this is used to render animations etc. 
-                -- In this case the coroutine resumes without any values.
-
-                coroutine.yield(true,defender)
-            elseif combatType == "FighterAttackingFighter" then
-                if round > combatParameters.minAirCombatRounds then
-                    if attacker.hitpoints < combatParameters.fighterEscapeThreshold * defenderFirepower 
-                    and math.random() < attackerEscapeChance then
-                        aircraftMovementAfterAttack(attacker)
-                        return
-                    elseif defender.hitpoints < combatParameters.fighterEscapeThreshold * attackerFirepower 
-                    and math.random() < defenderEscapeChance then
-                        aircraftMovementAfterAttack(attacker)
-                        return
-                    else
-                        local aRoll = math.random(0,attackerStrength)
-                        local dRoll = math.random(0,defenderStrength)
-                        if aRoll > dRoll then
-                            defender.damage = defender.damage+attackerFirepower
-                            coroutine.yield(true,defender)
-
-                        else
-                            attacker.damage = attacker.damage+defenderFirepower
-                            coroutine.yield(true,attacker)
-                        end
-                        --local result = coroutine.yield(false,attackerStrength,attackerFirepower,defenderStrength,defenderFirepower)
-                   end
-                else
-                        local aRoll = math.random(0,attackerStrength)
-                        local dRoll = math.random(0,defenderStrength)
-                        if aRoll > dRoll then
-                            defender.damage = defender.damage+attackerFirepower
-                            coroutine.yield(true,defender)
-
-                        else
-                            attacker.damage = attacker.damage+defenderFirepower
-                            coroutine.yield(true,attacker)
-                        end
-                    --local result = coroutine.yield(false,attackerStrength,attackerFirepower,defenderStrength,defenderFirepower)
-                end
-            elseif combatType == "FighterAttackingBomber" then
-                if round > combatParameters.minAirCombatRounds then
-                    if attacker.hitpoints < combatParameters.fighterEscapeThreshold * defenderFirepower 
-                    and math.random() < attackerEscapeChance then
-                        aircraftMovementAfterAttack(attacker)
-                        return
-                    elseif math.random() < defenderEscapeChance then
-                        aircraftMovementAfterAttack(attacker)
-                        return
-                    else
-                        local result = coroutine.yield(false,attackerStrength,attackerFirepower,defenderStrength,defenderFirepower)
-                   end
-                else
-                    local result = coroutine.yield(false,attackerStrength,attackerFirepower,defenderStrength,defenderFirepower)
-                end
-            elseif combatType == "BombingAttack" then
-
-            elseif combatType == "BombingAttackIntercepted" then
-
-            elseif combatType == "GroundCombat" then
-
-            elseif combatType == "SubmarineAttack" then
-
-            elseif combatType == "AntiSubAttack" then
-
-
-            else
-
-                --If the coroutine yields false as its first value, 
-                --the game runs its default combat algorithm. The designer 
-                --can additionally yield modified values for attackerDie, 
-                --attackerPower, defenderDie and defenderPower (in this order) 
-                --which will be used by the game for that round.
-
-                local newAttackerDie = calculatedAttackerStrength
-                local newAttackerFirepower = calculatedAttackerFirepower
-                local newDefenderDie = calculatedDefenderStrength
-                local newDefenderFirepower = calculatedDefenderFirepower
-                local result = coroutine.yield(false,newAttackerDie,newAttackerFirepower,newDefenderDie,newDefenderFirepower)
-
-                --In this case the coroutine resumes with the result of the round, 
-                --a table containing four values:
-                    -- winner, this is either attacker or defender.
-                    -- attackerRoll, the result of the attacker's die roll
-                    -- defenderRoll, the result of the defender's die roll
-                    -- reroll, true if a reroll happened. This can happen only 
-                         -- if the attacker is tribe 0, the defender is a unit 
-                         -- guarding a city, and the city is the capital or 
-                         -- the tribe has less than 8 cities in total and 
-                         -- the attacker's die roll is higher than the 
-                         -- defender's. A reroll can happen at most once.
-
-
-            end
-            round = round+1
-        end
-        -- once we get here, combat stops
-        if combatType == "FighterAttackingFighter" or combatType == "FighterAttackingBomber" then
-            gen.spendMovementPoints(attacker,attackerMoveCost, 
-                totpp.movementMultipliers.aggregate, 
-                math.min(255,attackerMoveSpent+attackerMoveCost*totpp.movementMultipliers.aggregate))
-            if gen.moveRemaining(attacker) > 0 then
-                attacker.type.range = 1
-            else
-                attacker.domainSpec = attacker.domainSpec-1
-            end
-        end
-
-    end)
-end
-]]
-
-discreteEvents.onActivateUnit(function(unit,source,repeatMove)
-    unit.type.range = changeRules.authoritativeDefaultRules[unit.type].range
-end)
-
-
---[[
-function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,attackerPower,defenderDie,defenderPower,isSneakAttack)
-
+    leaderBonus.updateCommander(attacker)
+    leaderBonus.updateCommander(defender)
     local maxCombatRounds = math.huge -- If you want to limit combat to a specific number of
                                         -- turns, set this variable
 
@@ -790,9 +317,7 @@ function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,at
         -- once we get here, combat stops
     end)
 end
---]]
-
-
+---&endAutoDoc
 
 
 return register

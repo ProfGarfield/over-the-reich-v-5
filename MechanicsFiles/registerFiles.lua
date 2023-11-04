@@ -1,6 +1,6 @@
 
-local versionNumber = 1
-local fileModified = true -- set this to true if you change this file for your scenario
+local versionNumber = 6
+local fileModified = false -- set this to true if you change this file for your scenario
 -- if another file requires this file, it checks the version number to ensure that the
 -- version is recent enough to have all the expected functionality
 -- if you set fileModified to true, the error generated if this file is out of date will
@@ -16,11 +16,17 @@ local fileModified = true -- set this to true if you change this file for your s
 --
 
 --          Lua Scenario Template Files
-require("registerCombatModifiers")
+
+
+-- All necessary file require calls were moved to events.lua
+-- during the last update of that file.
+
+
+
 
 
 --          Files For This Scenario
-require("airfieldMechanics")
+
 
 
 
@@ -28,9 +34,10 @@ require("airfieldMechanics")
 
 --      Footer
 
+---@module "generalLibrary"
 local gen = require("generalLibrary"):minVersion(2)
 
 local register = {}
 gen.versionFunctions(register,versionNumber,fileModified,"MechanicsFiles".."\\".."registerFiles.lua")
-gen.minEventsLuaVersion(2,1,"registerFiles.lua")
+gen.minEventsLuaVersion(7,1,"registerFiles.lua")
 return register

@@ -9,7 +9,7 @@ local fileModified = false -- set this to true if you change this file for your 
 -- contains functionality for dealing with 
 -- calendar dates and turns
 
-
+---@class calendar
 local calendar ={}
 local gen = require("generalLibrary"):minVersion(1)
 gen.versionFunctions(calendar,versionNumber,fileModified,"LuaCore".."\\".."calendar.lua")
@@ -140,7 +140,7 @@ function calendar.turnFromDate(year,arg1,arg2,arg3)
         else
             if year - beforeYear <=math.floor(yearsBetweenTurns/2) then
                 return beforeTurn
-            elseif year - beforeYear > math.ceil(yearBetweenTurns/2) then
+            elseif year - beforeYear > math.ceil(yearsBetweenTurns/2) then
                 return afterTurn
             else
                 -- we're right in that middle year, so months 1-6 go to the before year

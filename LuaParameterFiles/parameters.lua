@@ -14,15 +14,19 @@ local fileModified = false -- set this to true if you change this file for your 
 -- you decide to make a change, only one value has to be changed instead of
 -- searching for every possible place that value is relevant.
 
+---@module "generalLibrary"
 local gen = require("generalLibrary"):minVersion(1)
 local text = require("text")
 --local eventTools = require("eventTools")
+---@module "discreteEvents"
 local discreteEvents = require("discreteEventsRegistrar"):minVersion(1)
 
 text.setMoney("%STRING1 gold")
 -- text.setMoney("$%STRING1,000")
+-- text.setMoneu("%STRING1 Pounds", "%STRING1 Pound")
 -- used to determine how text.money(amount)--> string
 -- will work
+-- if second argument is supplied, that is used when the amount is 1
 
 text.setDigitGroupSeparator(",")
 -- text.setDigitGroupSeparator("")
@@ -37,44 +41,6 @@ text.setVeteranTitle("Veteran")
 text.setShortVeteranTitle("Vet")
 -- sets the string that is returned by text.getShortVeteranTitle()
 
---[[ This eventTools functionality has been replaced by the activateUnitBackstop
---      in events.lua that was made available by onGetFormatted date
---      and by the civ.scen.onCityProcessingComplete
---      This code hasn't been removed yet, just in case something breaks and 
---      eventTools still needed
-
--- The event tools have functionality to guarantee that a tribe
--- will have an active unit.  This ensures that after production
--- events and promotions to new unit types work properly
--- (and, maybe, other stuff too).
--- The unit that is guaranteeing unit activation will be deleted
--- as soon as it is activated.
--- Make sure to choose a unit type that has more than 0 movement points
--- Also, change activationLocations below
---
-eventTools.setGuaranteeUnitActivationType(nil)
--- these locations are used for creating units that will
--- guarantee unit activation
--- If possible, choose an out of the way area of the map
--- if none is available, you'll have to write a function
--- to find a place
-local activationLocations = {
-[0] = civ.getTile(0,0,0) ,
-[1] = civ.getTile(0,0,0),
-[2] = civ.getTile(0,0,0),
-[3] = civ.getTile(0,0,0),
-[4] = civ.getTile(0,0,0),
-[5] = civ.getTile(0,0,0),
-[6] = civ.getTile(0,0,0),
-[7] = civ.getTile(0,0,0),
-}
-local function activationLocationFunction(tribe)
-    return activationLocations[tribe.id]
-end
-eventTools.setGuaranteeActivationUnitLocationFunction(activationLocationFunction)
-
--- This is the end of the eventTools code for this file
---]]
 
 
 function discreteEvents.onScenarioLoaded()
@@ -82,18 +48,26 @@ function discreteEvents.onScenarioLoaded()
 end
 
 
--- use this function to set a unit out of range message for
--- units that run out of range due to events.
--- gen.setOutOfRangeMessage(textOrFunction,title=nil) --> void
--- if textOrFunction is a string, the text is shown when a unit is 
--- lost due to being out of range, and title is the box title
--- (if this is governed by events and not standard movement)
--- %STRING1 substitutes for the unit type's name
+-- This function registers what happens when Lua code causes a
+-- unit to be destroyed because it is 'out of range/fuel'.  This could be
+-- because events expended the last movement points of an aircraft,
+-- or because land/sea units have been given a range using Lua.  
+-- (No code is run when the standard game detects an aircraft to be
+-- out of range)<br><br>
+-- If `textOrFunction` is a string, the text is shown when a unit is 
+-- lost due to being out of range, with %STRING1 substitutes for the unit type's name.  `title` provides the title for the box.
 --
--- if textOrFunction is a function(unit) --> void
--- the function is trusted to generate the loss of fuel message
--- The default message is the standard out of range message
-
+-- If `textOrFunction` is a `function(unit) -> void`, the
+-- function is exectued, and is trusted to generate the 
+-- the function is trusted to generate a suitable message.
+--gen.setOutOfRangeMessage(textOrFunction,title)
+local message = 
+[[Your aircraft has run out of fuel.
+Fighter and Missile units must return to
+a city or Carrier at the end of each
+turn.  Bomber units must return at the end
+of their second turn.]]
+gen.setOutOfRangeMessage(message,"Civ Rules: Fuel")
 
 
 local param = {}

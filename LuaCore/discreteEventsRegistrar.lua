@@ -1,4 +1,4 @@
-local versionNumber = 4
+local versionNumber = 5
 local fileModified = false -- set this to true if you change this file for your scenario
 -- if another file requires this file, it checks the version number to ensure that the
 -- version is recent enough to have all the expected functionality
@@ -98,7 +98,10 @@ eventsTable.onActivateUnitIndex = 1
 
 function discreteEvents.performOnActivateUnit(unit,source,rep)
     for i = 1,eventsTable.onActivateUnitIndex-1 do
-        eventsTable.onActivateUnit[i](unit,source,rep)
+        local isCancelled = eventsTable.onActivateUnit[i](unit,source,rep)
+        if isCancelled then
+            return isCancelled
+        end
     end
 end
 
@@ -393,7 +396,10 @@ eventsTable.onEnterTileIndex = 1
 
 function discreteEvents.performOnEnterTile(unit,previousTile,previousDomainSpec)
     for i = 1,eventsTable.onEnterTileIndex-1 do
-        eventsTable.onEnterTile[i](unit,previousTile,previousDomainSpec)
+        local isCancelled = eventsTable.onEnterTile[i](unit,previousTile,previousDomainSpec)
+        if isCancelled then
+            return isCancelled
+        end
     end
 end
 
@@ -404,7 +410,10 @@ eventsTable.onEnterTilePriorityIndex = 1
 
 function discreteEvents.performOnEnterTilePriority(unit,previousTile,previousDomainSpec)
     for i = 1,eventsTable.onEnterTilePriorityIndex-1 do
-        eventsTable.onEnterTilePriority[i](unit,previousTile,previousDomainSpec)
+        local isCancelled = eventsTable.onEnterTilePriority[i](unit,previousTile,previousDomainSpec)
+        if isCancelled then
+            return isCancelled
+        end
     end
 end
 
@@ -415,6 +424,16 @@ eventsTable.onFinalOrderGivenIndex = 1
 function discreteEvents.performOnFinalOrderGiven(unit)
     for i = 1,eventsTable.onFinalOrderGivenIndex-1 do
         eventsTable.onFinalOrderGiven[i](unit)
+    end
+end
+
+
+eventsTable.onCityWindowOpened = {}
+eventsTable.onCityWindowOpenedIndex = 1
+
+function discreteEvents.performOnCityWindowOpened(city)
+    for i = 1,eventsTable.onCityWindowOpenedIndex-1 do
+        eventsTable.onCityWindowOpened[i](city)
     end
 end
 
@@ -449,6 +468,7 @@ discreteEvents.onSave
 discreteEvents.onEnterTile
 discreteEvents.onEnterTilePriority
 discreteEvents.onFinalOrderGiven
+discreteEvents.onCityWindowOpened
 ]]
 
 local function newIndexFn(myTable,key,value)
@@ -491,6 +511,7 @@ discreteEvents.performOnSave
 discreteEvents.performOnEnterTile
 discreteEvents.performOnEnterTilePriority
 discreteEvents.performOnFinalOrderGiven
+discreteEvents.performOnCityWindowOpened
 ]]
 local function indexFn(myTable,key)
     if discreteEvents[key] then
@@ -508,7 +529,16 @@ local superTable = {version=versionNumber, eventsTable=eventsTable}
 
 ---Registers a function to be called every time a unit is activated. The callback takes the unit activated as a parameter, and the source of unit activation. `source` is `true` if activated by keyboard or mouse click, `false` if activated by the game itself. `repeatMove` is `true` if it's a repeat activation caused by moving (see civ.scen.compatibility), `false` otherwise.
 ---As a Discrete Event, this function can be called multiple times, and all code will be registered to the event.
----@param code fun(unit: unitObject, source: boolean, repeatMove: boolean)
+---If the function returns true, the unit activation will be cancelled.
+---No further activation code will be executed, and the unit's type
+---will temporarily be set to have 0 movement points.
+---If the function returns function(unit), then the unit activation
+---will be cancelled, and the function returned will be executed
+---just before another unit is activated.  (You may wish to put
+---the unit to sleep, for example.)
+--Not returning anything is equivalent to returning nil, which is
+--acceptable, and keeps the unit activation going.
+---@param code fun(unit: unitObject, source: boolean, repeatMove: boolean):nil|boolean|function(unit: unitObject)
 discreteEvents.onActivateUnit = function(code)
     newIndexFn(nil,"onActivateUnit",code)
 end
@@ -791,15 +821,16 @@ end
 
 --[[
 Registers code to be executed when a unit enters a tile.  (Implemented using several civ.scen functions.)  `unit` is the unit which entered the tile, `previousTile` is where the unit was before it moved, and `previousDomainSpec` is the value of unit.domainSpec before it moved into the square (useful for units with range).
+If true is returned, no further discrete events are executed for this event.
 ]]
 ---As a Discrete Event, this function can be called multiple times, and all code will be registered to the event.
----@param code fun(unit: unitObject, previousTile: tileObject, previousDomainSpec: integer)
+---@param code fun(unit: unitObject, previousTile: tileObject, previousDomainSpec: integer):(nil|boolean)
 function discreteEvents.onEnterTile(code)
     newIndexFn(nil,"onEnterTile",code)
 end
 
 --- Registers an onEnterTile event before all other onEnterTile events.  It is used for "transport" events, so that units can "drag" other units into the tile before the regular onEnterTile event.
----@param code fun(unit: unitObject, previousTile: tileObject, previousDomainSpec: integer)
+---@param code fun(unit: unitObject, previousTile: tileObject, previousDomainSpec: integer):(nil|boolean)
 function discreteEvents.onEnterTilePriority(code)
     newIndexFn(nil,"onEnterTilePriority", code)
 end
@@ -810,6 +841,14 @@ Registers code to be executed when a unit has been given its last order for the 
 ---@param code fun(unit: unitObject)
 function discreteEvents.onFinalOrderGiven(code)
     newIndexFn(nil,"onFinalOrderGiven",code)
+end
+
+--[[
+Registers code to be executed when a city window is opened.  `city` is the city whose window is being opened.  Note that the AI doesn't open city windows.
+]]
+---@param code fun(city: cityObject)
+function discreteEvents.onCityWindowOpened(code)
+    newIndexFn(nil,"onCityWindowOpened",code)
 end
 
 
@@ -863,6 +902,7 @@ superTable.onSave = discreteEvents.onSave
 superTable.onEnterTile = discreteEvents.onEnterTile
 superTable.onEnterTilePriority = discreteEvents.onEnterTilePriority
 superTable.onFinalOrderGiven = discreteEvents.onFinalOrderGiven
+superTable.onCityWindowOpened = discreteEvents.onCityWindowOpened
 local function nillify(table)
     table.onActivateUnit = nil
     table.onBribeUnit = nil
@@ -891,6 +931,7 @@ local function nillify(table)
     table.onSave = nil
     table.onEnterTile = nil
     table.onEnterTilePriority = nil
+    table.onCityWindowOpened = nil
 end
 nillify(superTable)
 

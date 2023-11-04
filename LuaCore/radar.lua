@@ -1,5 +1,5 @@
 --
-local versionNumber = 2
+local versionNumber = 3
 local fileModified = false -- set this to true if you change this file for your scenario
 -- if another file requires this file, it checks the version number to ensure that the
 -- version is recent enough to have all the expected functionality
@@ -99,7 +99,8 @@ local fileModified = false -- set this to true if you change this file for your 
 local gen = require("generalLibrary"):minVersion(1)
 local text = require("text")
 local discreteEvents = require("discreteEventsRegistrar"):minVersion(1)
-local flag = require("flag")
+---@module "data"
+local data = require("data"):minVersion(2)
 
 local radar = {}
 gen.versionFunctions(radar,versionNumber,fileModified,"LuaCore".."\\".."radar.lua")
@@ -599,7 +600,7 @@ function radar.calibrate(radarCalibration,scanningTribe)
     end
     if radarCalibration.flagModifier then
         for flagKey, calibModifier in pairs(radarCalibration.flagModifier) do
-            if flag.value(flagKey) then
+            if data.flagGetValue(flagKey) then
                 updateCalibration(calibrationSoFar,calibModifier)
             end
         end
@@ -649,8 +650,10 @@ function radar.makeRadarStats(radarInfo,scanTile,scanTribe)
         local scanMapStr = tostring(scanMap)
         local fromMapStr = tostring(scanTile.z)
         if radarInfo["scanMap"..scanMapStr.."From"..fromMapStr] then
+---@diagnostic disable-next-line: assign-type-mismatch
             radarStats["map"..scanMapStr] = radar.calibrate(radarInfo["scanMap"..scanMapStr.."From"..fromMapStr])
         else
+---@diagnostic disable-next-line: assign-type-mismatch
             radarStats["map"..scanMapStr] = false
         end
     end
@@ -1051,7 +1054,7 @@ function radar.stationCanScan(radarData,unitOrTile,tribe)
     if radarData.tribes and not gen.inTable(tribe,radarData.tribes) then
         return false
     end
-    if radarData.flag and not flag.value(radarData.flag) then
+    if radarData.flag and not data.flagGetValue(radarData.flag) then
         return false
     end
     if radarData.tech then
@@ -1247,6 +1250,7 @@ function radar.buildKeyPressAndGroupScanFunctions(radarTable,airCrossSectionFn,s
             if unit.owner == scanTribe and groupScanUnit[unit.type.id] then
                 for _,radarData in pairs(groupScanUnit[unit.type.id]) do
                     if radar.stationCanScan(radarData,unit,scanTribe) then
+                        local scanTile = unit.location
                         local newTiles = radar.sweep(scanTile,radar.makeRadarStats(radarData,scanTile,scanTribe),
                             scanTribe,airCrossSectionFn,surfaceCrossSectionFn)
                         trackContactTiles(contactTiles,newTiles)

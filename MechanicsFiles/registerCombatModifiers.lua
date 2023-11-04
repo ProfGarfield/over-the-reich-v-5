@@ -104,7 +104,10 @@ local gen = require("generalLibrary"):minVersion(1)
 --      combatMod.isCombatSpec(possibleCombatSpec)
 
 -- combatSpec = table{
---      Note: all keys can be nil, in which case there is no modification
+--      Note: All keys can have a nil value, in which case there is no modification
+--      All keys can also be assigned a function(attacker,defender) --> nil|number (or boolean for some modifiers)
+--         If a function is assigned, it will be called with the attacker and defender
+--          as arguments, and the return value will be used as the value for that key
 --
 --          aCustomAdd = number -- add this to attack before multipliers are applied (negative number to subtract)
 --          dCustomAdd = number-- add this to defense before multipliers are applied (negative number to subract)
@@ -272,9 +275,9 @@ traits.assign({gen.original.wCopernicusObservatory, gen.original.wIsaacNewtonsCo
 --]]
 --
 --
---[[
 --
 -- air units get an attack bonus against ancient units
+--[[
 combatMod.registerCombatModificationRule({
     attacker = {gen.original.uFighter, gen.original.uStlthBmbr, gen.original.uStlthFtr, gen.original.uBomber, gen.original.uHelicopter},
     defender = {gen.original.uWarriors, gen.original.uPhalanx, gen.original.uArchers, gen.original.uLegion},
@@ -342,6 +345,16 @@ combatMod.registerCombatModificationRule({
         dFortified = 2,
     },
 })
+
+-- siege engines defend with their attack value against other siege engines
+combatMod.registerCombatModificationRule({
+    attacker = "siege engine",
+    defender = "siege engine",
+    combatSpec = {
+        dCustomAdd = function(attacker,defender) return defender.type.attack - defender.type.defense end,
+    },
+})
+
 -- A granary increases the defensive value of city walls to 5
 combatMod.registerCombatModificationRule({
     defenderDetail = gen.original.iGranary,
