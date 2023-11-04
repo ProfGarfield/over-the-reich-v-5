@@ -31,11 +31,51 @@ local gen = require("generalLibrary"):minVersion(6)
 --      attackMoveCost = integer or nil
 --          cost (in full movement points) for the aircraft to
 --          make an attack.  nil means expend all movement
+--      attackModHigh = nil|number
+--      attackModLow = nil|number
+--      attackModNight = nil|number
+--      defenseModLow = nil|number
+--      defenseModHigh = nil|number
+--      defenseModNight = nil|number
+--      defenseModClimb = nil|number
+--      defenseModDive = nil|number
+--          These keys modify the combat statistics of attacking
+--          and defending units based on where the attack takes
+--          place and (for defending units) where the unit was originally
+--          nil means 0
+--      attackSupportHigh = nil|number>=0
+--      attackSupportLow = nil|number>=0
+--      attackSupportNight = nil|number>=0
+--      defenseSupportLow = nil|number>=0
+--      defenseSupportHigh = nil|number>=0
+--      defenseSupportNight = nil|number>=0
+--      defenseSupportClimb = nil|number>=0
+--      defenseSupportDive = nil|number>=0
+--          These keys specify the amount of "combat support"
+--          each unit gives, depending on the situation.
+--          The first combat support gives +1, the next 2 give
+--          another +1, the next 4 give the next +1, and so
+--          on, with each doubling giving the next +1
+--          The actual formula is log_2(1+totalCombatSupport)
+--      attackSupportRange = nil|number[0,maxInterceptionRange]
+--          The distance at which the unit can offer attack
+--          support to combat, measured from the unit to the
+--          defender's tile.  (So 0 range means no support, even
+--          if the unit is on the attacker's tile)
+--          nil means 0
+--      defenseSupportRange = nil|number[0,maxInterceptionRange]
+--          The distance at which the unit can offer defense
+--          support to combat, measured from the unit to the
+--          defender's tile.
+--      
+
+
 
 
 --      
 local maxInterceptionRange = 10 -- no unit can have a larger interception range.
 local numberSpec = {["number"] = true}
+local posNumSpec = {["number"] = {minVal=0}}
 local specificKeyTable = {
 	pursuitSpeed = {["number"] = true, ["nil"]=true},
 	escapeSpeed = {["number"] = true, ["nil"]=true},
@@ -47,12 +87,48 @@ local specificKeyTable = {
     escapeSpeedNight = numberSpec,
     interceptionRange = {["number"]={minVal=0, maxVal = maxInterceptionRange, integer=true}},
     attackMoveCost = {["number"]={minVal=0,maxVal=255,integer=true}},
+    attackModHigh = numberSpec,
+    attackModLow = numberSpec,
+    attackModNight = numberSpec,
+    defenseModLow = numberSpec,
+    defenseModHigh = numberSpec,
+    defenseModNight = numberSpec,
+    defenseModClimb = numberSpec,
+    defenseModDive = numberSpec,
+    attackSupportHigh = posNumSpec,
+    attackSupportLow = posNumSpec,
+    attackSupportNight = posNumSpec,
+    defenseSupportLow = posNumSpec,
+    defenseSupportHigh = posNumSpec,
+    defenseSupportNight = posNumSpec,
+    defenseSupportClimb = posNumSpec,
+    defenseSupportDive = posNumSpec,
+    attackSupportRange = {["number"]={minVal=0, maxVal = maxInterceptionRange, integer=true}},
+    defenseSupportRange= {["number"]={minVal=0, maxVal = maxInterceptionRange, integer=true}},
 }
 local generalKeyTable = {}
 
 local defaultValueTable = {
     interceptionRange=0,
     attackMoveCost = 255,
+    attackModHigh = 0,
+    attackModLow = 0,
+    attackModNight = 0,
+    defenseModLow = 0,
+    defenseModHigh = 0,
+    defenseModNight = 0,
+    defenseModClimb = 0,
+    defenseModDive = 0,
+    attackSupportHigh = 0,
+    attackSupportLow = 0,
+    attackSupportNight = 0,
+    defenseSupportLow = 0,
+    defenseSupportHigh = 0,
+    defenseSupportNight = 0,
+    defenseSupportClimb = 0,
+    defenseSupportDive = 0,
+    attackSupportRange = 0,
+    defenseSupportRange= 0,
 
 }
 
@@ -99,9 +175,15 @@ combatParameters.maxInterceptionRange = maxInterceptionRange
 --  Defined above in local form, here to supply to other modules
 --  No fighter can intercept from further away
 
-combatParameters.minAirCombatRounds = 3
+combatParameters.minAirCombatRounds = 1
 --  All air combat lasts at least this many rounds, even if one
 --  plane wants to escape
+
+combatParameters.minAirCombatRoundIncrement = 2
+--  Increase the minimum number of air combat rounds by this
+--  number for each unit on the defender's tile (including
+--  a defender that may have intercepted from another tile)
+--  (This won't increase combat beyond maxAirCombatRounds)
 
 combatParameters.maxAirCombatRounds = 10
 --  Air combat doesn't last more than this many rounds
@@ -133,6 +215,12 @@ combatParameters[object.uMe109G6.id] = {
     --escapeSpeedNight = numberSpec,
     interceptionRange = 2,
     attackMoveCost = 10,
+    defenseModHigh = 1,
+    defenseSupportHigh = 2,
+    defenseSupportClimb = 1,
+    defenseSupportDive = 3,
+    defenseSupportRange =1,
+    defenseSupportNight = 16,
 }
 
 combatParameters[object.uMe109G14.id] = {
@@ -653,6 +741,11 @@ combatParameters[object.uSpitfireIX.id] = {
     --escapeSpeedNight = numberSpec,
     interceptionRange = 2,
     attackMoveCost = 10,
+    attackSupportRange = 2,
+    attackSupportHigh = 3,
+    attackSupportLow = 1,
+    attackSupportNight = 7,
+
 }
 
 combatParameters[object.uSpitfireXII.id] = {
