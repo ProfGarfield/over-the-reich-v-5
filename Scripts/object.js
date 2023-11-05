@@ -175,7 +175,7 @@ const unitList = [
 	{name:"Polsten 20mm", id:167,code:"object.uPolsten20mm"},
 	{name:"Bofors 40mm (UK)", id:168,code:"object.uBofors40mmUK"},
 	{name:"Bofors 40mm (US)", id:169,code:"object.uBofors40mmUS"},
-	{name:"3.7" Flak", id:170,code:"object.u37Flak"},
+	{name:"3.7\" Flak", id:170,code:"object.u37Flak"},
 	{name:"Light Payload", id:171,code:"object.uLightPayload"},
 	{name:"Medium Payload", id:172,code:"object.uMediumPayload"},
 	{name:"Heavy Payload", id:173,code:"object.uHeavyPayload"},
