@@ -1,6 +1,14 @@
-for city in civ.iterateCities() do if (city.owner == civ.getTribe(1) and civ.hasImprovement(city, (civ.getImprovement(17)))) then civ.createUnit(civ.getUnitType(167), civ.getTribe(1), (civ.getTile(city.tile.x,city.tile.y,city.tile.z))) end 
+for city in civ.iterateCities() do if civ.hasImprovement(city, (civ.getImprovement(17))) then city.size = 2 end end 
 
 
 for city in civ.iterateCities() do if civ.hasImprovement(city, (civ.getImprovement(8))) then civ.addImprovement(city, (civ.getImprovement(9))) end end
 
 for city in civ.iterateCities() do if (city.owner == civ.getTribe(2) and civ.hasImprovement(city, (civ.getImprovement(17)))) then civ.createUnit(civ.getUnitType(162), civ.getTribe(2), (civ.getTile(city.location.x,city.location.y,city.location.z))).homeCity = nil end end
+
+
+
+for unit in civ.iterateUnits() do if (unit.owner == civ.getTribe(1) and unit.type == civ.getUnitType(0)) then civ.deleteUnit(unit) end end
+
+
+
+city.size
