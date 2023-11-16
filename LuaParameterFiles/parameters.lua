@@ -72,6 +72,10 @@ gen.setOutOfRangeMessage(message,"Civ Rules: Fuel")
 
 local param = {}
 
+-- If a target type is not placed within a city's radius, it
+-- will be placed within this distance of the city
+param.maxTargetDistanceFromCity = 6
+
 gen.versionFunctions(param,versionNumber,fileModified,"LuaParameterFiles".."\\".."parameters.lua")
 
 

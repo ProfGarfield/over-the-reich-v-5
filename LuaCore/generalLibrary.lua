@@ -1,4 +1,4 @@
-local versionNumber = 11
+local versionNumber = 12
 local fileModified = false -- set this to true if you change this file for your scenario
 -- if another file requires this file, it checks the version number to ensure that the
 -- version is recent enough to have all the expected functionality
@@ -9202,6 +9202,50 @@ function gen.transferTileContents(tile,newOwner)
         changeUnitValidationInfo(unit)
     end
     tile.owner = newOwner
+end
+
+local registeredCityProductionFunction = function(city,item)
+    error("The function that is called during the onCityProduction event has not been registered with generalLibrary.lua.  You must register it in order to call gen.cityProduction.  Use the function gen.registerCityProductionFunction(cityProdFn).  This is done for you in the Lua Scenario Template.")
+end
+
+---Registers the function that is called when a city produces something
+---@param cityProductionFunction fun(city:cityObject,prod:improvementObject|unitObject|wonderObject)
+function gen.registerCityProductionFunction(cityProductionFunction)
+    registeredCityProductionFunction = cityProductionFunction
+end
+
+--[[
+Makes the `city` immediately produce the `item`.
+That is, the city is given the supplied city improvement or wonder,
+or a unit with the type specified.  The function registered to civ.scen.onCityProduction is also called.   
+
+No check is made if the production order is legal.  An item without
+appropriate pre-requisites can be created, or a wonder can be moved.
+]]
+---@param city cityObject
+---@param item unitTypeObject|improvementObject|wonderObject
+function gen.cityProduction(city,item)
+    ---@type improvementObject|unitObject|wonderObject
+---@diagnostic disable-next-line: assign-type-mismatch
+    local prod = item
+    if civ.isUnitType(item) then
+        prod = civ.createUnit(item--[[@as unitTypeObject]],city.owner,city.location)
+        if item.domain == gen.c.domainLand and city:hasImprovement(gen.original.iBarracks) then
+            prod.veteran = true
+        elseif item.domain == gen.c.domainSea and city:hasImprovement(gen.original.iPortFacility) then
+            prod.veteran = true
+        elseif item.domain == gen.c.domainAir and city:hasImprovement(gen.original.iAirport) then
+            prod.veteran = true
+        end
+    end
+    if civ.isImprovement(prod) then
+---@diagnostic disable-next-line: param-type-mismatch
+        city:addImprovement(prod)
+    end
+    if civ.isWonder(item) then
+        prod.city = city
+    end
+    registeredCityProductionFunction(city,prod)
 end
 
 

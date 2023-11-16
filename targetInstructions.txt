@@ -1,0 +1,34 @@
+From my perspective the most helpful thing would be to have first would be the strat bombing code implemented as that will enable me to finalize the rest of the map by putting the urban terrain squares down. To simply things, all base terrain types are reused for all four maps. As with the old version, building an improvement should place a unit in a certain tile and change the terrain of at least that tile (factory) and perhaps other tiles (urban).
+
+Improvements object.iHousingDistrictI , object.iHousingDistrictII , and object.iHousingDistrictIII are connected to the unit object.uUrbanArea and the base terrain type object.bUrban (for when built) and object.bUrbanRubble (for when destroyed).
+
+Improvements object.uEngineFactory , object.uAircraftFactory , and object.uAvionicsFactory are connected to the units object.iEngineFactory , object.iAircraftFactory , and object.iAvionicsFactory and the base terrain type object.bIndustry (for when built) and object.bRubble (for when destroyed).
+
+Improvements object.iElectricPowerPlantI, object.iElectricPowerPlantII , and object.iElectricPowerPlantIII are connected to the unit object.uElectricPowerPlant and the base terrain type object.bRefinery (for when built) and object.bRubble (for when destroyed). NOTE: I did forget to change the name of this terrain since I forgot it's connected to the electric grid and not refineries but it'll still work fine and we can just swap them out later.
+
+
+Improvement object.iHeavyFlakBattery is connected to the unit object.u128cmFlak40 but does NOT have a base terrain change. This one is tricky though because eventually if the improvement is disbanded (due to cost) the unit needs to be deleted as well, but I suppose we could use an AfterProduction check for that and it's not part of this actual strategic bombing module.
+
+Improvement object.iUBoatPens is connected to the unit object.uUBoatPens but does NOT have a base terrain change.
+
+Improvement object.iPortFacility is connected to the unit object.uPortFacility but does NOT have a base terrain change.
+
+Improvement object.iVWeaponSite is connected to the unit object.uVWeaponsSite but does NOT have a base terrain change.
+
+Improvement object.iFuelStorageSilos is connected to the unit object.uFuelStorageSilos but does NOT have a base terrain change.
+
+Improvement object.iOilRefinery, object.iSyntheticFuelRefinery are connected to the units object.uOilRefinery and object.uSyntheticFuelRef but do NOT have a base terrain change.
+
+Improvement object.iRailyards is connected to the unit object.uRailyards but I just need the RAILROAD removed from whatever terrain it happens to be on it when destroyed, and the RR restored when it is rebuilt.
+
+Pretty sure that is about it for now.
+
+The only targets that need to be in a city window are the urban ones (3x using the same unit) and the production ones (3x different units - avionics/engine/aircraft). I was kind of planning on having to go through the 145 cities and just provide coordinates for all of these manually to get the right look, so I don't really need "automatic decisions" for these--while it's going to take forever, I tend to think it's necessary to do it that way. Likewise the military port and U-Boat Pens will have a very specific place.
+
+The electric power plants (one unit, three improvements) and fuel silos, oil refineries and synthetic fuel refiners (3 units with 3 improvements) however can be placed anywhere on the map, really. Here are some weighting ideas to make it look good (and serve a transport function with the silo) though:
+
+Electric power plants don't need to be placed next to a road/railroad tile improvement, but they should only be placed on "grassland" or "highlands" terrain. These should all be outside city radius of cities that have the "City" (8) improvement (City walls), but I don't care if they're built near airfield cities.
+
+The "object.iVWeaponSite / object.uVWeaponsSite" can follow the same procedure.
+
+I do think every fuel type (silos, oil refineries and synthetic fuel refineries) should have to be built adjacent (side to side) to a tile that has a railroad tile improvement, and it would be helpful if when it is built, it also creates a railroad tile improvement on the tile it is placed on. This way, when we input the transportation network, fuel trains can leave the refineries and be directed towards the silos to deposit their cargo. These should not be in a city's limits but airfields are OK.

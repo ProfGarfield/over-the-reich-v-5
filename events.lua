@@ -1,6 +1,6 @@
 -- Note: this isn't actually the versionNumber version of this file.  It is just the versionNumber version that
 -- I assigned a version number to.
-local versionNumber = 9
+local versionNumber = 10
 local fileModified = false -- set this to true if you change this file for your scenario
 -- if another file requires this file, it checks the version number to ensure that the
 -- version is recent enough to have all the expected functionality
@@ -256,7 +256,7 @@ end
 
 
 ---@module "generalLibrary"
-local gen = require("generalLibrary"):minVersion(1)
+local gen = require("generalLibrary"):minVersion(12)
 gen.registerEventsLuaVersion(versionNumber,fileModified,regressionNumber)
 
 -- noGlobal prevents new global variables from being created
@@ -628,7 +628,7 @@ end)
 
 registeredInThisFile["onKeyPress"] = true
 
-civ.scen.onCityProduction(function(city,prod)
+local cityProductionFunction = function(city,prod)
     prod = promotionSettings.overrideProdVetStatus(city,prod)
     if civ.isUnit(prod) then
         -- since this is a newly produced unit, it should have no data
@@ -637,7 +637,9 @@ civ.scen.onCityProduction(function(city,prod)
     discreteEvents.performOnCityProduction(city,prod)
     consolidated.onCityProduction(city,prod)
     eventsFiles.onCityProduction(city,prod)
-end)
+end
+gen.registerCityProductionFunction(cityProductionFunction)
+civ.scen.onCityProduction(cityProductionFunction)
 registeredInThisFile["onCityProduction"] = true
 
 
