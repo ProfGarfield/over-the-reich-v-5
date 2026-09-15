@@ -770,7 +770,7 @@ object.lWinterthur              =civ.getTile(237,183,0)
 -- If you are not sure, it is recommended to reference cities from their locations instead
 --
 
-if false then
+if true then
 
 --Cities starting the scenario owned by the Barbarians:
 
