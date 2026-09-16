@@ -107,13 +107,23 @@ end
     
 --Attempt at coming up with air zones that will have a silo attributed to it.
 helper.airZones = {
-    Britain    = {x0=0,   x1=111, y0=0,  y1=97,  silo=false},
-    France     = {x0=0,   x1=111, y0=98, y1=194, silo=true},
+    Britain    = {x0=0,   x1=111, y0=0,  y1=108,  silo=false},
+    France     = {x0=0,   x1=111, y0=109, y1=194, silo=true},
     NWGermany  = {x0=112, x1=222, y0=0,  y1=97,  silo=true},
     SWGermany  = {x0=112, x1=222, y0=98, y1=194, silo=true},
     NEGermany  = {x0=223, x1=334, y0=0,  y1=97,  silo=true},
     SEGermany  = {x0=223, x1=334, y0=98, y1=194, silo=true},
 }
+
+function helper.airZoneFor(x, y)
+    for name, z in pairs(helper.airZones) do
+        if x >= z.x0 and x <= z.x1 and y >= z.y0 and y <= z.y1 then
+            return name, z
+        end
+    end
+    return nil
+end
+
 
 function helper.airZoneForTile(tile)
     local x, y = tile.x, tile.y
@@ -124,5 +134,58 @@ function helper.airZoneForTile(tile)
     end
     return nil
 end
+
+function helper.radarHpByZone()
+    local out = {}
+    for name, z in pairs(helper.airZones) do
+        out[name] = {
+            freya = 0, freyaMax = 0,
+            wurz = 0, wurzMax = 0,
+            ch = 0, chMax = 0,
+            n = 0,
+        }
+    end
+    for u in civ.iterateUnits() do
+        if u.location.z == 0 then
+            local name = helper.airZoneFor(u.location.x, u.location.y)
+            if name then
+                local row = out[name]
+                local hp = u.type.hitpoints - u.damage
+                local mx = u.type.hitpoints
+                local id = u.type.id
+                row.n = row.n + 1
+                if id == 2 then
+                    row.freya = row.freya + hp
+                    row.freyaMax = row.freyaMax + mx
+                elseif id == 3 then
+                    row.wurz = row.wurz + hp
+                    row.wurzMax = row.wurzMax + mx
+                elseif id == 0 then
+                    row.ch = row.ch + hp
+                    row.chMax = row.chMax + mx
+                end
+            end
+        end
+    end
+    return out
+end
+
+function _G.console.dumpRadarBoxes()
+    local t = civ.getCurrentTile()
+    local name = helper.airZoneFor(t.x, t.y)
+    print(string.format("cursor %d,%d zone=%s", t.x, t.y, name or "NONE"))
+    local data = helper.radarHpByZone()
+    local order = {"Britain", "France", "NWGermany", "SWGermany", "NEGermany", "SEGermany"}
+    for _, key in ipairs(order) do
+        local row = data[key]
+        if row then
+            print(string.format(
+                "%s  Freya %d/%d  Wurz %d/%d  CH %d/%d  allUnits=%d",
+                key, row.freya, row.freyaMax, row.wurz, row.wurzMax,
+                row.ch, row.chMax, row.n))
+        end
+    end
+end
+
 
 return helper
