@@ -158,7 +158,7 @@ end
 
 local function isTileReservedForTarget(tile,item,city)
     if tileData.counterGetValue(tile,"targetImprovementID") == getExtendedImprovementID(item) and
-        tileData.counter(tile,"targetCityID") == city.id then
+        tileData.counterGetValue(tile,"targetCityID") == city.id then
         return true
     end
     return false
@@ -501,6 +501,114 @@ local function waterOnly(tile,city)
     return false
 end
 
+local housingSpec = {
+    constructionBaseTerrainDayLow = object.bUrbanDayLow,
+    constructionBaseTerrainDayHigh = object.bUrbanDayHigh,
+    constructionBaseTerrainNightLow = object.bUrbanNightLow,
+    constructionBaseTerrainNightHigh = object.bUrbanNightHigh,
+    destructionBaseTerrainDayLow = object.bUrbanRubbleDayLow,
+    destructionBaseTerrainDayHigh = object.bUrbanRubbleDayHigh,
+    destructionBaseTerrainNightLow = object.bUrbanRubbleNightLow,
+    destructionBaseTerrainNightHigh = object.bUrbanRubbleNightHigh,
+    targetUnitType = urbanTargetUnitType, -- or object.uUrbanArea if you flattened that
+    captureWithCity = true,
+    targetMap = 3,          -- night high, matches current urban units
+    extraTiles = 2,         -- I=1 tile, but spec uses extraTiles 2 and city counters pick I/II/III
+    inCityRadius = true,
+    weight = standardWeightFn,
+}
+
+targetSpecs[object.iHousingDistrictI.id] = housingSpec
+targetSpecs[object.iHousingDistrictII.id] = housingSpec
+targetSpecs[object.iHousingDistrictIII.id] = housingSpec
+
+local factorySpec = {
+    constructionBaseTerrainDayLow = object.bIndustryDayLow,
+    constructionBaseTerrainDayHigh = object.bIndustryDayHigh,
+    constructionBaseTerrainNightLow = object.bIndustryNightLow,
+    constructionBaseTerrainNightHigh = object.bIndustryNightHigh,
+    destructionBaseTerrainDayLow = object.bRubbleDayLow,
+    destructionBaseTerrainDayHigh = object.bRubbleDayHigh,
+    destructionBaseTerrainNightLow = object.bRubbleNightLow,
+    destructionBaseTerrainNightHigh = object.bRubbleNightHigh,
+    targetUnitType = nil,
+    captureWithCity = true,
+    targetMap = 1,
+    extraTiles = 0,
+    inCityRadius = true,
+    weight = standardWeightFn,
+}
+
+local engineFactorySpec = gen.copyTable(factorySpec)
+engineFactorySpec.targetUnitType = object.uEngineFactory
+targetSpecs[object.iEngineFactory.id] = engineFactorySpec
+
+local aircraftFactorySpec = gen.copyTable(factorySpec)
+aircraftFactorySpec.targetUnitType = object.uAircraftFactory
+targetSpecs[object.iAircraftFactory.id] = aircraftFactorySpec
+
+local avionicsFactorySpec = gen.copyTable(factorySpec)
+avionicsFactorySpec.targetUnitType = object.uAvionicsFactory
+targetSpecs[object.iAvionicsFactory.id] = avionicsFactorySpec
+
+local powerPlantSpec = {
+    constructionBaseTerrainDayLow = object.bPowerPlantDayLow,
+    constructionBaseTerrainDayHigh = object.bPowerPlantDayHigh,
+    constructionBaseTerrainNightLow = object.bPowerPlantNightLow,
+    constructionBaseTerrainNightHigh = object.bPowerPlantNightHigh,
+    destructionBaseTerrainDayLow = object.bRubbleDayLow,
+    destructionBaseTerrainDayHigh = object.bRubbleDayHigh,
+    destructionBaseTerrainNightLow = object.bRubbleNightLow,
+    destructionBaseTerrainNightHigh = object.bRubbleNightHigh,
+    targetUnitType = object.uElectricPowerPlant,
+    captureWithCity = true,
+    targetMap = 3,
+    extraTiles = 0,
+    inCityRadius = false,
+    weight = standardWeightFn,
+}
+
+targetSpecs[object.iElectricPowerPlantI.id] = powerPlantSpec
+targetSpecs[object.iElectricPowerPlantII.id] = powerPlantSpec
+targetSpecs[object.iElectricPowerPlantIII.id] = powerPlantSpec
+
+local heavyFlakSpec = {
+    constructionBaseTerrainDayLow = nil,
+    constructionBaseTerrainDayHigh = nil,
+    constructionBaseTerrainNightLow = nil,
+    constructionBaseTerrainNightHigh = nil,
+    destructionBaseTerrainDayLow = nil,
+    destructionBaseTerrainDayHigh = nil,
+    destructionBaseTerrainNightLow = nil,
+    destructionBaseTerrainNightHigh = nil,
+    targetUnitType = function(tile,city)
+        if city.owner == object.pGermans then
+            return object.u128cmFlak40
+        elseif city.owner == object.pAllies then
+            return object.u37Flak
+        else
+            error("Someone other than the Allies or Germany is building a heavy flak battery")
+        end
+    end,
+    targetMap = 0,
+    extraTiles = 0,
+    inCityRadius = true,
+    weight = standardWeightFn,
+}
+targetSpecs[object.iHeavyFlakBattery.id] = heavyFlakSpec
+
+
+
+targetSpecs[object.iRailyards.id] = {
+    targetMap = 0,
+    extraTiles = 0,
+    inCityRadius = true,
+    weight = standardWeightFn,
+    targetUnitType = object.uRailyards,
+    createRR = true,
+    destroyRR = true,
+}
+
 targetSpecs[object.iUBoatPens.id] = {
     targetMap = 1,
     extraTiles = 0,
@@ -515,6 +623,14 @@ targetSpecs[object.iPortFacility.id] = {
     inCityRadius=true,
     weight = waterOnly,
     targetUnitType = object.uPortFacility,
+}
+
+targetSpecs[object.iConvoyRoutes.id] = {
+    targetMap = 0,
+    extraTiles = 0,
+    inCityRadius = false,
+    weight = waterOnly,
+    targetUnitType = object.uConvoyRoute,
 }
 
 targetSpecs[object.iVWeaponSite.id] = {
@@ -610,6 +726,9 @@ local function tileEffectsFunction(city,item)
     local listOfAffectedTiles = {}
     local extendedID = getExtendedImprovementID(item)
     local targetSpec = targetSpecs[extendedID]
+    if not targetSpec then
+        return false
+    end
     local number = 1 + (targetSpec.extraTiles or 0)
     local map0Tiles = chooseTilesForTarget(city,item,number,targetSpec.weight)
     if #map0Tiles < number then
@@ -696,10 +815,10 @@ function discreteEvents.onCityProduction(city,item)
             reserveTileForNewTarget(target,city,item)
             if targetSpec.createRR then
                 local x,y = target.targetLocation.x,target.targetLocation.y
-                for i=0,3 do
-                    gen.placeRailroad(civ.getTile(x,y,i)--[[@as tileObject]])
+                gen.placeRailroad(civ.getTile(x,y,0))
+                gen.placeRailroad(civ.getTile(x,y,2))
 
-                end
+                
             end
         end
     end
@@ -722,9 +841,8 @@ strat.registerTargetLostFn(function(target)
     if targetSpecs[extendedID].destroyRR then
         if tile then
             local x,y = tile.x,tile.y
-            for i=0,3 do
-                gen.removeTransportation(civ.getTile(x,y,i)--[[@as tileObject]])
-            end
+            gen.removeTransportation(civ.getTile(x,y,0))
+            gen.removeTransportation(civ.getTile(x,y,2))
         end
     end
     constructedTargetLostFunction(target)
@@ -784,6 +902,12 @@ unitToImprovement[object.uPortFacility.id] = object.iPortFacility
 unitToImprovement[object.uEngineFactory.id] = object.iEngineFactory
 unitToImprovement[object.uAircraftFactory.id] = object.iAircraftFactory
 unitToImprovement[object.uAvionicsFactory.id] = object.iAvionicsFactory
+unitToImprovement[object.u128cmFlak40.id] = object.iHeavyFlakBattery
+unitToImprovement[object.u37Flak.id]      = object.iHeavyFlakBattery
+unitToImprovement[object.uRailyards.id] = object.iRailyards
+unitToImprovement[object.uConvoyRoute.id] = object.iConvoyRoutes
+unitToImprovement[object.uElectricPowerPlant.id] = object.iElectricPowerPlantI
+unitToImprovement[object.uArmamentsFactory.id]   = object.iArmamentsFactory
 
 
 local function interpretUnit(unit)
@@ -877,7 +1001,7 @@ local function processUnit(unit)
 ---@diagnostic disable-next-line: deprecated
             civ.deleteUnit(u)
         end
-        gen.cityProduction(unit.homeCity,improvement)
+        --gen.cityProduction(unit.homeCity,improvement)
         return
     end
     local improvement = interpretUnit(unit)
@@ -890,12 +1014,12 @@ local function processUnit(unit)
     end
     local tile = unit.location
     reserveTileForTarget(tile,improvement,city)
-    if unit.damage > 0 or unit.veteran then
+    --if unit.damage > 0 or unit.veteran then
 ---@diagnostic disable-next-line: deprecated
-        civ.deleteUnit(unit)
-        return
-    end
-    gen.cityProduction(city,improvement)
+     --   civ.deleteUnit(unit)
+       -- return
+    --end
+   -- gen.cityProduction(city,improvement)
 ---@diagnostic disable-next-line: deprecated
     civ.deleteUnit(unit)
 end
@@ -974,6 +1098,67 @@ function _G.console.initialTargetScript()
     end
 end
 
+
+
+function _G.console.dumpTargetBind()
+  local gen = require("generalLibrary")
+  local cityData = require("cityData")
+  print("targetBind = {")
+  for city in civ.iterateCities() do
+    if city.id <= 4 then
+      for impId = 0, 67 do
+        for extra = 0, 2 do
+          local key
+          if extra == 0 then
+            key = "reservedTileIDFor"..impId
+          else
+            key = "reservedTileIDFor"..impId.."+"..extra
+          end
+          local ok, val = pcall(function()
+            if cityData.counterIsNil(city, key) then
+              return nil
+            end
+            return cityData.counterGetValue(city, key)
+          end)
+          if ok and val and val >= 0 then
+            local tile = gen.getTileFromID(val)
+            if tile then
+              print(string.format(
+                "  {cityId=%d, city=%q, impId=%d, extra=%q, x=%d, y=%d, z=%d},",
+                city.id, city.name, impId, key, tile.x, tile.y, tile.z))
+            end
+          end
+        end
+      end
+    end
+  end
+  print("}")
+end
+
+local function applyTargetBind()
+    local ok, bind = pcall(function()
+        return require("targetBind")
+    end)
+    if not ok or type(bind) ~= "table" then
+        return
+    end
+    for _, row in ipairs(bind) do
+        local city = civ.getCity(row.cityId)
+        local item = civ.getImprovement(row.impId)
+        local tile = civ.getTile(row.x, row.y, 0)
+        if city and item and tile then
+            reserveTileForTarget(tile, item, city)
+        end
+    end
+end
+
+discreteEvents.onScenarioLoaded(function()
+    applyTargetBind()
+end)
+
+function _G.console.applyTargetBind()
+    applyTargetBind()
+end
 
 return targetSettings
 

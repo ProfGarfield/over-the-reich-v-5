@@ -330,13 +330,138 @@ local addBuildConditions = canBuildFunctions.makeAddBuildConditions(unitTypeBuil
 --      for each item in the table, register the buildability parameters as above
 
 
+local addBuildConditions = canBuildFunctions.makeAddBuildConditions(unitTypeBuild,improvementBuild,wonderBuild)
+
+addBuildConditions(object.iFuelStorageSilos, {
+    forbiddenTribes = {object.pAllies, object.pBarbarians, object.pEvents},
+    location = {
+        object.cTours,
+        object.cMunster,
+        object.cKoblenz,
+        object.cHamburg,
+        object.cMunchen,
+    },
+})
+
+addBuildConditions(object.iVWeaponSite, {
+    forbiddenTribes = {object.pAllies, object.pBarbarians, object.pEvents},
+    location = {
+        object.cPeenemunde,
+        object.cStraslund,
+        object.cCalais,
+        object.cDunkirk,
+        object.cCherbourg,
+        object.cAmiens,
+        object.cLeHavre,
+        object.cParis,
+        object.cTheHague,
+        object.cAntwerp,
+        object.cStettin,
+        object.cTrier,
+    },
+})
+
+addBuildConditions(object.iUBoatPens, {
+    forbiddenTribes = {object.pAllies, object.pBarbarians, object.pEvents},
+    location = {
+        object.cBrest,
+        object.cNantes,
+		object.cCuxhaven,
+		object.cLubeck,
+		object.cRostock,
+        object.cKiel,
+        object.cWilhelmshaven,
+        object.cHamburg,
+        object.cBremerhaven,
+		object.cStraslund,
+		object.cPeenemunde,
+    },
+})
+
+addBuildConditions(object.iPortFacility, {
+    forbiddenTribes = {object.pBarbarians, object.pEvents},
+    location = {
+        -- Allies
+        object.cLondon,
+        object.cPortsmouth,
+        object.cSouthampton,
+        object.cPlymouth,
+        object.cBristol,
+        object.cLiverpool,
+        object.cHull,
+		object.cTruro,
+		object.cExeter,
+		object.cBarnstaple,
+		object.cCardiff,
+		object.cGloucester,
+		object.cSwansea,
+		object.cLancaster,
+		object.cBournemouth,
+		object.cBrighton,
+		object.cSouthendonSea,
+        -- Occupied / German
+        object.cBrest,
+        object.cNantes,
+        object.cCherbourg,
+        object.cLeHavre,
+        object.cCalais,
+        object.cDunkirk,
+        object.cRotterdam,
+        object.cAmsterdam,
+        object.cAntwerp,
+        object.cKiel,
+        object.cWilhelmshaven,
+        object.cHamburg,
+        object.cBremen,
+        object.cBremerhaven,
+        object.cLubeck,
+        object.cRostock,
+        object.cStettin,
+		object.cCuxhaven,
+		object.cStraslund,
+    },
+})
+
+addBuildConditions(object.iConvoyRoutes, {
+    forbiddenTribes = {object.pBarbarians, object.pEvents},
+    allImprovements = object.iCity,
+    ignoreSupplementalConditions = true,
+    location = {
+        object.cKiel,
+        object.cRostock,
+        object.cStettin,
+        object.cWilhelmshaven,
+        object.cLancaster,
+        object.cLiverpool,
+        object.cPlymouth,
+        object.cGloucester,
+        object.cHull,
+    },
+})
 
 
-
-
-
-
-
+addBuildConditions({
+    object.iHousingDistrictI,
+    object.iHousingDistrictII,
+    object.iHousingDistrictIII,
+    object.iAircraftFactory,
+    object.iEngineFactory,
+    object.iAvionicsFactory,
+    object.iElectricPowerPlantI,
+    object.iElectricPowerPlantII,
+    object.iElectricPowerPlantIII,
+    object.iArmamentsFactory,
+    object.iOilRefinery,
+    object.iSyntheticFuelRefinery,
+    object.iFuelStorageSilos,
+    object.iVWeaponSite,
+    object.iHeavyFlakBattery,
+    object.iUBoatPens,
+    object.iPortFacility,
+    object.iRailyards,
+}, {
+    allImprovements = object.iCity,
+})
 
 
 
@@ -410,6 +535,11 @@ end
 -- uncommenting the line below
 --canBuildFunctions.disableSupplementalConditions()
 canBuildFunctions.supplyInitializationFunction(initialization)
+
+
+
+
+
 
 local canBuildSettings = {}
 local gen = require("generalLibrary"):minVersion(1)

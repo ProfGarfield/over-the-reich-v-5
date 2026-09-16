@@ -392,7 +392,7 @@ Tech With ID 252,   3, 0,  no,  no,  0, 0    ; XFC 252
 @IMPROVE
 Nothing,                  1,  0,    nil,
 Headquarters,             1,  0,    no, ; 1 Palace
-Railyards,                60, 1,    no,  00000011; 2 Barracks
+Railyards,                60, 1,    nil,  00000011; 2 Barracks
 Oil Refinery,             60, 2,    X84, 00000101; 3 Granary
 Housing District I,       60, 1,    nil, 00000101; 4 Temple
 Electric Power Plant I,   60, 2,    nil, 00000101; 5 Marketplace
