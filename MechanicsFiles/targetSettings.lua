@@ -22,74 +22,34 @@ local helper = require("helper")
 local param = require("parameters")
 local keyboard = require("keyboard")
 
-
 -- This function should return true if the
 -- item is a strategicItem (has a target associated with
 -- it), and false otherwise
-
 local function isStrategicItem(item)
     return traits.hasTrait(item,"strategicImprovement")
 end
-
 
 -- targetSpecs[improvement.id]
 -- targetSpecs[wonder.id+ 40] {
 --[[
     * constructionBaseTerrainDayLow = baseTerrainObject or nil
-        - change the base terrain on the Low Day Map to this upon construction
-        - nil means no change to terrain
     * constructionBaseTerrainDayHigh = baseTerrainObject or nil
-        - change the base terrain on the High Day Map to this upon construction
-        - nil means no change to terrain
     * constructionBaseTerrainNightLow = baseTerrainObject or nil
-        - change the base terrain on the Low Night Map to this upon construction
-        - nil means no change to terrain
     * constructionBaseTerrainNightHigh = baseTerrainObject or nil
-        - change the base terrain on the High Night Map to this upon construction
-        - nil means no change to terrain
     * destructionBaseTerrainDayLow = baseTerrainObject or nil
-        - change the base terrain on the Low Day Map to this upon destruction
-        - nil means no change to terrain
     * destructionBaseTerrainDayHigh = baseTerrainObject or nil
-        - change the base terrain on the High Day Map to this upon destruction
-        - nil means no change to terrain
     * destructionBaseTerrainNightLow = baseTerrainObject or nil
-        - change the base terrain on the Low Night Map to this upon destruction
-        - nil means no change to terrain
     * destructionBaseTerrainNightHigh = baseTerrainObject or nil
-        - change the base terrain on the High Night Map to this upon destruction
-        - nil means no change to terrain
     * targetUnitType = unitTypeObject or true or function(tile,city):unitTypeObject|true
-        - if unitTypeObject, create a target with that unit type
-          on this tile.
-        - true means create a 'target' without a unit, for example
-          if you want to tie a terrain change to whether or not
-          the item is still in the city
-        - function(tile,city):unitTypeObject|true
-          if a function, returns the unitTypeObject or true
-          for the target on this tile
     * captureWithCity = bool or nil
-        - if true, the target on this tile is captured with the city
-          provided the item is still intact.  False or nil means it
-          is destroyed instead.
     * targetMap = 0|1|2|3
-        - the map on which the target is placed
     * extraTiles = integer|nil
-        - this many extra tiles will have their terrain changed with the target
     * inCityRadius = boolean|nil
-        - If true, the target is placed in the city radius,
-        - If false or nil, the target is placed outside the city radius
     * weight = function(tile,city):number|table
-        - Used to calculate the "weight" of a tile (higher is better) when choosing
-          a tile for the target.  The weight is used to choose the tile for the target
-        - if a function, returns the weight of the tile for the target
-        - if a table, the table is passed to gen.calculateWeight
-        - if nil, the weight is 0
     * createRR = boolean|nil
-        - if true, a railroad is created on the tile when the target is built
     * destroyRR = boolean|nil
-        - if true, a railroad is destroyed on the tile when the target is destroyed
 ]]
+
 ---@class targetSpec
 ---@field constructionBaseTerrainDayLow baseTerrainObject|nil
 ---@field constructionBaseTerrainDayHigh baseTerrainObject|nil
@@ -114,12 +74,10 @@ local targetSpecs = {}
 -- Once a target has been built by a city on a tile, that tile
 -- is reserved for that target.  If the target is destroyed,
 -- no other target can be built on that tile.
--- ID number of the city that built the target
 tileData.defineCounter("targetCityID",-1)
--- ID number of the improvement that was the target; -1 if no target; wonderID+40 if wonder
 tileData.defineCounter("targetImprovementID",-1)
 
-local maxExtraTiles = 2
+local maxExtraTiles = 5
 
 for improvementID = 0,(39+28) do
     ---@type improvementObject|wonderObject
@@ -204,7 +162,6 @@ local function unreserveTileForTarget(tile)
     tileData.counterReset(tile,"targetCityID")
 end
 
-
 ---Returns a table of reserved tiles for the item
 ---@param city cityObject
 ---@param item improvementObject|wonderObject
@@ -245,16 +202,14 @@ local function nearbyTilesOutsideCityRadius(tile,range)
     end
     local list = {}
     local index = 1
-    for _,tile in pairs(gen.getTilesInRadius(tile,range)) do
-        if not (tile.city or inCityRadius(tile)) then
-            list[index] = tile
+    for _,nearTile in pairs(gen.getTilesInRadius(tile,range)) do
+        if not (nearTile.city or inCityRadius(nearTile)) then
+            list[index] = nearTile
             index = index + 1
         end
     end
     return list
-        
 end
-
 
 ---Chooses the tile(s) to be used for targets
 ---@param city cityObject
@@ -295,23 +250,16 @@ local function chooseTilesForTarget(city,item,number,weightFnOrTable)
     else
         tileChoice = nearbyTilesOutsideCityRadius(city.location,param.maxTargetDistanceFromCity)
     end
-
 ---@diagnostic disable-next-line: param-type-mismatch
     local bestTiles,weights = gen.getBiggestWeights(tileChoice,weightFunction,number-#tileList,city)
-
     for i=1,number-numReservedTiles do
         tileList[numReservedTiles+i] = bestTiles[i]
     end
     return tileList
 end
 
-
 local alliedPolygon ={{214,194},{214,172},{225,161},{225,151},{199,151},{199,123},{190,114},{190,98},{201,87},{201,75},{210,66},{210,0},{0,0},{0,194},doesNotCrossThisX=320}
 
--- Returns true if the city is "aligned" with the Allies,
--- and so would be occupied if the Germans own it.
--- Returns false if the city is "aligned" with the Germans,
--- and so would be occupied if the Allies own it.
 local function cityAlliedAligned(city)
     if city == object.cPrague or city == object.cPilsen then
         return true
@@ -345,24 +293,9 @@ local standardWeightFn = function(tile,city)
     return false
 end
 
-
-
-
-
-
 --======================================================
---======================================================
-
-
 --[[ Begin Target Specs ]]--
-
-
 --======================================================
---======================================================
-
-
-
-
 
 ---@type targetSpec
 local housingSpec = {
@@ -477,12 +410,12 @@ local function railroadAdjacentWeights(tile,city)
         return false
     end
     for _,adjacentTile in pairs(gen.getAdjacentTiles(tile)) do
-        if tileData.counterGetValue(tile,"targetImprovementID") == object.iRailyards.id then
+        if adjacentTile and tileData.counterGetValue(adjacentTile,"targetImprovementID") == object.iRailyards.id then
             return false
         end
     end
     for _,adjacentTile in pairs(adjacentTiles) do
-        if gen.hasRailroad(adjacentTile) then
+        if adjacentTile and gen.hasRailroad(adjacentTile) then
             return 100
         end
     end
@@ -500,104 +433,6 @@ local function waterOnly(tile,city)
     end
     return false
 end
-
-local housingSpec = {
-    constructionBaseTerrainDayLow = object.bUrbanDayLow,
-    constructionBaseTerrainDayHigh = object.bUrbanDayHigh,
-    constructionBaseTerrainNightLow = object.bUrbanNightLow,
-    constructionBaseTerrainNightHigh = object.bUrbanNightHigh,
-    destructionBaseTerrainDayLow = object.bUrbanRubbleDayLow,
-    destructionBaseTerrainDayHigh = object.bUrbanRubbleDayHigh,
-    destructionBaseTerrainNightLow = object.bUrbanRubbleNightLow,
-    destructionBaseTerrainNightHigh = object.bUrbanRubbleNightHigh,
-    targetUnitType = urbanTargetUnitType, -- or object.uUrbanArea if you flattened that
-    captureWithCity = true,
-    targetMap = 3,          -- night high, matches current urban units
-    extraTiles = 2,         -- I=1 tile, but spec uses extraTiles 2 and city counters pick I/II/III
-    inCityRadius = true,
-    weight = standardWeightFn,
-}
-
-targetSpecs[object.iHousingDistrictI.id] = housingSpec
-targetSpecs[object.iHousingDistrictII.id] = housingSpec
-targetSpecs[object.iHousingDistrictIII.id] = housingSpec
-
-local factorySpec = {
-    constructionBaseTerrainDayLow = object.bIndustryDayLow,
-    constructionBaseTerrainDayHigh = object.bIndustryDayHigh,
-    constructionBaseTerrainNightLow = object.bIndustryNightLow,
-    constructionBaseTerrainNightHigh = object.bIndustryNightHigh,
-    destructionBaseTerrainDayLow = object.bRubbleDayLow,
-    destructionBaseTerrainDayHigh = object.bRubbleDayHigh,
-    destructionBaseTerrainNightLow = object.bRubbleNightLow,
-    destructionBaseTerrainNightHigh = object.bRubbleNightHigh,
-    targetUnitType = nil,
-    captureWithCity = true,
-    targetMap = 1,
-    extraTiles = 0,
-    inCityRadius = true,
-    weight = standardWeightFn,
-}
-
-local engineFactorySpec = gen.copyTable(factorySpec)
-engineFactorySpec.targetUnitType = object.uEngineFactory
-targetSpecs[object.iEngineFactory.id] = engineFactorySpec
-
-local aircraftFactorySpec = gen.copyTable(factorySpec)
-aircraftFactorySpec.targetUnitType = object.uAircraftFactory
-targetSpecs[object.iAircraftFactory.id] = aircraftFactorySpec
-
-local avionicsFactorySpec = gen.copyTable(factorySpec)
-avionicsFactorySpec.targetUnitType = object.uAvionicsFactory
-targetSpecs[object.iAvionicsFactory.id] = avionicsFactorySpec
-
-local powerPlantSpec = {
-    constructionBaseTerrainDayLow = object.bPowerPlantDayLow,
-    constructionBaseTerrainDayHigh = object.bPowerPlantDayHigh,
-    constructionBaseTerrainNightLow = object.bPowerPlantNightLow,
-    constructionBaseTerrainNightHigh = object.bPowerPlantNightHigh,
-    destructionBaseTerrainDayLow = object.bRubbleDayLow,
-    destructionBaseTerrainDayHigh = object.bRubbleDayHigh,
-    destructionBaseTerrainNightLow = object.bRubbleNightLow,
-    destructionBaseTerrainNightHigh = object.bRubbleNightHigh,
-    targetUnitType = object.uElectricPowerPlant,
-    captureWithCity = true,
-    targetMap = 3,
-    extraTiles = 0,
-    inCityRadius = false,
-    weight = standardWeightFn,
-}
-
-targetSpecs[object.iElectricPowerPlantI.id] = powerPlantSpec
-targetSpecs[object.iElectricPowerPlantII.id] = powerPlantSpec
-targetSpecs[object.iElectricPowerPlantIII.id] = powerPlantSpec
-
-local heavyFlakSpec = {
-    constructionBaseTerrainDayLow = nil,
-    constructionBaseTerrainDayHigh = nil,
-    constructionBaseTerrainNightLow = nil,
-    constructionBaseTerrainNightHigh = nil,
-    destructionBaseTerrainDayLow = nil,
-    destructionBaseTerrainDayHigh = nil,
-    destructionBaseTerrainNightLow = nil,
-    destructionBaseTerrainNightHigh = nil,
-    targetUnitType = function(tile,city)
-        if city.owner == object.pGermans then
-            return object.u128cmFlak40
-        elseif city.owner == object.pAllies then
-            return object.u37Flak
-        else
-            error("Someone other than the Allies or Germany is building a heavy flak battery")
-        end
-    end,
-    targetMap = 0,
-    extraTiles = 0,
-    inCityRadius = true,
-    weight = standardWeightFn,
-}
-targetSpecs[object.iHeavyFlakBattery.id] = heavyFlakSpec
-
-
 
 targetSpecs[object.iRailyards.id] = {
     targetMap = 0,
@@ -676,45 +511,6 @@ targetSpecs[object.iArmamentsFactory.id] = {
     targetUnitType = object.uArmamentsFactory,
 }
 
- 
--- tileEffectsFunction(city,item) --> false or table of
---    {
---      tile = tileObject
---        a tile where something will happen
---      constructionBaseTerrain = baseTerrainObject or nil
---        change the base terrain to this upon construction
---        nil means no change to terrain
---      constructionResource = 0,1,2 or nil
---        change the terrain resource to this upon construction
---        nil means no change to the resource
---        (ignored if grassland is the baseTerrain of the tile,
---         after the constructionBaseTerrain change is made)
---      destructionBaseTerrain = baseTerrainObject or nil
---        change the base terrain of the tile to this
---        when the target is destroyed
---        nil means no change to the terrain
---      destructionResource = 0,1,2, or nil
---        change the terrain resource to this upon target destruction
---        nil means no change to the resource
---        (ignored if grassland is the baseTerrain of the tile,
---         after the destructionBaseTerrain change is made)
---      targetUnitType = unitTypeObject or true or nil
---        if unitTypeObject, create a target with that unit type
---        on this tile.  nil means no target on this tile.
---        true means create a 'target' without a unit, for example
---        if you want to tie a terrain change to whether or not
---        the item is still in the city
---      captureWithCity = bool or nil
---        if true, the target on this tile is caputured with the city
---        provided the item is still intact.  False or nil means it
---        is destroyed instead.  For basicStrategicFunctions,
---        if any target is destroyed, the item is removed, so all
---        other targets will be destroyed.  If you want a target
---        to be captured, all the targets for the item should be true
---    }
---  return false if the item can't be constructed in the city
---  (this will only be called on items where isStrategicItemFn(item) returns true)
-
 local mapToSuffix = {
     [0] = "DayLow",
     [1] = "DayHigh",
@@ -722,7 +518,46 @@ local mapToSuffix = {
     [3] = "NightHigh",
 }
 
-local function tileEffectsFunction(city,item)
+local function isHousingItem(item)
+    return item == object.iHousingDistrictI
+        or item == object.iHousingDistrictII
+        or item == object.iHousingDistrictIII
+end
+
+local function housingTileEffects(city, item)
+    local reserved = getReservedTiles(city, item)
+    if #reserved < 1 then
+        return false
+    end
+    local listOfAffectedTiles = {}
+    local tileIndex = 1
+    for map0TileIndex = 1, #reserved do
+        local map0Tile = reserved[map0TileIndex]
+        for map = 0, 3 do
+            local effectTable = {
+                tile = civ.getTile(map0Tile.x, map0Tile.y, map),
+                constructionBaseTerrain = housingSpec["constructionBaseTerrain" .. mapToSuffix[map]],
+                destructionBaseTerrain = housingSpec["destructionBaseTerrain" .. mapToSuffix[map]],
+                captureWithCity = true,
+                targetUnitType = nil,
+            }
+            if map == housingSpec.targetMap and map0TileIndex == 1 then
+                effectTable.targetUnitType = housingSpec.targetUnitType
+                if type(effectTable.targetUnitType) == "function" then
+                    effectTable.targetUnitType = effectTable.targetUnitType(effectTable.tile, city)
+                end
+            end
+            listOfAffectedTiles[tileIndex] = effectTable
+            tileIndex = tileIndex + 1
+        end
+    end
+    return listOfAffectedTiles
+end
+
+local function tileEffectsFunction(city, item)
+    if isHousingItem(item) then
+        return housingTileEffects(city, item)
+    end
     local listOfAffectedTiles = {}
     local extendedID = getExtendedImprovementID(item)
     local targetSpec = targetSpecs[extendedID]
@@ -730,67 +565,39 @@ local function tileEffectsFunction(city,item)
         return false
     end
     local number = 1 + (targetSpec.extraTiles or 0)
-    local map0Tiles = chooseTilesForTarget(city,item,number,targetSpec.weight)
+    local map0Tiles = chooseTilesForTarget(city, item, number, targetSpec.weight)
     if #map0Tiles < number then
         return false
     end
     local tileIndex = 1
-    for map0TileIndex=1,number do
+    for map0TileIndex = 1, number do
         local map0Tile = map0Tiles[map0TileIndex]
-        for map = 0,3 do
+        for map = 0, 3 do
             local effectTable = {
-                tile = civ.getTile(map0Tile.x,map0Tile.y,map),
+                tile = civ.getTile(map0Tile.x, map0Tile.y, map),
             }
-            effectTable.constructionBaseTerrain = targetSpec["constructionBaseTerrain"..mapToSuffix[map]]
-            effectTable.destructionBaseTerrain = targetSpec["destructionBaseTerrain"..mapToSuffix[map]]
+            effectTable.constructionBaseTerrain = targetSpec["constructionBaseTerrain" .. mapToSuffix[map]]
+            effectTable.destructionBaseTerrain = targetSpec["destructionBaseTerrain" .. mapToSuffix[map]]
             effectTable.captureWithCity = targetSpec.captureWithCity
             effectTable.targetUnitType = nil
             if map == targetSpec.targetMap and map0TileIndex == 1 then
                 effectTable.targetUnitType = targetSpec.targetUnitType
             end
             if type(effectTable.targetUnitType) == "function" then
-                effectTable.targetUnitType = effectTable.targetUnitType(effectTable.tile,city)
+                effectTable.targetUnitType = effectTable.targetUnitType(effectTable.tile, city)
             end
             listOfAffectedTiles[tileIndex] = effectTable
             tileIndex = tileIndex + 1
         end
     end
     return listOfAffectedTiles
-
-
-    --[[
-    return {
-        {
-            tile = civ.getTile(0,0,0),
-            constructionBaseTerrain = civ.getBaseTerrain(0,0),
-            constructionResource = nil,
-            destructionBaseTerrain = civ.getBaseTerrain(0,1),
-            destructionResource = nil,
-            targetUnitType = civ.getUnitType(0),
-            captureWithCity = false,
-        },
-        {
-            tile = civ.getTile(0,0,0),
-            constructionBaseTerrain = nil,
-            constructionResource = 1,
-            destructionBaseTerrain = nil,
-            destructionResource = 0,
-            targetUnitType = nil,
-            captureWithCity = false,
-        },
-    }
-    --]]
 end
 
-
-
--- use the basic constructor
 local constructedTargetLostFunction,
     constructedTargetVerificationFunction,
     constructedRegisterSupplementalConditionsFunction,
     constructedCityProductionEventFunction =
     strat.basicStrategicFunctions(isStrategicItem,tileEffectsFunction)
-
 
 local function reserveTileForNewTarget(target,city,item)
     local targetTile = target.targetLocation
@@ -803,13 +610,21 @@ local function reserveTileForNewTarget(target,city,item)
     reserveTileForTarget(targetTile,item,city)
 end
 
-
--- We need to create the target when an item is
--- produced (perhaps at other times as well)
+-- Runs only when YOU (or the AI) actually produce the improvement.
+-- Bind scripts must never call gen.cityProduction.
 function discreteEvents.onCityProduction(city,item)
-    constructedCityProductionEventFunction(city,item)
-    local extendedID = getExtendedImprovementID(item)
+    if not civ.isImprovement(item) and not civ.isWonder(item) then
+        return
+    end
+    local ok, extendedID = pcall(getExtendedImprovementID, item)
+    if not ok then
+        return
+    end
     local targetSpec = targetSpecs[extendedID]
+    if not targetSpec then
+        return
+    end
+    constructedCityProductionEventFunction(city,item)
     for target in strat.iterateTargets(city) do
         if target.improvement == item and target.targetLocation then
             reserveTileForNewTarget(target,city,item)
@@ -817,28 +632,16 @@ function discreteEvents.onCityProduction(city,item)
                 local x,y = target.targetLocation.x,target.targetLocation.y
                 gen.placeRailroad(civ.getTile(x,y,0))
                 gen.placeRailroad(civ.getTile(x,y,2))
-
-                
             end
         end
     end
 end
 
-
-
--- The registered is run (once) when a target
--- is destroyed
---[[
-local function targetLostFunction(target)
-  
-end
-]]
-
 strat.registerTargetLostFn(function(target)
     local tile = target.targetLocation
     local improvement = target.improvement
     local extendedID = getExtendedImprovementID(improvement)
-    if targetSpecs[extendedID].destroyRR then
+    if targetSpecs[extendedID] and targetSpecs[extendedID].destroyRR then
         if tile then
             local x,y = tile.x,tile.y
             gen.removeTransportation(civ.getTile(x,y,0))
@@ -848,36 +651,9 @@ strat.registerTargetLostFn(function(target)
     constructedTargetLostFunction(target)
 end)
 
-
-
--- strat.verifyTarget(target) reviews a target, and determines if it is
--- still "valid". Returns true if it is, and false if it is not.
--- If false is returned, the target is destroyed.
--- The target is automatically destroyed if the target unit is missing,
--- a city is registered for the target, but the city doesn't exist,
--- if there is an improvement (or wonder) registered, but the registered
--- city no longer has that improvement or if the registered city has
--- a different owner than the target, and the target is not captured
--- with the city (if it is captured with the city, but ownerhsip hasn't
--- changed yet, it is done at this time).
-
--- Add additional target verification steps in the function below
--- return true if the target should remain in place, and
--- return false if it should be destroyed
---[[
-local function targetVerificationFunction(target)
-    return true
-end
---]]
 strat.registerTargetVerificationFn(constructedTargetVerificationFunction)
-
--- register the supplemental building conditions
 constructedRegisterSupplementalConditionsFunction()
 
--- This function governs what happens when a target is
--- created or captured
--- while there are other units on the tile
--- The targets have changed owners when this function is executed
 local function moveUnitsAfterTargetCreatedOrCapturedFunction(tile,target)
     local owner = target.owner
     for unit in tile.units do
@@ -909,13 +685,15 @@ unitToImprovement[object.uConvoyRoute.id] = object.iConvoyRoutes
 unitToImprovement[object.uElectricPowerPlant.id] = object.iElectricPowerPlantI
 unitToImprovement[object.uArmamentsFactory.id]   = object.iArmamentsFactory
 
-
 local function interpretUnit(unit)
     if unit.type == object.uUrbanArea then
         error("Urban area unit should be interpreted differently")
     end
     if unit.type == object.uElectricPowerPlant then
         local city = unit.homeCity
+        if not city then
+            return nil
+        end
         if cityData.counterIsNil(city,"reservedTileIDFor"..object.iElectricPowerPlantI.id) then
             return object.iElectricPowerPlantI
         end
@@ -949,8 +727,7 @@ local function getSetOfUrbanAreaUnits(firstUnit,number)
     return unitList
 end
 
--- checks if a unit is a target (or otherwise shouldn't
--- be processed)
+-- z ~= 0 units are combat-layer targets / high-alt Werke. Scan never eats them.
 local function isUnitTarget(unit)
     if unit.location.z ~= 0 then
         return true
@@ -963,11 +740,15 @@ local function isUnitTarget(unit)
     return false
 end
 
+-- Reserve tiles from hand-placed map-0 markers. Never produce the improvement.
 local function processUnit(unit)
     if isUnitTarget(unit) then
         return
     end
     if unit.type == object.uUrbanArea then
+        if not unit.homeCity then
+            return
+        end
         if not helper.isWithinCityRadius(unit.location,unit.homeCity.location) then
             for map=0,3 do
                 local tile = civ.getTile(unit.location.x,unit.location.y,map) --[[@as tileObject]]
@@ -1001,7 +782,6 @@ local function processUnit(unit)
 ---@diagnostic disable-next-line: deprecated
             civ.deleteUnit(u)
         end
-        --gen.cityProduction(unit.homeCity,improvement)
         return
     end
     local improvement = interpretUnit(unit)
@@ -1014,24 +794,14 @@ local function processUnit(unit)
     end
     local tile = unit.location
     reserveTileForTarget(tile,improvement,city)
-    --if unit.damage > 0 or unit.veteran then
----@diagnostic disable-next-line: deprecated
-     --   civ.deleteUnit(unit)
-       -- return
-    --end
-   -- gen.cityProduction(city,improvement)
 ---@diagnostic disable-next-line: deprecated
     civ.deleteUnit(unit)
 end
 
-
-
 local function copyTileImprovements(source,destination)
     if not source.city then
-        -- in this game, no city on source tile means non on dest tile
         destination.improvements = source.improvements
     elseif source.city and not destination.city then
-        -- must copy road/rail if there are any on adjacent tiles
         local needsRoad = false
         for _,adjTile in pairs(gen.getAdjacentTiles(source)) do
             if gen.hasRailroad(adjTile) then
@@ -1086,7 +856,7 @@ function _G.console.copyMapScript()
         end
         for y=0,height-1 do
             for destMap = 1,3 do
-                copyTile(x,y,0,destMap)       
+                copyTile(x,y,0,destMap)
             end
         end
     end
@@ -1098,41 +868,203 @@ function _G.console.initialTargetScript()
     end
 end
 
+function _G.console.bindPreplacedHousing()
+    local function collectUrbanUnitsByCity()
+        local byCity = {}
+        for unit in civ.iterateUnits() do
+            if unit.type == object.uUrbanArea and unit.location.z == 0 and unit.homeCity then
+                local id = unit.homeCity.id
+                byCity[id] = byCity[id] or { city = unit.homeCity, units = {} }
+                local list = byCity[id].units
+                list[#list + 1] = unit
+            end
+        end
+        return byCity
+    end
+    local function tileDist2(a, b)
+        local dx = a.location.x - b.location.x
+        local dy = a.location.y - b.location.y
+        return dx * dx + dy * dy
+    end
+    local function splitIntoThreeGroups(units, tilesPerImp)
+        local remaining = {}
+        for i = 1, #units do remaining[i] = units[i] end
+        table.sort(remaining, function(a, b)
+            if a.location.y == b.location.y then
+                return a.location.x < b.location.x
+            end
+            return a.location.y < b.location.y
+        end)
+        local groups = { {}, {}, {} }
+        for g = 1, 3 do
+            local seed = table.remove(remaining, 1)
+            groups[g][1] = seed
+            while #groups[g] < tilesPerImp and #remaining > 0 do
+                table.sort(remaining, function(a, b)
+                    return tileDist2(seed, a) < tileDist2(seed, b)
+                end)
+                groups[g][#groups[g] + 1] = table.remove(remaining, 1)
+            end
+        end
+        return groups, remaining
+    end
+    local housingImps = {
+        object.iHousingDistrictI,
+        object.iHousingDistrictII,
+        object.iHousingDistrictIII,
+    }
+    local byCity = collectUrbanUnitsByCity()
+    local nCities, nLinked, nBad = 0, 0, 0
+    for _, pack in pairs(byCity) do
+        local city = pack.city
+        local n = #pack.units
+        nCities = nCities + 1
+        if n % 3 ~= 0 or n < 3 or n > 18 then
+            print(string.format("FAIL  %s has %d urban units (need 3, 6, 9, 12, or 18)", city.name, n))
+            nBad = nBad + 1
+        else
+            local tilesPerImp = n / 3
+            local groups = select(1, splitIntoThreeGroups(pack.units, tilesPerImp))
+            local cityFailed = false
+            for g = 1, 3 do
+                local imp = housingImps[g]
+                for _, u in ipairs(groups[g]) do
+                    if isTileReservedForTarget(u.location, imp, city) then
+                        civ.deleteUnit(u)
+                    else
+                        local reservedOk, err = pcall(reserveTileForTarget, u.location, imp, city)
+                        if not reservedOk then
+                            local existingImp = tileData.counterGetValue(u.location, "targetImprovementID")
+                            local existingCity = tileData.counterGetValue(u.location, "targetCityID")
+                            print(string.format(
+                                "FAIL  %s housing %s at %d,%d already reserved impId=%s cityId=%s (%s)",
+                                city.name, imp.name, u.location.x, u.location.y,
+                                tostring(existingImp), tostring(existingCity), tostring(err)))
+                            cityFailed = true
+                            nBad = nBad + 1
+                        else
+                            civ.deleteUnit(u)
+                        end
+                    end
+                end
+                if not cityFailed then
+                    nLinked = nLinked + 1
+                end
+            end
+            if not cityFailed then
+                print(string.format("OK    %s  %d units -> %d tile(s) reserved each for I/II/III (city NOT given the improvement)",
+                    city.name, n, tilesPerImp))
+            end
+        end
+    end
+    print(string.format("Done. Cities: %d | reservation groups: %d | bad counts: %d",
+        nCities, nLinked, nBad))
+    print("No improvements added. Save, then dumpTargetBind.")
+end
 
+function _G.console.bindPreplacedOtherTargets()
+    local ignoreName = {
+        ["Polsten 20mm"] = true,
+        ["2cm Flakvierling"] = true,
+        ["Chain Home Radar"] = true,
+        ["Freya Radar"] = true,
+        ["Wurzburg Radar"] = true,
+    }
+    local nOk, nSkip, nFail = 0, 0, 0
+    local toProcess = {}
+    for unit in civ.iterateUnits() do
+        if unit.location.z == 0 and unit.type ~= object.uUrbanArea then
+            toProcess[#toProcess + 1] = unit
+        end
+    end
+    for _, unit in ipairs(toProcess) do
+        if ignoreName[unit.type.name] then
+            nSkip = nSkip + 1
+        else
+            local city = unit.homeCity
+            if not city then
+                print(string.format("FAIL  %s at %d,%d has no homeCity",
+                    unit.type.name, unit.location.x, unit.location.y))
+                nFail = nFail + 1
+            else
+                local ok, improvement = pcall(interpretUnit, unit)
+                if not ok or not improvement then
+                    nSkip = nSkip + 1
+                else
+                    local reservedOk, err = pcall(reserveTileForTarget, unit.location, improvement, city)
+                    if not reservedOk then
+                        print(string.format("FAIL  %s %s: %s", city.name, unit.type.name, tostring(err)))
+                        nFail = nFail + 1
+                    else
+                        civ.deleteUnit(unit)
+                        nOk = nOk + 1
+                    end
+                end
+            end
+        end
+    end
+    print(string.format("Other targets reserved: %d | skipped: %d | fail: %d",
+        nOk, nSkip, nFail))
+    print("No improvements added. Save, then console.dumpTargetBind()")
+end
 
 function _G.console.dumpTargetBind()
-  local gen = require("generalLibrary")
-  local cityData = require("cityData")
-  print("targetBind = {")
-  for city in civ.iterateCities() do
-    if city.id <= 4 then
-      for impId = 0, 67 do
-        for extra = 0, 2 do
-          local key
-          if extra == 0 then
-            key = "reservedTileIDFor"..impId
-          else
-            key = "reservedTileIDFor"..impId.."+"..extra
-          end
-          local ok, val = pcall(function()
-            if cityData.counterIsNil(city, key) then
-              return nil
+    print("return {")
+    for city in civ.iterateCities() do
+        for impId = 0, 67 do
+            for extra = 0, 5 do
+                local key
+                if extra == 0 then
+                    key = "reservedTileIDFor"..impId
+                else
+                    key = "reservedTileIDFor"..impId.."+"..extra
+                end
+                local ok, val = pcall(function()
+                    if cityData.counterIsNil(city, key) then
+                        return nil
+                    end
+                    return cityData.counterGetValue(city, key)
+                end)
+                if ok and val and val >= 0 then
+                    local tile = gen.getTileFromID(val)
+                    if tile then
+                        print(string.format(
+                            "  {cityId=%d, city=%q, impId=%d, extra=%q, x=%d, y=%d, z=%d},",
+                            city.id, city.name, impId, key, tile.x, tile.y, tile.z))
+                    end
+                end
             end
-            return cityData.counterGetValue(city, key)
-          end)
-          if ok and val and val >= 0 then
-            local tile = gen.getTileFromID(val)
-            if tile then
-              print(string.format(
-                "  {cityId=%d, city=%q, impId=%d, extra=%q, x=%d, y=%d, z=%d},",
-                city.id, city.name, impId, key, tile.x, tile.y, tile.z))
-            end
-          end
         end
-      end
     end
-  end
-  print("}")
+    print("}")
+end
+
+function _G.console.dumpTargetBindRange(idLo, idHi)
+    print("return {")
+    for city in civ.iterateCities() do
+        if city.id >= idLo and city.id <= idHi then
+            for impId = 0, 67 do
+                for extra = 0, 5 do
+                    local key = (extra == 0)
+                        and ("reservedTileIDFor"..impId)
+                        or  ("reservedTileIDFor"..impId.."+"..extra)
+                    local ok, val = pcall(function()
+                        if cityData.counterIsNil(city, key) then return nil end
+                        return cityData.counterGetValue(city, key)
+                    end)
+                    if ok and val and val >= 0 then
+                        local tile = gen.getTileFromID(val)
+                        if tile then
+                            print(string.format(
+                                "  {cityId=%d, city=%q, impId=%d, extra=%q, x=%d, y=%d, z=%d},",
+                                city.id, city.name, impId, key, tile.x, tile.y, tile.z))
+                        end
+                    end
+                end
+            end
+        end
+    end
+    print("}")
 end
 
 local function applyTargetBind()
@@ -1147,7 +1079,7 @@ local function applyTargetBind()
         local item = civ.getImprovement(row.impId)
         local tile = civ.getTile(row.x, row.y, 0)
         if city and item and tile then
-            reserveTileForTarget(tile, item, city)
+            pcall(reserveTileForTarget, tile, item, city)
         end
     end
 end
@@ -1161,4 +1093,3 @@ function _G.console.applyTargetBind()
 end
 
 return targetSettings
-

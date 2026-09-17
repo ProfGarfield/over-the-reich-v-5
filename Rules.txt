@@ -1156,7 +1156,7 @@ Enraged
 
 @CIVILIZE2
 0		; AFl Fighter Development
-6		; Alp SAVE
+3		; Alp SAVE
 1		; Amp Stopgap Measures
 1		; Ast Improved Turbochargers
 1		; Ato Allison V-1710 Engine
