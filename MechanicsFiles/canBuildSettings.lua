@@ -332,14 +332,40 @@ local addBuildConditions = canBuildFunctions.makeAddBuildConditions(unitTypeBuil
 
 local addBuildConditions = canBuildFunctions.makeAddBuildConditions(unitTypeBuild,improvementBuild,wonderBuild)
 
+-- Aircraft only from cities that have an Aircraft Factory
+for i = 0, 188 do
+    local ut = civ.getUnitType(i)
+    if ut and ut.domain == 1 then
+        addBuildConditions(ut, {
+            allImprovements = object.iAircraftFactory,
+        })
+    end
+end
+
 addBuildConditions(object.iFuelStorageSilos, {
-    forbiddenTribes = {object.pAllies, object.pBarbarians, object.pEvents},
+    forbiddenTribes = {object.pBarbarians, object.pEvents},
     location = {
         object.cTours,
+		object.cNantes,
+		
         object.cMunster,
+		object.cAntwerp,
+		
         object.cKoblenz,
+		object.cStrasbourg,
+		
         object.cHamburg,
+		object.cBerlin,
+		
         object.cMunchen,
+		object.cNurnberg,
+		
+		
+		
+		
+		object.cLondon,
+		object.cBirmingham,
+		object.cLeeds,
     },
 })
 

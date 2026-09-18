@@ -1,0 +1,33 @@
+OTR TO DO
+
+First, this shoudl not be in the fuel module as that one is wrapped and working and we shouildn't mess with it.  This should be a new module. 
+
+Well I guess we need to figure out what freight trains actually do and how they work and how they're different from fuel trains.  I'm thinking it's a free source of units.  This is in line with KISS, and also is necessary bc in the original MP game we found we needed to ensure certain units showed up for free so someone didn't get smashed.
+
+I'm thinking we keep it realy simple and these routes just represent the different support the Allies and Germany got from their allies.  Granted it's abstract for Germany bc they weren't exactly shipping stuff by sea in most instances but whatever. It's a stand in for all the resources they get elsewhere.
+
+I'm thinking it's very simple.  We just count how many of the convoy route units exist for each civ and then give them free units for each one. I think the Allies get free B-17 and Halifax bombers.  I think the Germans get free 109s.
+
+Right now, I'm thinking every other turn, the Allies get 2 daylight and 2 night time bombers.  Have them show up in random airfield cities (appropriately on daylight 0 map or night 2 map) that have available shield support and home to those.  If the Allies are played by a human, have a text box talking about how "Additional bomber aircraft arrive from the United States and the Empire."  Just one text box (not one for each new unit).  
+
+Right now, I'm thinking every third turn, the Germans get 2x Me109.  Have them show up in random airfield cities that have available shield support and home to those.  If the Germans are played by a human, have a text box talking about how "Additional fighter units are drawn from other theaters."   
+
+I do think we want to tie this to what tech each side has:
+
+Default Allies: B-17F and Stirling Bombers
+If Allies have tech improved heavies they get B-17G and Halifax
+If Allies have tech increased payload, they get B-24 and Lancaster
+
+Default Germans: Bf109G6
+ If Germans have tech streamlined cowlings they get Bf190G10
+ If Germans have tech Attempts to Standardize they get Bf190G14
+ If Germans have tech Rationalized Bf 109 Production they get Bf190K4
+
+
+I'm hoping you can follow along without exact object names of any of these as the object file is similiarly but not exactly named.  If you need assistance, please advise.  
+
+Also, the number of units granted and the turn interval should be parameters files that can be tweaked.
+
+Finally, we need to tie this into the U-Boat pens.  Perhaps the allies START at 2 daylight, 2 night bombers based on Germany having 11 U-Boat pens operational.  Perhaps every 3 pens that DO NOT EXIST increases the number of bombers they receive by 1 for night and day?  So if Germany only had 8 U-Boat Pens, the Allies would get 3 and 3.  If germany had 5, the Allies would get 4 and 4.  If Germany had 2, the Allies would get 5 and 5.  I don't know if it's easy to say if Germany has 0 the Allies get 6 and 6 even though that's not techincally a 3 decrease.  If you can't pull that off, 5 can be the max but it would be nice if we could get to 6 and 6.
+
+Does this make sense? Do you have other suggestions?  

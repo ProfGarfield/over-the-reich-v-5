@@ -76,6 +76,39 @@ local param = {}
 -- will be placed within this distance of the city
 param.maxTargetDistanceFromCity = 6
 
+-- Fuel-train economy
+param.fuelTrainSyntheticCount       = 1
+param.fuelTrainSyntheticInterval    = 2
+param.fuelTrainOilCount             = 1
+param.fuelTrainOilInterval          = 3
+param.fuelTrainTilesPerTurn         = 5
+param.fuelTrainDeliveryAmount       = 500
+param.fuelMinToActivateAircraft     = 1
+param.fuelStatusKey                 = "five"
+param.fuelPerEngine                 = 10
+param.fuelJetMultiplier             = 3
+
+param.fuelZoneInitialStock          = 10000
+param.fuelTierFull                  = 7500
+param.fuelTierHigh                  = 5000
+param.fuelTierLow                   = 2500
+param.fuelFailChanceFull            = 0
+param.fuelFailChanceHigh            = 25
+param.fuelFailChanceMid             = 50
+param.fuelFailChanceLow             = 75
+
+-- Convoy System
+param.convoyAlliedInterval          = 2
+param.convoyAlliedDayCount          = 2
+param.convoyAlliedNightCount        = 2
+param.convoyGermanInterval          = 3
+param.convoyGermanCount             = 2
+param.convoyUboatFullCount          = 11
+param.convoyAlliedDayMap            = 0
+param.convoyAlliedNightMap          = 2
+param.convoyRequireRoute            = true
+
+
 gen.versionFunctions(param,versionNumber,fileModified,"LuaParameterFiles".."\\".."parameters.lua")
 
 

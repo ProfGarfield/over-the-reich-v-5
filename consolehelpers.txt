@@ -1,0 +1,6 @@
+for city in civ.iterateCities() do if city.owner == civ.getTribe(1) and civ.hasImprovement(city, civ.getImprovement(8)) and not civ.hasImprovement(city, civ.getImprovement(17)) and not civ.hasImprovement(city, civ.getImprovement(15)) then print(city.name.."  "..city.location.x..","..city.location.y..","..city.location.z) end end
+
+
+
+
+local t=civ.getTile(72,68,0) print(t.terrainType, t.improvements, t.improvements&0x10, t.improvements&0x20, t.improvements&0x08)

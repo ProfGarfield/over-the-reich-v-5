@@ -271,13 +271,15 @@ local text = require("text")
 local canBuildFunctions = require("canBuild")
 attemptToRun("canBuildSettings","WARNING: Did not find canBuildSettings.lua.  Standard production options will apply.")
 
-
+attemptToRun('fuelTrain',"WARNING: fuelTrain.lua not found. Fuel trains will not run.")
+attemptToRun('convoyGrant',"WARNING: convoyGrant.lua not found. Convoy reinforcements will not run.")
 
 attemptToRun('keyPressSettings',"WARNING: did not find keyPressSettings.lua.  You might be missing standard key press events that are registered in that file.")
 --local keyPressEvents = require("keyPressSettings")
 --local munitions = require("munitions")
 --local munitionsSettings = require("munitionsSettings")
 
+local supplyLines = require("supplyLines")
 
 --local attackBonusSettings = require("attackBonusSettings")
 local delayedAction = require("delayedAction"):minVersion(1)

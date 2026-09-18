@@ -107,12 +107,12 @@ end
     
 --Attempt at coming up with air zones that will have a silo attributed to it.
 helper.airZones = {
-    Britain    = {x0=0,   x1=111, y0=0,  y1=108,  silo=false},
-    France     = {x0=0,   x1=111, y0=109, y1=194, silo=true},
-    NWGermany  = {x0=112, x1=222, y0=0,  y1=97,  silo=true},
-    SWGermany  = {x0=112, x1=222, y0=98, y1=194, silo=true},
-    NEGermany  = {x0=223, x1=334, y0=0,  y1=97,  silo=true},
-    SEGermany  = {x0=223, x1=334, y0=98, y1=194, silo=true},
+    Britain    = {x0=0,   x1=111, y0=0,   y1=108, silo=false},
+    France     = {x0=0,   x1=165, y0=109, y1=194, silo=true},
+    NWGermany  = {x0=166, x1=222, y0=0,   y1=97,  silo=true},
+    SWGermany  = {x0=166, x1=222, y0=98,  y1=194, silo=true},
+    NEGermany  = {x0=223, x1=334, y0=0,   y1=97,  silo=true},
+    SEGermany  = {x0=223, x1=334, y0=98,  y1=194, silo=true},
 }
 
 function helper.airZoneFor(x, y)
