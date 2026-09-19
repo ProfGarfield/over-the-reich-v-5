@@ -16,6 +16,18 @@ local baseProduction = gen.computeBaseProduction
 local strategicTargetsAvailable, strat = gen.requireIfAvailable("strategicTargets")
 local changeRules = require("changeRules")
 
+local helper = require("helper")
+local param = require("parameters")
+local powerGrid = require("powerGrid")
+
+local function missingUrbanDistricts(city)
+    local n = 0
+    if not city:hasImprovement(object.iHousingDistrictI) then n = n + 1 end
+    if not city:hasImprovement(object.iHousingDistrictII) then n = n + 1 end
+    if not city:hasImprovement(object.iHousingDistrictIII) then n = n + 1 end
+    return n
+end
+
 ---&autoDoc onCalculateCityYield
 function cityYield.onCalculateCityYield(city,food,shields,trade)
     local extraFood,extraShields,extraTrade = 0,0,0 -- resources to add to compensate
@@ -62,6 +74,16 @@ function cityYield.onCalculateCityYield(city,food,shields,trade)
     local shieldChangeAfterWaste = 0 -- changes the value after factory/power plant applied
     local tradeChangeBeforeCorruption = 0 
     local tradeChangeAfterCorruption = 0 
+	
+	if helper.isOTRCity(city) then
+        local per = param.urbanShieldPenalty or 3
+        shieldChangeBeforeWaste = shieldChangeBeforeWaste
+            - (per * missingUrbanDistricts(city))
+    end
+	
+	shieldChangeBeforeWaste = shieldChangeBeforeWaste
+        + powerGrid.shieldChange(city, shields, shieldChangeBeforeWaste)
+	
 
     return  foodChange+extraFood,
             shieldChangeBeforeWaste + extraShields,

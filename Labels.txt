@@ -144,7 +144,7 @@ Prerequisite
 Attack Strength
 Defense Strength
 Movement Rate
-Hit Points
+Test Hit Points
 Firepower
 Cost
 First

@@ -108,6 +108,38 @@ param.convoyAlliedDayMap            = 0
 param.convoyAlliedNightMap          = 2
 param.convoyRequireRoute            = true
 
+--Port System
+param.portFuelTrainInterval         = 4
+param.portFuelTrainCount            = 1
+
+-- Shields subtracted from an industrial city per missing Housing I/II/III.
+param.urbanShieldPenalty = 5
+
+-- Power grid (German industrial cities only)
+-- Snapshot of living uElectricPowerPlant is taken the first time
+-- any German plants exist, then stored in the save.
+param.powerGridMidRatio = 0.75   -- at/above this → no penalty
+param.powerGridLowRatio = 0.50   -- between mid and low → mid mult
+param.powerGridMidMult  = 0.85   -- 75%–50% living
+param.powerGridLowMult  = 0.70   -- below 50% living
+param.powerGridBaseline = 130
+
+-- Combined living HP of German rubber/steel/aluminum/bearings units.
+-- Leave 0 to snapshot on first load; then paste the printed number here.
+param.resourceCostBaselineHP = 1200
+-- 0 HP still stops at this multiplier (default +75%).
+param.resourceCostCap = 1.75
+
+--Engine Factory heal units
+param.healBase = 1
+param.healPerEngineFactory = 1
+param.healMax = 4
+
+--Flak parameters for respawning after destruction
+param.flakRegenBaseTurns = 4
+param.flakRegenPerArmament = 1
+param.flakRegenMinTurns = 1
+
 
 gen.versionFunctions(param,versionNumber,fileModified,"LuaParameterFiles".."\\".."parameters.lua")
 

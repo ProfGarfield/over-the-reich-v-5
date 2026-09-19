@@ -1491,6 +1491,7 @@ object.iJagdfliegerschule       = civ.getImprovement(32) --[[@as improvementObje
 object.iVWeaponSite             = civ.getImprovement(33) --[[@as improvementObject]]
 object.iPortFacility            = civ.getImprovement(34) --[[@as improvementObject]]
 object.iNOTUSEDTransporter      = civ.getImprovement(35) --[[@as improvementObject]]
+object.iAccumulateResources     = civ.getImprovement(39) --[[@as improvementObject]]
 
 -- Players (Tribes)
 -- recommended key prefix 'p'

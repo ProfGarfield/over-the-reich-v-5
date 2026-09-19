@@ -274,6 +274,11 @@ attemptToRun("canBuildSettings","WARNING: Did not find canBuildSettings.lua.  St
 attemptToRun('fuelTrain',"WARNING: fuelTrain.lua not found. Fuel trains will not run.")
 attemptToRun('convoyGrant',"WARNING: convoyGrant.lua not found. Convoy reinforcements will not run.")
 attemptToRun('railyardRail',"WARNING: railyardRail.lua not found. Railyard RR break/restore will not run.")
+attemptToRun('portFuel',"WARNING: portFuel.lua not found. Port fuel trains will not run.")
+attemptToRun('aircraftFactory',"WARNING: aircraftFactory.lua not found. Factory-down production kick will not run.")
+attemptToRun('resourceCost',"WARNING: resourceCost.lua not found. Resource-factory cost multiplier will not run.")
+attemptToRun('engineHeal',"WARNING: engineHeal.lua not found. Airfield engine healing will not run.")
+attemptToRun('flakRegen',"WARNING: flakRegen.lua not found. Pad flak will not respawn.")
 
 attemptToRun('keyPressSettings',"WARNING: did not find keyPressSettings.lua.  You might be missing standard key press events that are registered in that file.")
 --local keyPressEvents = require("keyPressSettings")
