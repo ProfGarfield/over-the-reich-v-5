@@ -1,6 +1,7 @@
 -- MechanicsFiles/groundCombat.lua
--- Air vs ground multipliers. Flak not included.
--- events.lua: attemptToRun('groundCombat',"WARNING: groundCombat.lua not found. Air-to-ground role/HP mods will not run.")
+-- Air vs ground. Flak not included.
+-- events.lua:
+--   attemptToRun('groundCombat',"WARNING: groundCombat.lua not found. Air-to-ground role/HP mods will not run.")
 
 local object    = require("object")
 local gen       = require("generalLibrary")
@@ -23,11 +24,11 @@ local ROLE_TARGET = {
 }
 
 local PARKED_DEF = {
-    jabo            = 0.35,
-    mediumBomber    = 0.75,
-    heavyBomber     = 0.55,
-    airSuperiority  = 0.40,
-    bomberDestroyer = 0.40,
+    jabo            = 0.12,
+    mediumBomber    = 0.25,
+    heavyBomber     = 0.18,
+    airSuperiority  = 0.15,
+    bomberDestroyer = 0.15,
 }
 
 local function addIds(set, ...)
@@ -143,9 +144,38 @@ local function targetColumn(defender)
     return "low"
 end
 
+local function hpFrac(unit)
+    if not unit or not unit.type or unit.type.hitpoints < 1 then return 1 end
+    return unit.hitpoints / unit.type.hitpoints
+end
+
+local function attackMult(attacker, defender)
+    local role = roleOf(attacker)
+    local col = targetColumn(defender)
+    local roleMod = ROLE_TARGET[role][col] or 1
+    local frac = hpFrac(attacker)
+    local aborted = false
+    if frac < ABORT_BELOW then
+        if role == "jabo" and col == "train" then
+            frac = JABO_TRAIN_FLOOR
+        else
+            aborted = true
+            frac = 0.01
+        end
+    end
+    local vetMod = attacker.veteran and VET_MOD or 1.00
+    return roleMod * frac * vetMod, role, col, hpFrac(attacker), vetMod, aborted
+end
+
+local function defenseMult(attacker, defender)
+    if not isParkedFighter(defender) then return 1 end
+    local role = roleOf(attacker)
+    return PARKED_DEF[role] or 1
+end
+
 local lastToastKey = nil
 
-local function maybeToast(attacker, defender, atkMult, defMult, role, col, frac, vetMod, aborted)
+local function maybeToast(attacker, defender, atkProduct, defProduct, role, col, frac, vetMod, aborted)
     if not SHOW_TOAST then return end
     local key = tostring(civ.getTurn()).."#"..tostring(attacker.id).."#"..tostring(defender.id)
     if lastToastKey == key then return end
@@ -156,18 +186,13 @@ local function maybeToast(attacker, defender, atkMult, defMult, role, col, frac,
         msg = attacker.type.name.." crew aborted (HP "..hpStr..")"
     else
         msg = attacker.type.name.." ["..role.."] vs "..defender.type.name
-            .." ["..col.."] ATK x"..string.format("%.2f", atkMult)
+            .." ["..col.."] ATK x"..string.format("%.2f", atkProduct)
             .." (role"..col.." "..string.format("%.2f", ROLE_TARGET[role][col])
             .." hp "..hpStr
             .." vet "..string.format("%.2f", vetMod)
-            ..") DEF x"..string.format("%.2f", defMult)
+            ..") DEF x"..string.format("%.2f", defProduct)
     end
     text.simple(msg, "Ground Attack")
-end
-
-local function hpFrac(unit)
-    if not unit or not unit.type or unit.type.hitpoints < 1 then return 1 end
-    return unit.hitpoints / unit.type.hitpoints
 end
 
 combatMod.registerCombatModificationRule({
@@ -179,29 +204,19 @@ combatMod.registerCombatModificationRule({
         return true
     end,
     aCustomMult = function(attacker, defender)
-        local role = roleOf(attacker)
-        local col = targetColumn(defender)
-        local roleMod = ROLE_TARGET[role][col] or 1
-        local frac = hpFrac(attacker)
-        local aborted = false
-        if frac < ABORT_BELOW then
-            if role == "jabo" and col == "train" then
-                frac = JABO_TRAIN_FLOOR
-            else
-                aborted = true
-                frac = 0.01
-            end
-        end
-        local vetMod = attacker.veteran and VET_MOD or 1.00
-        local product = roleMod * frac * vetMod
-        maybeToast(attacker, defender, product, 1, role, col, hpFrac(attacker), vetMod, aborted)
+        local product, role, col, frac, vetMod, aborted = attackMult(attacker, defender)
+        maybeToast(attacker, defender, product, defenseMult(attacker, defender), role, col, frac, vetMod, aborted)
         return product
     end,
     dCustomMult = function(attacker, defender)
-        if not isParkedFighter(defender) then return 1 end
-        local role = roleOf(attacker)
-        return PARKED_DEF[role] or 1
+        return defenseMult(attacker, defender)
     end,
+    dAddFirepower = function(attacker, defender)
+        if not isParkedFighter(defender) then return 0 end
+        return -20
+    end,
+    dScramblingFighterVsFighter = 1,
+    dScramblingFighterVsBomber = 1,
 })
 
 return groundCombat

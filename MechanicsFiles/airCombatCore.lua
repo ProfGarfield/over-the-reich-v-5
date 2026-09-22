@@ -289,6 +289,17 @@ local function isFighterUnit(unit)
     return unit.type.domain == 1 and not isBomber(unit)
 end
 
+local function tileIsAirfield(tile)
+    if not tile then return false end
+    local bt = tile.baseTerrain
+    if not bt then return false end
+    return bt == object.bAirfieldDayLow
+        or bt == object.bAirfieldDayHigh
+        or bt == object.bAirfieldNightLow
+        or (object.bAirfieldNightHigh and bt == object.bAirfieldNightHigh)
+        or bt.type == 6
+end
+
 -- Fight on LOW. Look on HIGH within BOUNCE_RADIUS of that column.
 -- Per-type interceptionRange (default 2) can only shrink that, not grow it.
 local function findBounceDefender(tile, attacker)
@@ -305,7 +316,8 @@ local function findBounceDefender(tile, attacker)
                 if dist <= BOUNCE_RADIUS then
                     for u in t.units do
                         if u.owner ~= attacker.owner and isFighterUnit(u)
-                            and coversLeft(u) > 0 then
+                            and coversLeft(u) > 0
+                            and not tileIsAirfield(u.location) then
                             local p = paramsByTypeId[u.type.id]
                             local range = (p and p.interceptionRange) or BOUNCE_RADIUS
                             if dist <= range then
@@ -383,7 +395,8 @@ local function findInterceptDefender(tile, attacker)
                 for u in t.units do
                     if u ~= attacker and u.owner ~= attacker.owner
                         and isFighterUnit(u) and not isBomber(u)
-                        and coversLeft(u) > 0 then
+                        and coversLeft(u) > 0
+                        and not tileIsAirfield(u.location) then
                         local range = interceptRangeVs(u, attacker, tile.z)
                         if dist <= range then
                             local p = paramsByTypeId[u.type.id]
@@ -472,6 +485,14 @@ end
 
 local function applyAirCombat(attacker, defender, override, ctx)
     ctx = ctx or {}
+	if defender and defender.type and defender.type.domain == 1
+        and tileIsAirfield(defender.location) then
+        return override
+    end
+    if attacker and attacker.type and attacker.type.domain == 1
+        and defender and defender.type and defender.type.domain ~= 1 then
+        return override
+	end
     ingestTestSet()
 
     local az = attacker.location.z
