@@ -280,6 +280,7 @@ attemptToRun('resourceCost',"WARNING: resourceCost.lua not found. Resource-facto
 attemptToRun('engineHeal',"WARNING: engineHeal.lua not found. Airfield engine healing will not run.")
 attemptToRun('flakRegen',"WARNING: flakRegen.lua not found. Pad flak will not respawn.")
 attemptToRun('airCombatInstall',"WARNING: airCombatInstall.lua not found. Air combat test package will not run.")
+attemptToRun('increasedFlak',"WARNING: increasedFlak.lua not found. Increased air defense flak will not bind.")
 
 attemptToRun('keyPressSettings',"WARNING: did not find keyPressSettings.lua.  You might be missing standard key press events that are registered in that file.")
 attemptToRun('groundCombat',"WARNING: groundCombat.lua not found. Air-to-ground role/HP mods will not run.")

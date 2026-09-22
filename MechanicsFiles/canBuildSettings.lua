@@ -318,6 +318,7 @@ local canBuildFunctions = require("canBuild"):minVersion(2)
 
 --
 
+local helper = require("helper")
 local unitTypeBuild = {}
 local improvementBuild = {}
 local wonderBuild = {}
@@ -341,6 +342,16 @@ for i = 0, 188 do
         })
     end
 end
+
+
+addBuildConditions(object.iIncreasedAirDefense, {
+    conditionFunction = function(defaultBuildFunction, city, item)
+        if city.owner == object.pAllies then
+            return helper.isOTRAirfield(city)
+        end
+        return true
+    end,
+})
 
 addBuildConditions(object.iFuelStorageSilos, {
     forbiddenTribes = {object.pBarbarians, object.pEvents},
