@@ -279,8 +279,11 @@ attemptToRun('aircraftFactory',"WARNING: aircraftFactory.lua not found. Factory-
 attemptToRun('resourceCost',"WARNING: resourceCost.lua not found. Resource-factory cost multiplier will not run.")
 attemptToRun('engineHeal',"WARNING: engineHeal.lua not found. Airfield engine healing will not run.")
 attemptToRun('flakRegen',"WARNING: flakRegen.lua not found. Pad flak will not respawn.")
+attemptToRun('airCombatInstall',"WARNING: airCombatInstall.lua not found. Air combat test package will not run.")
 
 attemptToRun('keyPressSettings',"WARNING: did not find keyPressSettings.lua.  You might be missing standard key press events that are registered in that file.")
+attemptToRun('groundCombat',"WARNING: groundCombat.lua not found. Air-to-ground role/HP mods will not run.")
+
 --local keyPressEvents = require("keyPressSettings")
 --local munitions = require("munitions")
 --local munitionsSettings = require("munitionsSettings")

@@ -39,7 +39,8 @@ local simpleSettings = require("simpleSettings"):recommendedVersion(1)
 local combatModifiers = require("combatModifiers"):minVersion(1)
 local leaderBonus = require("leaderBonus"):minVersion(1)
 
-
+local airCombatOk, airCombat = pcall(require, "airCombatCore")
+if not airCombatOk then airCombat = nil end
 
 
 --      combat calculation
@@ -133,7 +134,15 @@ local function computeCombatStatistics(attacker, defender, isSneakAttack)
     dMult = landAirCargo.getDefenseModifier(defender)
     combatModifierOverride.dCustomMult = combatModifierOverride.dCustomMult*dMult
 
-
+if airCombat then
+        local ok, err = pcall(airCombat.applyAirCombat, attacker, defender, combatModifierOverride, {
+            originalDefenderZ = defender.location.z,
+            bounced = airCombat._pendingBounce and airCombat._pendingBounce.id == defender.id,
+        })
+        if not ok then
+            civ.ui.text("applyAirCombat error: "..tostring(err))
+        end
+    end
 
 	local attackerStrength, attackerFirepower, defenderStrength, defenderFirepower,
 		   attackerStrengthModifiersApplied, attackerFirepowerModifiersApplied, 
@@ -210,30 +219,51 @@ end
 
 ---&autoDoc onChooseDefender
 function register.onChooseDefender(defaultFunction,tile,attacker,isCombat)
+    local cover, mode = nil, nil
+    if airCombat then
+        if airCombat.findBounceDefender then
+            cover = airCombat.findBounceDefender(tile, attacker)
+            if cover then mode = "bounce" end
+        end
+        if not cover and airCombat.findInterceptDefender then
+            cover = airCombat.findInterceptDefender(tile, attacker)
+            if cover then mode = "intercept" end
+        end
+    end
+
+    if cover and isCombat then
+        airCombat._pendingBounce = cover
+        if airCombat.markBounceHome then
+            airCombat.markBounceHome(cover, mode)
+        end
+        if cover.location ~= tile then
+            civ.teleportUnit(cover, tile)
+        end
+        return cover
+    end
+    if airCombat then
+        airCombat._pendingBounce = nil
+    end
+
     local bestDefenderValue = -math.huge
     local bestDefender = nil
     for possibleDefender in tile.units do
         local attackerStrength, attackerFirepower, defenderStrength, defenderFirepower
             = computeCombatStatistics(attacker,possibleDefender,false)
-        -- below is what appears to be the standard civ II calculation
-        --local defenderValue = defenderStrength*possibleDefender.hitpoints//possibleDefender.type.hitpoints
-        -- instead of defender strength, however, defenderStrength/attackerStrength is used to account
-        -- for attack buffs/debuffs (which are very few in original game)
         local defenderValue = nil
         if attackerStrength == 0 then
-            defenderValue = 1e7 -- 10 million
+            defenderValue = 1e7
         else
             defenderValue = (defenderStrength/attackerStrength)*possibleDefender.hitpoints/possibleDefender.type.hitpoints
         end
         defenderValue = defenderValue + defenderValueModifier(possibleDefender,tile,attacker)
-        if defenderValue > bestDefenderValue or 
+        if defenderValue > bestDefenderValue or
             (defenderValue == bestDefenderValue and possibleDefender.id < bestDefender.id) then
             bestDefenderValue = defenderValue
             bestDefender = possibleDefender
         end
     end
     return bestDefender
-    --return defaultFunction(tile,attacker)
 end
 ---&endAutoDoc
 
@@ -243,7 +273,7 @@ function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,at
 
     leaderBonus.updateCommander(attacker)
     leaderBonus.updateCommander(defender)
-    local maxCombatRounds = math.huge -- If you want to limit combat to a specific number of
+    local maxCombatRounds = (airCombat and airCombat.maxAirRounds and airCombat.maxAirRounds()) or 10 -- If you want to limit combat to a specific number of
                                         -- turns, set this variable
 
     local calculatedAttackerStrength, 
@@ -297,7 +327,12 @@ function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,at
                 local newDefenderDie = calculatedDefenderStrength
                 local newDefenderFirepower = calculatedDefenderFirepower
                 local result = coroutine.yield(false,newAttackerDie,newAttackerFirepower,newDefenderDie,newDefenderFirepower)
-
+				if airCombat and airCombat.afterRound then
+                    local verdict = airCombat.afterRound(round + 1, attacker, defender)
+                    if verdict == "attackerEscaped" or verdict == "defenderEscaped" then
+                        maxCombatRounds = round + 1
+                    end
+                end
                 --In this case the coroutine resumes with the result of the round, 
                 --a table containing four values:
                     -- winner, this is either attacker or defender.
@@ -315,6 +350,9 @@ function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,at
             round = round+1
         end
         -- once we get here, combat stops
+		if airCombat and airCombat.finishBounce then
+            airCombat.finishBounce(attacker, defender)
+        end
     end)
 end
 ---&endAutoDoc

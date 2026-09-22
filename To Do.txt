@@ -80,3 +80,34 @@ Flak regen last.
 
 That order is “something you can play tomorrow” first, “spreadsheet economy” last.
 Nothing gets written until you say go.
+
+
+***************************************
+
+COMBAT
+
+Here are my thoughts on combat.  Feel free to push back if you think they're bad but let's try and get this built.  I suck at math and am curious if you can make sense of how all this would work practically.
+
+For starters: we will want text box to show what is happening on combat so we can test it.  In the scenario, I think this would be useful for some folks and others might hate it as it could be a ton of text boxes so I think probably we would use a state flag where the player can toggle this on or off.  Let's build with that concept in mind for the future.
+
+We'll probably need to group aircraft into multiple different tables and have a way for them to influence each other.  Here are a few
+
+Day Fighter vs. Night Fighter: Will matter more for the Germans, but aircraft should have a preference and there should be degradation when you move them around.  Wilde Sau didn't do so well after a bit and was discontinued because the day fighters were basically bailing out not sure how to fly at night.  Nachtjagdflieger pressed into service by day were so slow and easy meat for Allied fighters.  There should be a malus to stats if they are put in the "wrong" role.
+
+High Alt (P47) vs. Low Alt (Fw190A series) vs. All Alt (P51, Fw190D9): Mismatched maps cause issues/malus.  
+
+Role: Likewise, each aircraft needs some kind of role (if you think there is a better name let me know)...  Air superiority (Bf109, P-51, Fw190D9), Bomber Destroyer (Fw190A8, Me410, Ju88), Jabo (Fw190F... Maybe later P-47), Heavy, Medium, and Light Bombers, and possibly "Wunderwaffen" (Ta152 - Me262).  Some roles should do better against others.  Bomber destroyer gets bonus against bombers.  Air superiority does better against bomber destroyers.
+
+*Note: many aircraft have a rocket-equipped version of themselves in the object file, so air superiority could change to bomber destroyer when so equipped.
+
+Speed: Speed = Life, so the faster aircraft should have a bonus to certain stats (intercept and escape, I'm thinking)
+
+Intercept: Intercept should be the range of tiles an aircraft can intervene in another combat. 
+
+Bounce: Aircraft on high alt map should bounce those on low alt map.
+
+Kinda overwhelming myself just thinknig about this - any suggestions? LOL
+
+
+-----------------------------------
+OK.  So we have the air combat, I suppose what we need next is bomber combat (or fighter vs. ground unit combat) because then that also can be modified by flak.  First of all, a bombers' effectiveness should be tied to the HP it has left.  So the Luftwaffe chewing up B17s should matter even if they're not destroyed.  That's for the bomber piece.  Heavy bombers should have a substantial substantial malus to attacking low alt targets.  Medium bombers should be better at attacking low alt targets than high alt ones.  Jabo should get a bonus vs. trains of all types.  Any fighter that starts off in an airbase should have a substantially reduced defense and be a sitting duck against jabo.  Perhaps it doesn't get the malus against medium bombers.  BUT the flak should defend first and airbase flak should be really gnarly.  Probably defend 4x and chew up stuff that's attacking.  The heavy flaks in cities should fire out fairly far to defend ground targets being attacked.  Maybe six squares.  I forgot to place flak and forgot what improvement is bound to it but that was the 12.8cm and 3.7 inch guns....  Anyway, flak should be pretty unlikely to destroy a bomber but it should pepper them pretty good and again the HP will matter.  Kind of want flak to be taken into account before the bomber attack for this reason.  Also, I do have a second type of heavy flak (88mm for Germans, Bofors 40mm UK and US)...  Um... Shit.  Those should probably be buildable from the start and need some placing but OTOH I don't want them everywhere...  Any way to limit how many each city can build?  The different flaks should have different effects..  The 20mm Polsten and 2cm Flak for Germans and 3.7 should not shoot higher alts... the 88mms and 12.8cm should... Also flak on low alt day needs to strike targets on high alt night.  The 2cm and 3.7 should only touch units on the low alt map they're triggered by...  But also the 2cm is in every airfield, and if destroyed on one map needs to be destoryed on the other map (0,2) and then it needs to rebuild after a certain time linked to flakRegen which I think we did already

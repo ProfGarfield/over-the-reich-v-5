@@ -1,7 +1,14 @@
 local traits = require("traits")
 local object = require("object")
 
-traits.allowedTraits("strategicImprovement","sample trait 1","sample trait 2",{"sampleThree","sample4"})
+traits.allowedTraits(
+    "strategicImprovement","sample trait 1","sample trait 2",{"sampleThree","sample4"},
+    "dayFighter","nightFighter",
+    "lowAltitude","highAltitude","allAltitude",
+    "airSuperiority","bomberDestroyer","jabo",
+    "lightBomber","mediumBomber","heavyBomber","wunderwaffe",
+    "rocketArmed","fighter","bomber"
+)
 
 -- object 'traits' are strings that you can "assign" to
 -- objects, and check elsewhere in your code if a particular
