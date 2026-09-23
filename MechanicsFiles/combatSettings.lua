@@ -270,89 +270,49 @@ end
 
 ---&autoDoc onInitiateCombatMakeCoroutine
 function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,attackerPower,defenderDie,defenderPower,isSneakAttack)
-
+    local flak = require("flakIntercept")
+    if flak.onInterceptAttack(attacker, defender) then
+        return
+    end
     leaderBonus.updateCommander(attacker)
     leaderBonus.updateCommander(defender)
-    local maxCombatRounds = (airCombat and airCombat.maxAirRounds and airCombat.maxAirRounds()) or 10 -- If you want to limit combat to a specific number of
-                                        -- turns, set this variable
-
-    local calculatedAttackerStrength, 
+    local maxCombatRounds = (airCombat and airCombat.maxAirRounds and airCombat.maxAirRounds()) or 10
+    local calculatedAttackerStrength,
             calculatedAttackerFirepower,
-            calculatedDefenderStrength, 
+            calculatedDefenderStrength,
             calculatedDefenderFirepower = computeCombatStatistics(attacker,defender,isSneakAttack)
-    --if calculatedAttackerStrength ~= attackerDie then
-    --    civ.ui.text("Attacker: calculated: "..calculatedAttackerStrength.." actual: "..attackerDie)
-    --end
-    --if calculatedDefenderStrength ~= defenderDie then
-    --    civ.ui.text("Defender: calculated: "..calculatedDefenderStrength.." actual: "..defenderDie)
-    --end
-    --if calculatedAttackerFirepower ~= attackerPower then
-    --    civ.ui.text("AttackerFP: calculated: "..calculatedAttackerFirepower.." actual: "..attackerPower)
-    --end
-    --if calculatedDefenderFirepower ~= defenderPower then
-    --    civ.ui.text("DefenderFP: calculated: "..calculatedDefenderFirepower.." actual: "..defenderPower)
-    --end
     if calculatedAttackerStrength == 0 then
         maxCombatRounds = 0
         if attacker.owner.isHuman then
             text.simple("Our "..attacker.type.name.." unit can't fight the defending "..defender.type.name..".  The attack has been cancelled.","Defense Minister")
         end
     end
-    -- %Report Combat Strength%
-    --civ.ui.text("Attacker: "..tostring(calculatedAttackerStrength/8).." FP:"..calculatedAttackerFirepower.." Defender: "..tostring(calculatedDefenderStrength/8).." FP:"..calculatedDefenderFirepower)
-            
+
     return coroutine.create(function()
         local round = 0
         while(round < maxCombatRounds and attacker.hitpoints >0 and defender.hitpoints > 0) do
-
             if false then
-                -- If the coroutine yields true as its first value, 
-                -- the game's default combat resolution is skipped for that round 
-                -- and the designer is responsible for updating damage. 
-                -- The second value yielded is either the attacker or the defender, 
-                -- this is used to render animations etc. 
-                -- In this case the coroutine resumes without any values.
-
                 coroutine.yield(true,defender)
             else
-
-                --If the coroutine yields false as its first value, 
-                --the game runs its default combat algorithm. The designer 
-                --can additionally yield modified values for attackerDie, 
-                --attackerPower, defenderDie and defenderPower (in this order) 
-                --which will be used by the game for that round.
-
                 local newAttackerDie = calculatedAttackerStrength
                 local newAttackerFirepower = calculatedAttackerFirepower
                 local newDefenderDie = calculatedDefenderStrength
                 local newDefenderFirepower = calculatedDefenderFirepower
                 local result = coroutine.yield(false,newAttackerDie,newAttackerFirepower,newDefenderDie,newDefenderFirepower)
-				if airCombat and airCombat.afterRound then
+                if airCombat and airCombat.afterRound then
                     local verdict = airCombat.afterRound(round + 1, attacker, defender)
                     if verdict == "attackerEscaped" or verdict == "defenderEscaped" then
                         maxCombatRounds = round + 1
                     end
                 end
-                --In this case the coroutine resumes with the result of the round, 
-                --a table containing four values:
-                    -- winner, this is either attacker or defender.
-                    -- attackerRoll, the result of the attacker's die roll
-                    -- defenderRoll, the result of the defender's die roll
-                    -- reroll, true if a reroll happened. This can happen only 
-                         -- if the attacker is tribe 0, the defender is a unit 
-                         -- guarding a city, and the city is the capital or 
-                         -- the tribe has less than 8 cities in total and 
-                         -- the attacker's die roll is higher than the 
-                         -- defender's. A reroll can happen at most once.
-
-
             end
             round = round+1
         end
-        -- once we get here, combat stops
-		if airCombat and airCombat.finishBounce then
+        if airCombat and airCombat.finishBounce then
             airCombat.finishBounce(attacker, defender)
         end
+        local flakMirror = require("flakMirror")
+        flakMirror.afterCombat(attacker, defender)
     end)
 end
 ---&endAutoDoc

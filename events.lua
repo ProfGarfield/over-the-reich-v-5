@@ -281,6 +281,13 @@ attemptToRun('engineHeal',"WARNING: engineHeal.lua not found. Airfield engine he
 attemptToRun('flakRegen',"WARNING: flakRegen.lua not found. Pad flak will not respawn.")
 attemptToRun('airCombatInstall',"WARNING: airCombatInstall.lua not found. Air combat test package will not run.")
 attemptToRun('increasedFlak',"WARNING: increasedFlak.lua not found. Increased air defense flak will not bind.")
+attemptToRun('flakTrain',"WARNING: flakTrain.lua not found. Flakzug rail lock / cap will not run.")
+attemptToRun('flakIntercept',"WARNING: flakIntercept.lua not found. Enter-tile and intercept flak will not run.")
+attemptToRun('flakMirror',"WARNING: flakMirror.lua not found. Day/night flak twins will not run.")
+attemptToRun('clouds',"WARNING: clouds.lua not found. Weather will not run.")
+attemptToRun('otrCalendar',"WARNING: otrCalendar.lua not found. Monthly date box will not run.")
+attemptToRun('cloudCombat',"WARNING: cloudCombat.lua not found. Cloud strike penalty will not run.")
+attemptToRun('flyingFortress',"WARNING: flyingFortress.lua not found. B-17 wrecks will not convert.")
 
 attemptToRun('keyPressSettings',"WARNING: did not find keyPressSettings.lua.  You might be missing standard key press events that are registered in that file.")
 attemptToRun('groundCombat',"WARNING: groundCombat.lua not found. Air-to-ground role/HP mods will not run.")

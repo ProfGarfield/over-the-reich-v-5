@@ -82,6 +82,8 @@ local function respawnFlak(args)
     if u then
         u.homeCity = city
         u.veteran = false
+        local flakMirror = require("flakMirror")
+        flakMirror.ensureTwin(u)
     end
 end
 

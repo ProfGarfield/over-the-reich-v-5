@@ -140,6 +140,29 @@ param.flakRegenBaseTurns = 4
 param.flakRegenPerArmament = 1
 param.flakRegenMinTurns = 1
 
+--Flak combat
+param.flak = {
+    shotsPerTurn   = 3,
+    hitChanceHigh  = 0.22,
+    hitChanceLow   = 0.55,
+    nightFactor    = 0.50,
+    cloudFactor    = 0.75,
+    wurzburgFactor = 1.25,
+    lowZ = 0, highZ = 1,
+    nightZ = nil,             -- or {nightLow, nightHigh}
+    useNightFlag = false,
+    nightFlagName = "nighttime",
+    cloudTerrainType = nil,
+    wurzburgRange = 8,
+    narrate = true,
+}
+
+-- Cloud combat
+param.cloud = {
+    strikeInCloud = 0.55,  -- bomber/jabo ATK vs a target on a cloud tile
+    escapeInCloud = 1.80,  -- air-to-air leave chance if either aircraft is in cloud
+}
+
 
 gen.versionFunctions(param,versionNumber,fileModified,"LuaParameterFiles".."\\".."parameters.lua")
 

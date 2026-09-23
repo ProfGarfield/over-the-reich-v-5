@@ -125,6 +125,8 @@ local function spawnFlak(city)
     local existing = findFlakOnCity(city)
     if existing then
         existing.homeCity = city
+        local flakMirror = require("flakMirror")
+        flakMirror.ensureTwin(existing)
         return existing
     end
     local tile = city.location
@@ -135,6 +137,8 @@ local function spawnFlak(city)
     if u then
         u.homeCity = city
         u.veteran  = false
+        local flakMirror = require("flakMirror")
+        flakMirror.ensureTwin(u)
     end
     return u
 end

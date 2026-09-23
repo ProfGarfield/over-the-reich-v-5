@@ -343,6 +343,12 @@ for i = 0, 188 do
     end
 end
 
+addBuildConditions(object.uFlakzug, {
+    forbiddenTribes = {object.pAllies, object.pBarbarians, object.pEvents},
+    maxNumberTribe  = 20,
+    allImprovements = object.iCity,
+})
+
 
 addBuildConditions(object.iIncreasedAirDefense, {
     conditionFunction = function(defaultBuildFunction, city, item)

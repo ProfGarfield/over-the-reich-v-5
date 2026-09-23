@@ -460,6 +460,10 @@ local function escapeChance(escaper, pursuer, z, globals)
     if isNight(z) and isDayFighter(escaper) and not isNightFighter(escaper) then
         extra = 0.75 -- Wilde Sau also worse at leaving
     end
+	local cloudCombat = require("cloudCombat")
+    if cloudCombat.unitInCloud(escaper) or cloudCombat.unitInCloud(pursuer) then
+        extra = extra * (cloudCombat.ESCAPE_IN_CLOUD or 1.80)
+    end
     if pur + esc <= 0 then return 0 end
     local chance = scale * extra * esc / (pur + esc)
     if chance > 0.95 then chance = 0.95 end
