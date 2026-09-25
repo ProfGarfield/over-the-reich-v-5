@@ -29,6 +29,9 @@
 
     Damage bands after a hit are unchanged. Night/cloud/W only move hit chance.
 
+    88cm / 128cm sit on z=0 only (see flakMirror.noNightSprite).
+    They still fire at night maps using a separate 3-shot bank.
+
     Do not hook engine A/D dice here.
 ]]
 
@@ -39,6 +42,12 @@ local text           = require("text")
 local func           = require("functions")
 local discreteEvents = require("discreteEventsRegistrar")
 local traits         = require("traits")
+
+local flakMirror
+do
+    local ok, mod = pcall(require, "flakMirror")
+    if ok then flakMirror = mod end
+end
 
 local flak = {}
 
@@ -167,10 +176,25 @@ local function isFlakType(unitType)
     return specFor(unitType) ~= nil
 end
 
+local function isHiddenNightHeavy(unit)
+    if not unit then return false end
+    if flakMirror and flakMirror.noNightSprite and flakMirror.noNightSprite[unit.type.id] then
+        return true
+    end
+    local function same(key)
+        local u = obj(key)
+        return u and u.id == unit.type.id
+    end
+    return same("u88cmFlak18") or same("u128cmFlak40")
+end
+
 ------------------------------------------------------------------------
 -- Shot budget (plain table, same pattern as fuelTrain billedThisTurn)
 -- Not a template counter -- those must be defined first and this
 -- key is per unit.id created at runtime.
+--
+-- 88 / 128 on z=0 use two keys: id#day and id#night.
+-- Everything else stays one magazine per unit.id.
 ------------------------------------------------------------------------
 
 local shotsUsedTable = rawget(_G, "_flakShotsUsed")
@@ -179,7 +203,7 @@ if not shotsUsedTable then
     rawset(_G, "_flakShotsUsed", shotsUsedTable)
 end
 
--- gunId.."#"..aircraftId already rolled this turn. Flying 8 tiles
+-- gunBank.."#"..aircraftId already rolled this turn. Flying 8 tiles
 -- through the same battery is one check, not eight.
 local engagedTable = rawget(_G, "_flakEngaged")
 if not engagedTable then
@@ -187,28 +211,43 @@ if not engagedTable then
     rawset(_G, "_flakEngaged", engagedTable)
 end
 
-local function shotsUsed(flakUnit)
-    return shotsUsedTable[flakUnit.id] or 0
+local function bankSuffix(flakUnit, tile)
+    if isHiddenNightHeavy(flakUnit) then
+        if tile and flak.isNight(tile) then
+            return "#night"
+        end
+        return "#day"
+    end
+    return ""
 end
 
-local function spendShot(flakUnit)
-    shotsUsedTable[flakUnit.id] = shotsUsed(flakUnit) + 1
+local function shotKey(flakUnit, tile)
+    return tostring(flakUnit.id) .. bankSuffix(flakUnit, tile)
 end
 
-local function engagedKey(flakUnit, aircraft)
-    return tostring(flakUnit.id).."#"..tostring(aircraft.id)
+local function shotsUsed(flakUnit, tile)
+    return shotsUsedTable[shotKey(flakUnit, tile)] or 0
 end
 
-local function alreadyEngaged(flakUnit, aircraft)
-    return engagedTable[engagedKey(flakUnit, aircraft)] == true
+local function spendShot(flakUnit, tile)
+    local k = shotKey(flakUnit, tile)
+    shotsUsedTable[k] = (shotsUsedTable[k] or 0) + 1
 end
 
-local function markEngaged(flakUnit, aircraft)
-    engagedTable[engagedKey(flakUnit, aircraft)] = true
+local function engagedKey(flakUnit, aircraft, tile)
+    return shotKey(flakUnit, tile).."#"..tostring(aircraft.id)
 end
 
-function flak.shotsLeft(flakUnit)
-    return math.max(0, flak.shotsPerTurn - shotsUsed(flakUnit))
+local function alreadyEngaged(flakUnit, aircraft, tile)
+    return engagedTable[engagedKey(flakUnit, aircraft, tile)] == true
+end
+
+local function markEngaged(flakUnit, aircraft, tile)
+    engagedTable[engagedKey(flakUnit, aircraft, tile)] = true
+end
+
+function flak.shotsLeft(flakUnit, tile)
+    return math.max(0, flak.shotsPerTurn - shotsUsed(flakUnit, tile))
 end
 
 function flak.resetAllShots()
@@ -231,7 +270,8 @@ end
 
 -- 0 low day + 1 high day.  2 low night + 3 high night.
 -- Guns sit on the low map and fire up at the paired high map.
--- Day batteries never engage night aircraft and vice versa.
+-- Day batteries never engage night aircraft and vice versa,
+-- except 88 / 128 on z=0 which own both pairs via two magazines.
 local function sameDayNight(gunZ, tileZ)
     local function pair(z)
         if z == 0 or z == 1 then return "day" end
@@ -284,12 +324,19 @@ function flak.hasWurzburgCover(flakUnit)
     if not next(types) then
         return false
     end
+    local gunZ = flakUnit.location.z
+    local cross = isHiddenNightHeavy(flakUnit) and gunZ == 0
     for unit in civ.iterateUnits() do
         if types[unit.type.id]
         and unit.owner == flakUnit.owner
-        and unit.location.z == flakUnit.location.z
-        and gen.distance(unit.location, flakUnit.location) <= flak.wurzburgRange then
-            return true
+        and gen.distance(unit.location, flakUnit.location, 0) <= flak.wurzburgRange then
+            if unit.location.z == gunZ then
+                return true
+            end
+            -- heavies on z=0 also take night-ground dishes
+            if cross and unit.location.z == 2 then
+                return true
+            end
         end
     end
     return false
@@ -312,8 +359,12 @@ end
 local function inRange(flakUnit, tile)
     local spec = specFor(flakUnit.type)
     if not spec then return false end
-    if not sameDayNight(flakUnit.location.z, tile.z) then return false end
+    local cross = isHiddenNightHeavy(flakUnit) and flakUnit.location.z == 0
+    if not cross and not sameDayNight(flakUnit.location.z, tile.z) then
+        return false
+    end
     -- xy only; zDist 0 so a gun on z=0 still reaches the aircraft on z=1
+    -- and, for heavies, z=2 / z=3
     return gen.distance(flakUnit.location, tile, 0) <= spec.range
 end
 
@@ -321,8 +372,8 @@ local function canEngage(flakUnit, aircraft, tile)
     local spec = specFor(flakUnit.type)
     if not spec then return false end
     if (not flak.allowFriendly) and flakUnit.owner == aircraft.owner then return false end
-    if flak.shotsLeft(flakUnit) <= 0 then return false end
-    if alreadyEngaged(flakUnit, aircraft) then return false end
+    if flak.shotsLeft(flakUnit, tile) <= 0 then return false end
+    if alreadyEngaged(flakUnit, aircraft, tile) then return false end
     if spec.lowOnly and not mapIsLow(tile) then return false end
     if not spec.roles[roleOf(aircraft.type)] then return false end
     if not inRange(flakUnit, tile) then return false end
@@ -333,9 +384,9 @@ local function pickShooter(aircraft, tile)
     local best, bestDist
     for unit in civ.iterateUnits() do
         if canEngage(unit, aircraft, tile) then
-            local d = gen.distance(unit.location, tile)
+            local d = gen.distance(unit.location, tile, 0)
             if not best or d < bestDist
-            or (d == bestDist and flak.shotsLeft(unit) > flak.shotsLeft(best)) then
+            or (d == bestDist and flak.shotsLeft(unit, tile) > flak.shotsLeft(best, tile)) then
                 best, bestDist = unit, d
             end
         end
@@ -403,8 +454,8 @@ function flak.resolveShot(aircraft, tile, reason)
     local base = mapIsLow(tile) and flak.hitChanceLow or flak.hitChanceHigh
     local hitP = math.min(0.95, base * flak.hitMultiplier(shooter, tile))
 
-    markEngaged(shooter, aircraft)
-    spendShot(shooter)
+    markEngaged(shooter, aircraft, tile)
+    spendShot(shooter, tile)
 
     if math.random() > hitP then
         if isHeavyGun(shooter.type) then

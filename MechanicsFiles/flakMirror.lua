@@ -8,6 +8,9 @@
 
     Canonical tile is always z=0. Regen and improvement bind stay on z=0.
     This file keeps the z=2 twin in lockstep.
+
+    Exception: 88cm and 128cm have no night sprite. They sit on z=0 only.
+    Night fire for those types is handled in flakIntercept (second shot bank).
 ]]
 
 local object         = require("object")
@@ -40,6 +43,19 @@ remember("uBofors40mmUK")
 remember("uBofors40mmUS")
 remember("u37Flak")
 
+-- Heavies stay on the day-low map. No z=2 copy.
+local noNightSprite = {}
+local function markNoNight(key)
+    local u = obj(key)
+    if u then noNightSprite[u.id] = true end
+end
+markNoNight("u88cmFlak18")
+markNoNight("u128cmFlak40")
+
+local function wantsNightSprite(unit)
+    return unit and not noNightSprite[unit.type.id]
+end
+
 local function isFlak(unit)
     return unit and flakTypeIds[unit.type.id] == true
 end
@@ -69,14 +85,17 @@ end
 
 function flakMirror.findTwin(unit)
     if not isFlak(unit) then return nil end
+    if not wantsNightSprite(unit) then return nil end
     local t = twinTile(unit.location)
     if not t then return nil end
     return flakOnTile(t, unit.type, unit.owner)
 end
 
 -- Create the missing half of a pair. Never called for z=1/3.
+-- 88 / 128: no twin.
 function flakMirror.ensureTwin(unit)
     if mirroring or not isFlak(unit) then return nil end
+    if not wantsNightSprite(unit) then return nil end
     local dest = twinTile(unit.location)
     if not dest then return nil end
     local existing = flakOnTile(dest, unit.type, unit.owner)
@@ -105,6 +124,7 @@ end
 -- picks up the wound before the next heal.
 function flakMirror.syncDamage(unit)
     if not isFlak(unit) then return end
+    if not wantsNightSprite(unit) then return end
     local twin = flakMirror.findTwin(unit)
     if not twin then
         flakMirror.ensureTwin(unit)
@@ -118,6 +138,7 @@ end
 
 function flakMirror.syncHealFromDay(unit)
     if not isFlak(unit) then return end
+    if not wantsNightSprite(unit) then return end
     local z = unit.location.z
     local day = (z == 0) and unit or ((z == 2) and flakMirror.findTwin(unit))
     local night = (z == 2) and unit or ((z == 0) and flakMirror.findTwin(unit))
@@ -128,6 +149,7 @@ end
 
 local function deleteTwinQuiet(unit)
     if mirroring or not isFlak(unit) then return end
+    if not wantsNightSprite(unit) then return end
     local twin = flakMirror.findTwin(unit)
     if not twin then return end
     mirroring = true
@@ -135,17 +157,34 @@ local function deleteTwinQuiet(unit)
     mirroring = false
 end
 
-discreteEvents.onScenarioLoaded(function()
+local function stripOrphanNightHeavies()
+    local doomed = {}
     for unit in civ.iterateUnits() do
-        if isFlak(unit) and (unit.location.z == 0 or unit.location.z == 2) then
+        if unit and noNightSprite[unit.type.id] and unit.location.z == 2 then
+            doomed[#doomed + 1] = unit
+        end
+    end
+    mirroring = true
+    for i = 1, #doomed do
+        civ.deleteUnit(doomed[i])
+    end
+    mirroring = false
+end
+
+discreteEvents.onScenarioLoaded(function()
+    stripOrphanNightHeavies()
+    for unit in civ.iterateUnits() do
+        if isFlak(unit) and wantsNightSprite(unit)
+            and (unit.location.z == 0 or unit.location.z == 2) then
             flakMirror.ensureTwin(unit)
         end
     end
 end)
 
 discreteEvents.onTribeTurnBegin(function(turn, tribe)
+    stripOrphanNightHeavies()
     for unit in civ.iterateUnits() do
-        if isFlak(unit) and unit.owner == tribe then
+        if isFlak(unit) and unit.owner == tribe and wantsNightSprite(unit) then
             if unit.location.z == 0 or unit.location.z == 2 then
                 flakMirror.ensureTwin(unit)
             end
@@ -156,7 +195,8 @@ end)
 -- After production / engine heal on the z=0 city tile, push HP to night.
 discreteEvents.onTribeTurnEnd(function(turn, tribe)
     for unit in civ.iterateUnits() do
-        if isFlak(unit) and unit.owner == tribe and unit.location.z == 0 then
+        if isFlak(unit) and unit.owner == tribe and unit.location.z == 0
+            and wantsNightSprite(unit) then
             flakMirror.syncHealFromDay(unit)
         end
     end
@@ -188,7 +228,9 @@ function flakMirror.afterCombat(attacker, defender)
     end
 end
 
-flakMirror.isFlak   = isFlak
-flakMirror.twinTile = twinTile
+flakMirror.isFlak         = isFlak
+flakMirror.twinTile       = twinTile
+flakMirror.noNightSprite  = noNightSprite
+flakMirror.wantsNightSprite = wantsNightSprite
 
 return flakMirror

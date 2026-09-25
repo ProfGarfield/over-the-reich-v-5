@@ -13,7 +13,7 @@ local groundCombat = {}
 local ABORT_BELOW = 0.15
 local JABO_TRAIN_FLOOR = 0.15
 local VET_MOD = 1.10
-local SHOW_TOAST = true
+local SHOW_TOAST = false
 
 local ROLE_TARGET = {
     heavyBomber     = { high = 1.00, low = 0.45, train = 0.55, parked = 0.40 },

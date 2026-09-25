@@ -392,7 +392,7 @@ local function arriveAndDeliver(unit, silo)
     local zoneName = zoneForSilo(silo) or helper.airZoneFor(silo.location.x, silo.location.y)
     fuelTrain.addFuel(zoneName, pDelivery())
     arrivalMessage(silo, zoneName, pDelivery())
-    deleteTrain(unit)
+    queueKill(unit)
 end
 
 local function resolveTrain(unit)
@@ -403,7 +403,7 @@ local function resolveTrain(unit)
         local tile = unit.location
         if not isLegalRailTile(tile) then
             disbandMessage()
-            deleteTrain(unit)
+            queueKill(unit)
             return
         end
         if tileHasSilo(tile) then
@@ -420,7 +420,7 @@ local function resolveTrain(unit)
                 return
             end
             disbandMessage()
-            deleteTrain(unit)
+            queueKill(unit)
             return
         end
         local steps = remainingSteps(unit)

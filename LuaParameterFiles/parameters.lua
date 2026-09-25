@@ -155,6 +155,8 @@ param.flak = {
     cloudTerrainType = nil,
     wurzburgRange = 8,
     narrate = true,
+	allowFriendly = false,
+    skipAirfields = true,
 }
 
 -- Cloud combat

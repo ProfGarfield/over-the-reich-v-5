@@ -73,7 +73,7 @@ RiverMultiplier, 1,0
 AlpineMultiplier, 1,2
 ProductionCarryOver,1
 NumberOfUnitTypes, 189
-NumberofTechs, 253
+NumberOfTechs, 253
 AICapitalizationLimit, 1200
 PlayableDifficulties, 0b100000
 
@@ -273,7 +273,6 @@ Tech With ID 150,   3, 0,  no,  no,  0, 0    ; X96 150
 Tech With ID 151,   3, 0,  no,  no,  0, 0    ; X97 151
 Tech With ID 152,   3, 0,  no,  no,  0, 0    ; X98 152
 Tech With ID 153,   3, 0,  no,  no,  0, 0    ; X99 153
-Tech With ID 154,   3, 0,  no,  no,  0, 0    ; X9A 154
 Tech With ID 154,   3, 0,  no,  no,  0, 0    ; X9A 154
 Tech With ID 155,   3, 0,  no,  no,  0, 0    ; X9B 155
 Tech With ID 156,   3, 0,  no,  no,  0, 0    ; X9C 156
@@ -583,10 +582,10 @@ Allied Division,       nil, 0,   0.,0,  0a,20d, 3h,2f,  2,0,  7, nil, 0000000000
 MS 406,                nil, 1,  20.,4,  5a,5d,  2h,2f,  6,0,  3, nil, 000000000010000 ; 27
 Bf 109G-6,             Rob, 1,  24.,4,  6a,6d,  2h,2f,  6,0,  3, Ind, 000000000010000 ; 28
 Bf 109G-6/R6,          nil, 1,  24.,4,  6a,3d,  2h,3f,  6,0,  3, nil, 000000000010000 ; 29
-Bf 109G-10,            nil, 1,  28.,4,  8a,8d,  2h,2f,  6,0,  3, Ref, 000000000010000 ; 30
-Bf 109G-10/R6,         nil, 1,  28.,4,  8a,4d,  2h,3f,  6,0,  3, nil, 000000000010000 ; 31
-Bf 109G-14,            Ref, 1,  26.,4, 10a,10d, 2h,2f,  6,0,  3, Rob, 000000000010000 ; 32
-Bf 109G-14/R6,         nil, 1,  26.,4, 10a,5d,  2h,3f,  6,0,  3, nil, 000000000010000 ; 33
+Bf 109G-10,            nil, 1,  28.,4,  10a,10d,  2h,2f,  6,0,  3, Ref, 000000000010000 ; 30
+Bf 109G-10/R6,         nil, 1,  28.,4,  10a,5d,  2h,3f,  6,0,  3, nil, 000000000010000 ; 31
+Bf 109G-14,            Ref, 1,  26.,4,  8a,8d, 2h,2f,  6,0,  3, Rob, 000000000010000 ; 32
+Bf 109G-14/R6,         nil, 1,  26.,4,  8a,4d,  2h,3f,  6,0,  3, nil, 000000000010000 ; 33
 Bf 109K-4,             nil, 1,  30.,4, 12a,12d, 2h,2f,  6,0,  3, Roc, 000000000010000 ; 34
 Fw 190A-5,             San, 1,  30.,4,  8a,4d,  2h,2f,  6,0,  3, Ind, 000000000010000 ; 35
 Fw 190A-6,             nil, 1,  35.,4, 10a,6d,  2h,2f,  6,0,  3, San, 000000000010000 ; 36

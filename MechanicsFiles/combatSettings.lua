@@ -218,7 +218,7 @@ end
 --goals, in which case `isCombat` is false.
 
 ---&autoDoc onChooseDefender
-function register.onChooseDefender(defaultFunction,tile,attacker,isCombat)
+function register.onChooseDefender(defaultFunction, tile, attacker, isCombat)
     local cover, mode = nil, nil
     if airCombat then
         if airCombat.findBounceDefender then
@@ -229,10 +229,20 @@ function register.onChooseDefender(defaultFunction,tile,attacker,isCombat)
             cover = airCombat.findInterceptDefender(tile, attacker)
             if cover then mode = "intercept" end
         end
+        if cover and airCombat.coverMode then
+            mode = airCombat.coverMode(cover, tile) or mode
+        end
+        -- Never pull the unit that is attacking. Never bounce a unit
+        -- that is already on this map.
+        if cover == attacker then
+            cover, mode = nil, nil
+        elseif cover and cover.location.z == tile.z then
+            mode = "intercept"
+        end
     end
 
     if cover and isCombat then
-        airCombat._pendingBounce = cover
+        airCombat._pendingBounce = (mode == "bounce") and cover or nil
         if airCombat.markBounceHome then
             airCombat.markBounceHome(cover, mode)
         end
@@ -249,16 +259,17 @@ function register.onChooseDefender(defaultFunction,tile,attacker,isCombat)
     local bestDefender = nil
     for possibleDefender in tile.units do
         local attackerStrength, attackerFirepower, defenderStrength, defenderFirepower
-            = computeCombatStatistics(attacker,possibleDefender,false)
+            = computeCombatStatistics(attacker, possibleDefender, false)
         local defenderValue = nil
         if attackerStrength == 0 then
             defenderValue = 1e7
         else
-            defenderValue = (defenderStrength/attackerStrength)*possibleDefender.hitpoints/possibleDefender.type.hitpoints
+            defenderValue = (defenderStrength / attackerStrength)
+                * possibleDefender.hitpoints / possibleDefender.type.hitpoints
         end
-        defenderValue = defenderValue + defenderValueModifier(possibleDefender,tile,attacker)
-        if defenderValue > bestDefenderValue or
-            (defenderValue == bestDefenderValue and possibleDefender.id < bestDefender.id) then
+        defenderValue = defenderValue + defenderValueModifier(possibleDefender, tile, attacker)
+        if defenderValue > bestDefenderValue
+            or (defenderValue == bestDefenderValue and possibleDefender.id < bestDefender.id) then
             bestDefenderValue = defenderValue
             bestDefender = possibleDefender
         end
@@ -272,11 +283,16 @@ end
 function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,attackerPower,defenderDie,defenderPower,isSneakAttack)
     local flak = require("flakIntercept")
     if flak.onInterceptAttack(attacker, defender) then
+        if attacker.type.domain == 1 and defender.type.domain ~= 1 then
+            attacker.moveSpent = 255
+        end
         return
     end
     leaderBonus.updateCommander(attacker)
     leaderBonus.updateCommander(defender)
-    local maxCombatRounds = (airCombat and airCombat.maxAirRounds and airCombat.maxAirRounds()) or 10
+    local airVsAir = attacker.type.domain == 1 and defender.type.domain == 1
+    local maxCombatRounds = (airVsAir and airCombat and airCombat.maxAirRounds
+        and airCombat.maxAirRounds()) or 30
     local calculatedAttackerStrength,
             calculatedAttackerFirepower,
             calculatedDefenderStrength,
@@ -287,7 +303,6 @@ function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,at
             text.simple("Our "..attacker.type.name.." unit can't fight the defending "..defender.type.name..".  The attack has been cancelled.","Defense Minister")
         end
     end
-
     return coroutine.create(function()
         local round = 0
         while(round < maxCombatRounds and attacker.hitpoints >0 and defender.hitpoints > 0) do
@@ -299,7 +314,7 @@ function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,at
                 local newDefenderDie = calculatedDefenderStrength
                 local newDefenderFirepower = calculatedDefenderFirepower
                 local result = coroutine.yield(false,newAttackerDie,newAttackerFirepower,newDefenderDie,newDefenderFirepower)
-                if airCombat and airCombat.afterRound then
+                if airVsAir and airCombat and airCombat.afterRound then
                     local verdict = airCombat.afterRound(round + 1, attacker, defender)
                     if verdict == "attackerEscaped" or verdict == "defenderEscaped" then
                         maxCombatRounds = round + 1
@@ -308,11 +323,14 @@ function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,at
             end
             round = round+1
         end
-        if airCombat and airCombat.finishBounce then
+        if airVsAir and airCombat and airCombat.finishBounce then
             airCombat.finishBounce(attacker, defender)
         end
         local flakMirror = require("flakMirror")
         flakMirror.afterCombat(attacker, defender)
+        if attacker.type.domain == 1 and defender.type.domain ~= 1 then
+            attacker.moveSpent = 255
+        end
     end)
 end
 ---&endAutoDoc

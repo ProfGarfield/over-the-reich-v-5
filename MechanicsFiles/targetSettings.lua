@@ -385,7 +385,7 @@ local heavyFlakSpec = {
         elseif city.owner == object.pAllies then
             return object.u37Flak
         else
-            error("Someone other than the Allies or Germany is building a heavy flak battery")
+            return nil
         end
     end,
     targetMap = 0,

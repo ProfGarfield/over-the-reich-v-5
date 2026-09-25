@@ -1,21 +1,11 @@
 --[[
-OTR air combat core — 21 Sep 2026
+OTR air combat core — 24 Sep 2026
 Require from combatSettings.lua and call applyAirCombat() inside
 computeCombatStatistics to fold multipliers into aCustomMult / dCustomMult
 and firepower.
 
-Does NOT replace the old coroutine yet. It computes the package so you can
-see numbers with narration on before wiring escape/bounce-commit.
-
-Install:
-    local airCombat = require("airCombatCore")
-    airCombat.installFlag()          -- once, discreteEvents.onScenarioLoaded
-    -- inside computeCombatStatistics, after you have attacker/defender:
-    airCombat.applyAirCombat(attacker, defender, combatModifierOverride, {
-        originalDefenderZ = originalDefenderLocation and originalDefenderLocation.z,
-    })
-
-Toggle narration: key N (add in keyPressSettings) calls airCombat.toggleNarration()
+Bounce = fighter on HIGH (z=1) dropping into a fight already on LOW (z=0).
+Same-map cover is intercept / CAP, never a bounce.
 ]]
 
 local traits = require("traits")
@@ -41,8 +31,6 @@ local ROLE = {
     wunderwaffe = "wunderwaffe",
 }
 
--- Tight band. Bomber-as-attacker vs fighter is self-defense, not a plan.
--- Daylight bomber RETURN FIRE is gunFirepower on the defender, not this row.
 local ROLE_MATRIX = {
     airSuperiority = {
         airSuperiority=1.00, bomberDestroyer=1.20, jabo=1.15,
@@ -74,11 +62,11 @@ local ROLE_MATRIX = {
     },
 }
 
-local MAP = { LOW = 0, HIGH = 1, NIGHT = 2 }
+local MAP = { LOW = 0, HIGH = 1, NIGHT = 2, NIGHT_HIGH = 3 }
 
 local paramsByTypeId = {}
 
-local function isNight(z) return z == MAP.NIGHT end
+local function isNight(z) return z == MAP.NIGHT or z == MAP.NIGHT_HIGH end
 local function isHigh(z) return z == MAP.HIGH end
 local function isLow(z) return z == MAP.LOW end
 
@@ -87,7 +75,7 @@ local function narrationOn()
         local ok, v = pcall(flag.value, FLAG_NAME, FLAG_MODULE)
         if ok then return v and true or false end
     end
-    return true -- default ON while testing if flag module isn't wired
+    return true
 end
 
 local lastMsg = nil
@@ -139,14 +127,11 @@ local function registerParameters(tbl)
     end
 end
 
--- airCombatTestSet.fillTestParameters writes into a table we can ingest
 local function ingestTestSet()
     local ok, testSet = pcall(require, "airCombatTestSet")
     if not ok then return end
     local bag = {}
     testSet.fillTestParameters(bag, nil)
-    -- fillTestParameters keys by unitType.id via object units
-    -- Our put() used unit objects as keys. Flatten.
     for k, v in pairs(bag) do
         if type(k) == "userdata" and k.id then
             paramsByTypeId[k.id] = v
@@ -200,13 +185,12 @@ end
 local function dayNightMult(unit, z)
     if isNight(z) then
         if isDayFighter(unit) and not isNightFighter(unit) then
-            return 0.70 -- Wilde Sau
+            return 0.70
         end
         return 1.00
     end
-    -- day maps
     if isNightFighter(unit) then
-        return 0.65 -- 110 by day is meat
+        return 0.65
     end
     return 1.00
 end
@@ -220,12 +204,7 @@ local function heightMult(unit, z)
     return 1.00
 end
 
--- Bounce is NOT cross-map attacking. Civ2 cannot do that.
--- Bounce = a fighter on the HIGH map at this x,y dropping into a
--- fight that is already happening on the LOW map underneath it.
--- Defender who bounced in. 1.55 is a bounce, not a fair fight.
 local BOUNCE_DEF = 1.55
--- Attacker who got jumped from above.
 local BOUNCE_ATK = 0.70
 local BOUNCE_RADIUS = 2
 local COVER_LIMIT = 2
@@ -293,15 +272,25 @@ local function tileIsAirfield(tile)
     if not tile then return false end
     local bt = tile.baseTerrain
     if not bt then return false end
-    return bt == object.bAirfieldDayLow
-        or bt == object.bAirfieldDayHigh
-        or bt == object.bAirfieldNightLow
-        or (object.bAirfieldNightHigh and bt == object.bAirfieldNightHigh)
+    local function same(key)
+        local ok, val = pcall(function() return object[key] end)
+        return ok and val and bt == val
+    end
+    return same("bAirfieldDayLow")
+        or same("bAirfieldDayHigh")
+        or same("bAirfieldNightLow")
+        or same("bAirfieldNightHigh")
         or bt.type == 6
 end
 
--- Fight on LOW. Look on HIGH within BOUNCE_RADIUS of that column.
--- Per-type interceptionRange (default 2) can only shrink that, not grow it.
+local function coverMode(cover, tile)
+    if not (cover and tile) then return nil end
+    if isLow(tile.z) and isHigh(cover.location.z) then
+        return "bounce"
+    end
+    return "intercept"
+end
+
 local function findBounceDefender(tile, attacker)
     ingestTestSet()
     if not tile or not attacker then return nil end
@@ -317,6 +306,7 @@ local function findBounceDefender(tile, attacker)
                     for u in t.units do
                         if u.owner ~= attacker.owner and isFighterUnit(u)
                             and coversLeft(u) > 0
+                            and isHigh(u.location.z)
                             and not tileIsAirfield(u.location) then
                             local p = paramsByTypeId[u.type.id]
                             local range = (p and p.interceptionRange) or BOUNCE_RADIUS
@@ -348,11 +338,10 @@ end
 local function vetMult(unit)
     if unit.veteran then return 1.10 end
     return 1.00
-    -- expert/ace/named come later as real unit types
 end
 
 local function mapSuffix(z)
-    if z == MAP.NIGHT then return "Night" end
+    if z == MAP.NIGHT or z == MAP.NIGHT_HIGH then return "Night" end
     if z == MAP.HIGH then return "High" end
     return "Low"
 end
@@ -380,8 +369,6 @@ local function interceptRangeVs(escort, attacker, z)
     return range
 end
 
--- Same-map escort. Replaces the bomber (or other target) as defender.
--- Air-superiority preferred. Bombers never intercept.
 local function findInterceptDefender(tile, attacker)
     ingestTestSet()
     if not tile or not attacker then return nil end
@@ -416,8 +403,6 @@ local function findInterceptDefender(tile, attacker)
     return best
 end
 
--- Extra bombers near the defender. They do not take the fight.
--- They add firepower. Cap so a 12-ship box is not a death ray.
 local function formationGunBonus(defender)
     if not defender or not isBomber(defender) then return 0, 0 end
     local extras = 0
@@ -442,10 +427,6 @@ local function formationGunBonus(defender)
     return fpAdd, extras
 end
 
---[[
-Escape chance per round. Night fighters at night get nightEscapeExtra
-on top of combatParameters.nightEscapeScale (default 2).
-]]
 local function escapeChance(escaper, pursuer, z, globals)
     globals = globals or {}
     local scale = isNight(z) and (globals.nightEscapeScale or 2)
@@ -458,11 +439,13 @@ local function escapeChance(escaper, pursuer, z, globals)
         extra = (p and p.nightEscapeExtra) or 1.35
     end
     if isNight(z) and isDayFighter(escaper) and not isNightFighter(escaper) then
-        extra = 0.75 -- Wilde Sau also worse at leaving
+        extra = 0.75
     end
-	local cloudCombat = require("cloudCombat")
-    if cloudCombat.unitInCloud(escaper) or cloudCombat.unitInCloud(pursuer) then
-        extra = extra * (cloudCombat.ESCAPE_IN_CLOUD or 1.80)
+    local okCloud, cloudCombat = pcall(require, "cloudCombat")
+    if okCloud and cloudCombat then
+        if cloudCombat.unitInCloud(escaper) or cloudCombat.unitInCloud(pursuer) then
+            extra = extra * (cloudCombat.ESCAPE_IN_CLOUD or 1.80)
+        end
     end
     if pur + esc <= 0 then return 0 end
     local chance = scale * extra * esc / (pur + esc)
@@ -470,16 +453,6 @@ local function escapeChance(escaper, pursuer, z, globals)
     return chance
 end
 
---[[
-Return-fire rule:
-  Bombers ALWAYS shoot each round they are in the fight.
-  Their gunFirepower is applied as defender firepower when they are
-  the defender (the normal fighter-attacks-bomber case).
-  Their role-matrix attack row is only used if a bomber is the
-  initiating attacker (stray gun pass / collision). That row is
-  deliberately weak (0.45 vs AS) so bombers do not hunt fighters.
-  They still sting.
-]]
 local function gunFirepower(unit)
     local p = paramsByTypeId[unit.type.id]
     if p and p.gunFirepower then return p.gunFirepower end
@@ -489,41 +462,35 @@ end
 
 local function applyAirCombat(attacker, defender, override, ctx)
     ctx = ctx or {}
-	if defender and defender.type and defender.type.domain == 1
+    if defender and defender.type and defender.type.domain == 1
         and tileIsAirfield(defender.location) then
         return override
     end
     if attacker and attacker.type and attacker.type.domain == 1
         and defender and defender.type and defender.type.domain ~= 1 then
         return override
-	end
+    end
     ingestTestSet()
 
-    local az = attacker.location.z
-    local dz = (ctx.originalDefenderZ) or defender.location.z
     local fightZ = defender.location.z
 
     local atkRole = inferRole(attacker)
     local defRole = inferRole(defender)
 
     local aRole = roleMult(atkRole, defRole)
-    local dRole = roleMult(defRole, atkRole) -- return-fire quality of the defender
+    local dRole = roleMult(defRole, atkRole)
     local aDN = dayNightMult(attacker, fightZ)
     local dDN = dayNightMult(defender, fightZ)
     local aHt = heightMult(attacker, fightZ)
     local dHt = heightMult(defender, fightZ)
     local aBn = bounceAttackMult(ctx)
     local dBn = bounceMult(ctx)
-    -- Bounce pass uses energy from high. Do not also slap the
-    -- "P-47 lives on the deck" tax onto that one pass.
     if ctx.bounced then
         dHt = 1.00
     end
     local aVet = vetMult(attacker)
     local dVet = vetMult(defender)
 
-    -- Defender role-as-attacker is how hard the guns bite, not how
-    -- well the Fortress dogfights. Floor it so guns never go away.
     if isBomber(defender) then
         dRole = math.max(dRole, 0.70)
     end
@@ -533,7 +500,6 @@ local function applyAirCombat(attacker, defender, override, ctx)
     local suf = mapSuffix(fightZ)
     local aCrate = (aP and aP.luaAttack) or 10
     local dCrate = (dP and dP.luaDefense) or 10
-    -- 10 is the "even crate" baseline. 11 vs 10 = 1.10
     local aCrateMult = aCrate / 10
     local dCrateMult = dCrate / 10
     local aMapAdd = (aP and (aP["attackMod"..suf] or 0)) or 0
@@ -544,7 +510,6 @@ local function applyAirCombat(attacker, defender, override, ctx)
     override.aCustomAdd = (override.aCustomAdd or 0) + aMapAdd
     override.dCustomAdd = (override.dCustomAdd or 0) + dMapAdd
 
-    -- Firepower: bombers keep guns even while trying to escape.
     override.aAddFirepower = (override.aAddFirepower or 0)
     override.dAddFirepower = (override.dAddFirepower or 0)
     local formFP, formN = 0, 0
@@ -604,18 +569,16 @@ local function hitsFromDeath(unit)
     return unit.hitpoints or 0
 end
 
--- Call after each combat round from the coroutine.
--- Returns "continue", "attackerEscaped", or "defenderEscaped".
 local function afterRound(round, attacker, defender)
     if not attacker or not defender then return "continue" end
     if attacker.hitpoints <= 0 or defender.hitpoints <= 0 then return "continue" end
     if round < MIN_ROUNDS then return "continue" end
     local z = defender.location.z
 
-    local function tryEscape(escaper, pursuer, who)
+    local function tryEscape(escaper, pursuer)
         local wants = false
         if isBomber(escaper) then
-            wants = true -- bomber always tries to leave a fighter
+            wants = true
         elseif hitsFromDeath(escaper) <= FIGHTER_ESCAPE_HITS then
             wants = true
         end
@@ -634,9 +597,8 @@ local function afterRound(round, attacker, defender)
         return false
     end
 
-    -- Defender tries first (bomber running from the bounce).
-    if tryEscape(defender, attacker, "defender") then return "defenderEscaped" end
-    if tryEscape(attacker, defender, "attacker") then return "attackerEscaped" end
+    if tryEscape(defender, attacker) then return "defenderEscaped" end
+    if tryEscape(attacker, defender) then return "attackerEscaped" end
     return "continue"
 end
 
@@ -644,52 +606,53 @@ local function maxAirRounds()
     return MAX_ROUNDS
 end
 
--- Civ2 unit userdata will not accept extra keys. Store homes here.
 local coverHome = {}
 
 local function markBounceHome(unit, mode)
     if not unit then return end
     local loc = unit.location
+    if mode == "bounce" and not isHigh(loc.z) then
+        mode = "intercept"
+    end
     coverHome[unit.id] = {
         x = loc.x, y = loc.y, z = loc.z,
-        mode = mode or "bounce",
+        mode = mode or "intercept",
         unit = unit,
     }
     noteCoverUsed(unit)
 end
 
 local function finishBounce(attacker, defender)
-    local rec, u = nil, nil
-    if defender and coverHome[defender.id] then
-        rec, u = coverHome[defender.id], defender
-    elseif attacker and coverHome[attacker.id] then
-        rec, u = coverHome[attacker.id], attacker
-    end
-    if not rec or not u then return end
-    coverHome[u.id] = nil
+    if not defender then return end
+    local rec = coverHome[defender.id]
+    if not rec then return end
+    coverHome[defender.id] = nil
+    if attacker then coverHome[attacker.id] = nil end
 
-    if u.hitpoints <= 0 then return end
+    if defender.hitpoints <= 0 then return end
 
     local home = civ.getTile(rec.x, rec.y, rec.z)
     if not home then return end
 
-    if rec.mode == "intercept" then
-        civ.teleportUnit(u, home)
-        say(u.type.name.." returns to CAP.")
+    -- Bounce only if we actually took it off HIGH (z=1)
+    if rec.mode ~= "bounce" or rec.z ~= 1 then
+        if rec.mode == "intercept" and (home.x ~= defender.location.x
+            or home.y ~= defender.location.y or home.z ~= defender.location.z) then
+            civ.teleportUnit(defender, home)
+            say(defender.type.name.." returns to CAP.")
+        end
         return
     end
 
-    local preyDead = (u == defender and attacker.hitpoints <= 0)
-                  or (u == attacker and defender.hitpoints <= 0)
+    local preyDead = attacker and attacker.hitpoints <= 0
     if not preyDead then
-        say(u.type.name.." stays on the deck (bounce did not kill).")
+        say(defender.type.name.." stays on the deck (bounce did not kill).")
         return
     end
-    civ.teleportUnit(u, home)
-    say(u.type.name.." climbs back to high after the bounce kill.")
+    civ.teleportUnit(defender, home)
+    say(defender.type.name.." climbs back to high after the bounce kill.")
 end
 
--- Example numbers for the eight-ship, no engine required
 local function expectedFeel()
     return {
         ["109G6 vs Spit IX, high"] = "near even, spit slightly better escape",
@@ -732,4 +695,6 @@ return {
     otherDayZ = otherDayZ,
     markBounceHome = markBounceHome,
     finishBounce = finishBounce,
+    coverMode = coverMode,
+    tileIsAirfield = tileIsAirfield,
 }

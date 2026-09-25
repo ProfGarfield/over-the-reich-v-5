@@ -174,12 +174,12 @@ local function fillTestParameters(combatParameters, makeCombatParameter)
     end
 
 
-    put(object.uBf109G6, AS(380, 10, 8, "all", {pursuitSpeedHigh=400, escapeSpeedHigh=400, attackModHigh=1, defenseModHigh=1}))
-    put(object.uBf109G6R6, AS(355, 12, 7, "all", {role="bomberDestroyer", attackMoveCost=19}))
-    put(object.uBf109G10, AS(400, 11, 8, "all", {pursuitSpeedHigh=420, escapeSpeedHigh=420, attackModHigh=1, defenseModHigh=1}))
-    put(object.uBf109G10R6, AS(375, 13, 7, "all", {role="bomberDestroyer", attackMoveCost=20}))
-    put(object.uBf109G14, AS(405, 11, 9, "all", {pursuitSpeedHigh=425, escapeSpeedHigh=425, attackModHigh=1, defenseModHigh=1}))
-    put(object.uBf109G14R6, AS(380, 13, 7, "all", {role="bomberDestroyer", attackMoveCost=21}))
+	put(object.uBf109G6,   AS(380, 10, 8, "all", {pursuitSpeedHigh=400, escapeSpeedHigh=400, attackModHigh=1, defenseModHigh=1}))
+	put(object.uBf109G6R6,  AS(355, 12, 7, "all", {role="bomberDestroyer", attackMoveCost=19}))
+	put(object.uBf109G14,   AS(390, 10, 8, "all", {pursuitSpeedHigh=410, escapeSpeedHigh=410, attackModHigh=1, defenseModHigh=1}))
+	put(object.uBf109G14R6, AS(365, 12, 7, "all", {role="bomberDestroyer", attackMoveCost=20}))
+	put(object.uBf109G10,   AS(405, 11, 9, "all", {pursuitSpeedHigh=425, escapeSpeedHigh=425, attackModHigh=1, defenseModHigh=1}))
+	put(object.uBf109G10R6, AS(380, 13, 7, "all", {role="bomberDestroyer", attackMoveCost=21}))
     put(object.uBf109K4, AS(445, 13, 9, "all", {pursuitSpeedHigh=470, escapeSpeedHigh=470, attackModHigh=2, defenseModHigh=2, attackMoveCost=12}))
     put(object.uFw190A5, AS(400, 11, 9, "low", {pursuitSpeedHigh=360, escapeSpeedHigh=360, attackModLow=1, defenseModLow=1, attackModHigh=-1, defenseModHigh=-1}))
     put(object.uFw190A6, AS(400, 11, 9, "low", {pursuitSpeedHigh=360, escapeSpeedHigh=360, attackModLow=1, defenseModLow=1, attackModHigh=-1, defenseModHigh=-1}))

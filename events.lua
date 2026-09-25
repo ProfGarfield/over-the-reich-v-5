@@ -288,6 +288,7 @@ attemptToRun('clouds',"WARNING: clouds.lua not found. Weather will not run.")
 attemptToRun('otrCalendar',"WARNING: otrCalendar.lua not found. Monthly date box will not run.")
 attemptToRun('cloudCombat',"WARNING: cloudCombat.lua not found. Cloud strike penalty will not run.")
 attemptToRun('flyingFortress',"WARNING: flyingFortress.lua not found. B-17 wrecks will not convert.")
+attemptToRun('mapTransport',"WARNING: mapTransport.lua not found. Native map transport will not be patched.")
 
 attemptToRun('keyPressSettings',"WARNING: did not find keyPressSettings.lua.  You might be missing standard key press events that are registered in that file.")
 attemptToRun('groundCombat',"WARNING: groundCombat.lua not found. Air-to-ground role/HP mods will not run.")
@@ -631,6 +632,19 @@ local function doOnLoad(buffer)-->void
     discreteEvents.performLinkStateToModules(state,stateTableKeys)
     --linkStateTableToModules()
     print("Enter console.commands() to see a list of keys in the console table.  Some give access to functions in modules, others will run event code.")
+
+    -- Native transport is stored in the save. Re-apply after restore.
+    -- 2 = relationship row 1 (maps 2,3 night climb)
+    local object = require("object")
+    local NIGHT = 2
+    local function setNightClimb(ut)
+        if ut then ut.nativeTransport = NIGHT end
+    end
+	setNightClimb(object.uBf110G4)
+    setNightClimb(object.uHe219)
+    setNightClimb(object.uDo217N2)
+    setNightClimb(object.uJu88C6)
+    setNightClimb(object.uJu88G)
 end
 ---&endAutoDoc
 civ.scen.onLoad(doOnLoad)
