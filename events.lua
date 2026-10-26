@@ -289,6 +289,7 @@ attemptToRun('otrCalendar',"WARNING: otrCalendar.lua not found. Monthly date box
 attemptToRun('cloudCombat',"WARNING: cloudCombat.lua not found. Cloud strike penalty will not run.")
 attemptToRun('flyingFortress',"WARNING: flyingFortress.lua not found. B-17 wrecks will not convert.")
 attemptToRun('mapTransport',"WARNING: mapTransport.lua not found. Native map transport will not be patched.")
+attemptToRun('alliedSortie',"WARNING: alliedSortie.lua not found.")
 
 attemptToRun('keyPressSettings',"WARNING: did not find keyPressSettings.lua.  You might be missing standard key press events that are registered in that file.")
 attemptToRun('groundCombat',"WARNING: groundCombat.lua not found. Air-to-ground role/HP mods will not run.")

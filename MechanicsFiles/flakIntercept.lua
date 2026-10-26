@@ -436,7 +436,6 @@ local function applyHit(aircraft, dmg, shooter, reason)
     local hp = aircraft.type.hitpoints
     aircraft.damage = math.min(hp, aircraft.damage + dmg)
     if aircraft.damage >= hp then
-        civ.deleteUnit(aircraft)
         return "killed"
     end
     return "hit"

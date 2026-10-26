@@ -1,6 +1,6 @@
 --
 local versionNumber = 4
-local fileModified = false -- set this to true if you change this file for your scenario
+local fileModified = true -- flak-kill must return a coroutine, not nil
 -- if another file requires this file, it checks the version number to ensure that the
 -- version is recent enough to have all the expected functionality
 -- if you set fileModified to true, the error generated if this file is out of date will
@@ -13,7 +13,7 @@ local fileModified = false -- set this to true if you change this file for your 
 --
 --  The first part is the "combat calculation," which determines
 --  The final attack and defense values of the units involved in combat
---  By default, this section calls upon the combatCalculator module, which 
+--  By default, this section calls upon the combatCalculator module, which
 --  was developed by Knighttime (with some changes made by me, Prof. Garfield)
 --
 --  The second part is the "on choose defender" event, which determines, given
@@ -120,11 +120,11 @@ Modifiers that can be disabled by setting their value to "0" (the numeric value,
 --                          subtract, but min firepower will be 1)
 --      dAddFirepower -- add this to the defender's firepower before any other calculations (negative number to
 --                          subtract, but min firepower will be 1)
---      dTerrainDefenseValue -- overrides the terrain defense bonus (normally calculated by baseTerrain.defense/2) 
+--      dTerrainDefenseValue -- overrides the terrain defense bonus (normally calculated by baseTerrain.defense/2)
 --          requires combatCalculator version 2 to have any effect
 
 local function computeCombatStatistics(attacker, defender, isSneakAttack)
-    
+
     local combatModifierOverride = {aCustomMult=1,dCustomMult=1}
     -- Modifier from rules files:
     local aMult, dMult = rules.combatGroupCustomModifiers(attacker,defender)
@@ -145,10 +145,10 @@ if airCombat then
     end
 
 	local attackerStrength, attackerFirepower, defenderStrength, defenderFirepower,
-		   attackerStrengthModifiersApplied, attackerFirepowerModifiersApplied, 
+		   attackerStrengthModifiersApplied, attackerFirepowerModifiersApplied,
            defenderStrengthModifiersApplied, defenderFirepowerModifiersApplied
                 = combatCalculator.getCombatValues(attacker,defender, isSneakAttack,combatModifierOverride)
-	
+
     -- if you want to do something after the standard computations, you can do it here
 
     -- if you need to log modifiers for debugging, set this to true
@@ -185,11 +185,11 @@ local domain = {ground = 0, air = 1, sea = 2}
 -- If you want this to defend (and cancel the attack) instead of the air unit
 -- (presuming it isn't an air unit itself), you could add 1e6 (1 million) instead
 -- calculated defenderValues are defenderStrength/attackerStrength*healthPercentage.
--- This should be less than 10,000 (127*8 = 1016), unless you have defense multipliers 
+-- This should be less than 10,000 (127*8 = 1016), unless you have defense multipliers
 -- of 10 or more, and an attacker with 1 attack and facing a 1/8 penalty.
 local function defenderValueModifier(defender,tile,attacker)
     if simpleSettings.fightersAttackAirFirst and
-        gen.isAttackAir(attacker.type) and defender.type.domain == domain.air 
+        gen.isAttackAir(attacker.type) and defender.type.domain == domain.air
         and defender.type.range >= 2 and
         not gen.hasAirbase(tile) and not tile.city and
         not tileHasCarrierUnit(tile) then
@@ -210,15 +210,15 @@ end
 -- register.onChooseDefender
 --Registers a function that is called every time a unit is chosen to defend a tile.
 --The first parameter is the default function as implemented by the game.
---It takes `tile` and `attacker` as parameters. You can call this to produce a 
---result for cases you don't need to handle yourself. The second parameter 
---is the tile that's being considered, the third is the attacking unit, and the 
---fourth, `isCombat`, is a boolean that indicates if this invocation will be 
---followed by combat. This function is also called by the AI to determine its 
+--It takes `tile` and `attacker` as parameters. You can call this to produce a
+--result for cases you don't need to handle yourself. The second parameter
+--is the tile that's being considered, the third is the attacking unit, and the
+--fourth, `isCombat`, is a boolean that indicates if this invocation will be
+--followed by combat. This function is also called by the AI to determine its
 --goals, in which case `isCombat` is false.
 
 ---&autoDoc onChooseDefender
-function register.onChooseDefender(defaultFunction, tile, attacker, isCombat)
+function register.onChooseDefender(defaultFunction,tile,attacker,isCombat)
     local cover, mode = nil, nil
     if airCombat then
         if airCombat.findBounceDefender then
@@ -229,20 +229,10 @@ function register.onChooseDefender(defaultFunction, tile, attacker, isCombat)
             cover = airCombat.findInterceptDefender(tile, attacker)
             if cover then mode = "intercept" end
         end
-        if cover and airCombat.coverMode then
-            mode = airCombat.coverMode(cover, tile) or mode
-        end
-        -- Never pull the unit that is attacking. Never bounce a unit
-        -- that is already on this map.
-        if cover == attacker then
-            cover, mode = nil, nil
-        elseif cover and cover.location.z == tile.z then
-            mode = "intercept"
-        end
     end
 
     if cover and isCombat then
-        airCombat._pendingBounce = (mode == "bounce") and cover or nil
+        airCombat._pendingBounce = cover
         if airCombat.markBounceHome then
             airCombat.markBounceHome(cover, mode)
         end
@@ -259,17 +249,16 @@ function register.onChooseDefender(defaultFunction, tile, attacker, isCombat)
     local bestDefender = nil
     for possibleDefender in tile.units do
         local attackerStrength, attackerFirepower, defenderStrength, defenderFirepower
-            = computeCombatStatistics(attacker, possibleDefender, false)
+            = computeCombatStatistics(attacker,possibleDefender,false)
         local defenderValue = nil
         if attackerStrength == 0 then
             defenderValue = 1e7
         else
-            defenderValue = (defenderStrength / attackerStrength)
-                * possibleDefender.hitpoints / possibleDefender.type.hitpoints
+            defenderValue = (defenderStrength/attackerStrength)*possibleDefender.hitpoints/possibleDefender.type.hitpoints
         end
-        defenderValue = defenderValue + defenderValueModifier(possibleDefender, tile, attacker)
-        if defenderValue > bestDefenderValue
-            or (defenderValue == bestDefenderValue and possibleDefender.id < bestDefender.id) then
+        defenderValue = defenderValue + defenderValueModifier(possibleDefender,tile,attacker)
+        if defenderValue > bestDefenderValue or
+            (defenderValue == bestDefenderValue and possibleDefender.id < bestDefender.id) then
             bestDefenderValue = defenderValue
             bestDefender = possibleDefender
         end
@@ -281,18 +270,22 @@ end
 
 ---&autoDoc onInitiateCombatMakeCoroutine
 function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,attackerPower,defenderDie,defenderPower,isSneakAttack)
+    -- Flak may wound or kill the bomber before the plant fight.
+    -- Must still return a coroutine. A bare `return` lets the engine
+    -- run vanilla combat against a missing attacker and the plant dies.
     local flak = require("flakIntercept")
-    if flak.onInterceptAttack(attacker, defender) then
-        if attacker.type.domain == 1 and defender.type.domain ~= 1 then
-            attacker.moveSpent = 255
-        end
-        return
+    local flakKilled = false
+    if flak and flak.onInterceptAttack then
+        flakKilled = flak.onInterceptAttack(attacker, defender) == true
     end
+
     leaderBonus.updateCommander(attacker)
     leaderBonus.updateCommander(defender)
-    local airVsAir = attacker.type.domain == 1 and defender.type.domain == 1
-    local maxCombatRounds = (airVsAir and airCombat and airCombat.maxAirRounds
-        and airCombat.maxAirRounds()) or 30
+    local maxCombatRounds = (airCombat and airCombat.maxAirRounds and airCombat.maxAirRounds()) or 10
+    if flakKilled then
+        maxCombatRounds = 0
+    end
+
     local calculatedAttackerStrength,
             calculatedAttackerFirepower,
             calculatedDefenderStrength,
@@ -303,9 +296,10 @@ function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,at
             text.simple("Our "..attacker.type.name.." unit can't fight the defending "..defender.type.name..".  The attack has been cancelled.","Defense Minister")
         end
     end
+
     return coroutine.create(function()
         local round = 0
-        while(round < maxCombatRounds and attacker.hitpoints >0 and defender.hitpoints > 0) do
+        while(round < maxCombatRounds and attacker.hitpoints > 0 and defender.hitpoints > 0) do
             if false then
                 coroutine.yield(true,defender)
             else
@@ -314,7 +308,7 @@ function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,at
                 local newDefenderDie = calculatedDefenderStrength
                 local newDefenderFirepower = calculatedDefenderFirepower
                 local result = coroutine.yield(false,newAttackerDie,newAttackerFirepower,newDefenderDie,newDefenderFirepower)
-                if airVsAir and airCombat and airCombat.afterRound then
+                if airCombat and airCombat.afterRound then
                     local verdict = airCombat.afterRound(round + 1, attacker, defender)
                     if verdict == "attackerEscaped" or verdict == "defenderEscaped" then
                         maxCombatRounds = round + 1
@@ -323,13 +317,19 @@ function register.onInitiateCombatMakeCoroutine(attacker,defender,attackerDie,at
             end
             round = round+1
         end
-        if airVsAir and airCombat and airCombat.finishBounce then
+        if flakKilled then
+            -- bomber already at 0 HP from intercept; remove it now that
+            -- the engine fight has been skipped
+            if attacker and attacker.hitpoints then
+                civ.deleteUnit(attacker)
+            end
+        end
+        if airCombat and airCombat.finishBounce then
             airCombat.finishBounce(attacker, defender)
         end
-        local flakMirror = require("flakMirror")
-        flakMirror.afterCombat(attacker, defender)
-        if attacker.type.domain == 1 and defender.type.domain ~= 1 then
-            attacker.moveSpent = 255
+        local okMirror, flakMirror = pcall(require, "flakMirror")
+        if okMirror and flakMirror.afterCombat then
+            flakMirror.afterCombat(attacker, defender)
         end
     end)
 end
